@@ -12,7 +12,6 @@ app.set("port", process.env.PORT || 3000);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, './../client/web/dist')));
-console.log(path.join(__dirname, './../client/web/dist'))
 
 // API routes
 app.use('/api', require('./api/controllers/index'))
