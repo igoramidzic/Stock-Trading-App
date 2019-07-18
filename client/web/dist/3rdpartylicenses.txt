@@ -264,9 +264,6 @@ Apache-2.0
  
 
 
-template
-MIT
-
 tslib
 Apache-2.0
 Apache License
