@@ -10,7 +10,7 @@ export class SocketioService {
   socket: any;
 
   constructor() {
-    this.socket = io('https://robinhood-igor.herokuapp.com')
+    // this.socket = io('http://localhost:3000')
   }
 
   listen(eventName: string) {
