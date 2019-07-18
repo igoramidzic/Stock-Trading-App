@@ -1,6 +1,9 @@
 import errorHandler from "errorhandler";
-
+import * as http from 'http'
 import app from "./app";
+require('./socketio')
+
+const server = http.createServer(app)
 
 /**
  * Error Handler. Provides full stack - remove for production
@@ -10,7 +13,7 @@ app.use(errorHandler());
 /**
  * Start Express server.
  */
-const server = app.listen(app.get("port"), () => {
+server.listen(app.get("port"), () => {
   console.log(
     "  App is running at http://localhost:%d in %s mode",
     app.get("port"),

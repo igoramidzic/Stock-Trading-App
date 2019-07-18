@@ -5,7 +5,7 @@ import './db/mongoose'
 import { ENVIRONMENT } from "./util/secrets";
 
 // Create Express server
-const app = express();
+const app = express()
 
 // Express configuration
 app.set("port", process.env.PORT || 3000);

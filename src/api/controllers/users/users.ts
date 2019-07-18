@@ -1,9 +1,9 @@
 import { Router, Response, Request } from "express";
 
-import * as userQueries from "../../queries/userQueries";
-import * as userQueryHandlers from "../../queryHandlers/userQueryHandlers";
-import * as userCommands from '../../commands/userCommands'
-import * as userCommandHandlers from '../../commandHandlers/userCommandHandlers'
+import * as userQueries from "../../queries/users/userQueries";
+import * as userQueryHandlers from "../../queryHandlers/users/userQueryHandlers";
+import * as userCommands from '../../commands/users/userCommands'
+import * as userCommandHandlers from '../../commandHandlers/users/userCommandHandlers'
 import { UserDocument } from "../../../models/users/userModel";
 
 const routes: Router = Router()

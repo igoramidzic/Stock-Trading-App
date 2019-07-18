@@ -1,5 +1,5 @@
-import { User, UserDocument } from "../../models/users/userModel";
-import { AllUsersQuery } from "../queries/userQueries";
+import { User, UserDocument } from "../../../models/users/userModel";
+import { AllUsersQuery } from "../../queries/users/userQueries";
 
 export let getAllUsers = (query: AllUsersQuery) => new Promise((resolve, reject) => {
     User.find()

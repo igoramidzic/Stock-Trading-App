@@ -1,4 +1,5 @@
 <div class="container">
+  <button class="mdc-button" (click)="onListen()">Connect</button>
   <div class="row">
     <div class="col-6" *ngFor="let theme of themes">
       <div class="mdc-theme--background container p-3" [ngClass]="theme">
@@ -24,3 +25,4 @@
       </div>
     </div>
   </div>
+</div>
