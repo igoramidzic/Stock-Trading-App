@@ -11,35 +11,15 @@ import { SocketioService } from './services/socketio/socketio.service';
 })
 export class AppComponent implements OnInit {
 
-  themes: string[] = [
-    'theme-open-up',
-    'theme-open-down',
-    'theme-closed-up',
-    'theme-closed-down'
-  ];
+  themeClass: string;
 
-  constructor(private themeService: ThemeService, private socketioService: SocketioService) {
-
-  }
+  constructor(public themeService: ThemeService) { }
 
   ngOnInit(): void {
-    this.themeService.getTheme()
-      .then((theme: Theme) => {
-        console.log(theme);
-      })
-      .catch((error: ClientResponse) => {
-        console.log(error);
-      })
+    this.themeService.watchTheme();
 
-    this.socketioService.emit('connection', { something: 'or other' })
-  }
-
-  onListen(): void {
-    this.socketioService.listen('hello')
-      .subscribe(data => {
-        console.log(data)
-      })
-
-    this.socketioService.emit('connection', null);
+    this.themeService.theme$.subscribe((theme: Theme) => {
+      this.themeClass = this.themeService.getThemeClass(theme);
+    })
   }
 }

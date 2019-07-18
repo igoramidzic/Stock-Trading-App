@@ -4,25 +4,35 @@ import { environment } from 'src/environments/environment';
 import { ClientResponse } from 'src/app/core/models/response/clientResponse';
 import { BehaviorSubject } from 'rxjs';
 import { Theme } from 'src/app/core/models/theme/theme';
+import { SocketioService } from '../socketio/socketio.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ThemeService {
 
-  theme: BehaviorSubject<Theme> = new BehaviorSubject(null);
+  theme$: BehaviorSubject<Theme> = new BehaviorSubject(null);
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private socketioService: SocketioService) { }
 
-  getTheme(): Promise<any> {
-    return new Promise((resolve, reject) => {
-      this.http.get(environment.apiBase + '/themes/active')
-        .subscribe((res: ClientResponse) => {
-          this.theme.next(res.result.theme);
-          resolve(res.result.theme);
-        }, (error: ClientResponse) => {
-          reject(error);
-        })
+  watchTheme(): void {
+    this.socketioService.listen('theme-update').subscribe((theme: Theme) => {
+      this.theme$.next(theme);
     })
+  }
+
+  getThemeClass(theme: Theme): string {
+    switch (theme) {
+      case 1:
+        return 'theme-open-up'
+      case 2:
+        return 'theme-open-down'
+      case 3:
+        return 'theme-closed-up'
+      case 4:
+        return 'theme-closed-down'
+      default:
+        return null
+    }
   }
 }
