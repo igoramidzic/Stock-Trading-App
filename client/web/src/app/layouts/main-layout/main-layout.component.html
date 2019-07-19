@@ -1,6 +1,9 @@
 <div>
   <div class="container p-4">
     <div class="container p-3">
+      <a class="mdc-button" [routerLink]="['/login']">Log in</a>
+      <a class="mdc-button" [routerLink]="['/signup']">Sign up</a>
+      <br><br>
       <button class="mdc-button mdc-button--unelevated mr-2" (click)="themeService.updateMainTheme(Theme.Light)">
         Light
       </button>
