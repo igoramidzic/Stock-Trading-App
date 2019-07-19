@@ -1,0 +1,41 @@
+<div>
+  <div class="container p-4">
+    <div class="container p-3">
+      <button class="mdc-button mdc-button--unelevated mr-2" (click)="themeService.updateMainTheme(Theme.Light)">
+        Light
+      </button>
+      <button class="mdc-button mdc-button--unelevated mr-2" (click)="themeService.updateMainTheme(Theme.Dark)">
+        Dark
+      </button>
+      <button class="mdc-button mdc-button--unelevated mr-2" (click)="themeService.updateSecondaryTheme(Theme.Up)">
+        Up
+      </button>
+      <button class="mdc-button mdc-button--unelevated" (click)="themeService.updateSecondaryTheme(Theme.Down)">
+        Down
+      </button>
+
+      <br><br>
+      <div class="mdc-theme--primary-bg mdc-theme--on-primary">
+        <h2>primary</h2>
+      </div>
+      <div class="mdc-theme--secondary-bg mdc-theme--on-secondary">
+        <h2>secondary</h2>
+      </div>
+      <div class="mdc-theme--surface mdc-theme--on-surface">
+        <h2>surface</h2>
+      </div>
+      <div class="mdc-theme--text-primary-on-background">
+        <h5 class="mdc-theme--text-primary-on-background">primary</h5>
+        <h5 class="mdc-theme--text-secondary-on-background">secondary</h5>
+        <h5 class="mdc-theme--text-hint-on-background">hint</h5>
+        <h5 class="mdc-theme--text-disabled-on-background">disabled</h5>
+        <h5 class="mdc-theme--text-icon-on-background">icon</h5>
+      </div>
+      <button class="mdc-button mdc-button--unelevated">
+        Button
+      </button>
+
+    </div>
+  </div>
+  <router-outlet></router-outlet>
+</div>

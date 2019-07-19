@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ThemeService } from './services/theme/theme.service';
-import { Theme } from './core/models/theme/theme';
-import { ClientResponse } from './core/models/response/clientResponse';
-import { SocketioService } from './services/socketio/socketio.service';
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
+import { Title } from '@angular/platform-browser';
+import { map, filter, mergeMap } from 'rxjs/operators'
 
 @Component({
   selector: 'app-root',
@@ -10,16 +9,25 @@ import { SocketioService } from './services/socketio/socketio.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-
-  themeClass: string;
-
-  constructor(public themeService: ThemeService) { }
+  constructor(private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private titleService: Title) { }
 
   ngOnInit(): void {
-    this.themeService.watchTheme();
-
-    this.themeService.theme$.subscribe((theme: Theme) => {
-      this.themeClass = this.themeService.getThemeClass(theme);
-    })
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .pipe(map(() => this.activatedRoute))
+      .pipe(map((route) => {
+        while (route.firstChild) route = route.firstChild;
+        return route;
+      }))
+      .pipe(filter((route) => route.outlet === 'primary'))
+      .pipe(mergeMap((route) => route.data))
+      .subscribe((event) => {
+        if (event['title'])
+          this.titleService.setTitle(event['title'] + ' | Robinhoood')
+        else
+          this.titleService.setTitle('Robinhood')
+      });
   }
 }
