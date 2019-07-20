@@ -35,11 +35,11 @@ label {
     border: 1px solid map-get($colors, "green");
   }
 
-  &.ng-dirty.ng-invalid {
+  &.ng-touched.ng-invalid {
     border: 1px solid map-get($colors, "red");
   }
 
-  &.ng-valid.ng-dirty {
+  &.ng-valid.ng-touched {
     // border-bottom: 3px solid var(--green);
   }
 

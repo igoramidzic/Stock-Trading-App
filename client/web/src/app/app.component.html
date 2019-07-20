@@ -1,1 +1,11 @@
 <router-outlet></router-outlet>
+
+<div style="position: absolute; top: 0; left: 0; z-index: 999;">
+  <button class="btn btn-primary" (click)="themeService.updateMainTheme(Theme.Light)">Light</button>
+  <br>
+  <button class="btn btn-secondary" (click)="themeService.updateMainTheme(Theme.Dark)">Dark</button>
+  <br>
+  <button class="btn btn-success" (click)="themeService.updateSecondaryTheme(Theme.Up)">Up</button>
+  <br>
+  <button class="btn btn-danger" (click)="themeService.updateSecondaryTheme(Theme.Down)">Down</button>
+</div>

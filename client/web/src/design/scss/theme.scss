@@ -1,5 +1,7 @@
-$colors: ("green": #21ce99,
-  "red": #f45531);
+$colors: ("green": #21ce9a,
+  "red": #f45531,
+  "light-green": #e4fff7,
+  "light-red": #ffeeea);
 
 @mixin default-theme {
   --background: white;

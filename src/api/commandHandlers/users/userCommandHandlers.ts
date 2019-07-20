@@ -10,3 +10,7 @@ export let createNewUser = (command: userCommands.CreateUserCommand) => new Prom
             reject(error)
         })
 })
+
+export let authenticateUser = (command: userCommands.AuthenticateUserCommand) => new Promise((resolve, reject) => {
+    resolve({ firstName: "Igor", lastName: "Amidzic", email: "amidzicigor46@gmail.com" });
+})

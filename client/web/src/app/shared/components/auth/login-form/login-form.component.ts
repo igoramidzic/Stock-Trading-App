@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { Router } from '@angular/router';
+import { FormBuilder, FormControl, Validators, FormGroup } from '@angular/forms';
+import { ClientResponse } from 'src/app/core/models/response/clientResponse';
 
 @Component({
   selector: 'app-login-form',
@@ -9,20 +11,40 @@ import { Router } from '@angular/router';
 })
 export class LoginFormComponent implements OnInit {
 
-  constructor(private authService: AuthService, private router: Router) { }
+  isSubmitting: boolean = false;
+  errors: string[];
+
+  loginForm: FormGroup;
+
+  constructor(private authService: AuthService, private router: Router,
+    private fb: FormBuilder) { }
 
   ngOnInit() {
-
+    this.loginForm = this.fb.group({
+      email: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required])
+    })
   }
 
-  onLogin(): void {
-    this.authService.authenticate('', '')
-      .then(() => {
-        this.router.navigate(['']);
+  login(): void {
+    if (this.loginForm.invalid) {
+      this.loginForm.markAllAsTouched();
+      return;
+    };
+
+    this.isSubmitting = true;
+    this.errors = [];
+
+    this.authService.authenticate(this.loginForm.value)
+      .then((res: ClientResponse) => {
+        this.router.navigate(['/']);
+        console.log(res)
       })
-      .catch(() => {
-        console.log("Something went wrong");
+      .catch((err: ClientResponse) => {
+        console.log(err);
+        this.errors = err.messages;
       })
+      .finally(() => this.isSubmitting = false);
   }
 
 }
