@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { map, filter, mergeMap } from 'rxjs/operators'
+import { ThemeService } from './services/theme/theme.service';
+import { Theme } from './core/models/theme/theme';
 
 @Component({
   selector: 'app-root',
@@ -9,9 +11,13 @@ import { map, filter, mergeMap } from 'rxjs/operators'
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+
+  Theme = Theme;
+
   constructor(private router: Router,
     private activatedRoute: ActivatedRoute,
-    private titleService: Title) { }
+    private titleService: Title,
+    public themeService: ThemeService) { }
 
   ngOnInit(): void {
     this.router.events

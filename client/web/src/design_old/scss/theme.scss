@@ -1,0 +1,54 @@
+$colors: (green: #21ce99,
+  red: #f45531);
+
+.theme-light {
+  --background: white;
+}
+
+.theme-dark {
+  --background: #1b1b1d;
+}
+
+.theme-up {
+  $theme-colors: (primary: #21ce99,
+      secondary: #f45531,
+      success: #21ce99,
+      danger: #f45531);
+
+  @import '../node_modules/bootstrap/scss/bootstrap';
+}
+
+.theme-down {
+  $theme-colors: (primary: #f45531,
+      secondary: #21ce99,
+      success: #21ce99,
+      danger: #f45531);
+
+  @import '../node_modules/bootstrap/scss/bootstrap';
+}
+
+:root {
+
+  @each $name,
+  $color in $colors {
+    --#{$name}: #{$color};
+    --#{$name}-dark: #{darken($color, 7%)};
+    --#{$name}-light: #{lighten($color, 7%)};
+  }
+}
+
+
+body {
+  background-color: var(--background);
+}
+
+@each $name,
+$color in $colors {
+  .#{$name} {
+    color: $color;
+  }
+
+  .#{$name}-bg {
+    background: $color;
+  }
+}

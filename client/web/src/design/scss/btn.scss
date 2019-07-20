@@ -1,0 +1,88 @@
+@mixin btn-color($bg) {
+  background: var(--#{$bg});
+
+  &:hover {}
+}
+
+.btn {
+  height: 36px;
+  outline: none;
+  background: var(--poop);
+  margin: 0.25em;
+  margin-left: 0;
+  color: var(--button-text-color);
+  font-size: 0.625em;
+  border: none;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-body);
+  font-weight: 500;
+  border-radius: 3px;
+  letter-spacing: .25px;
+  vertical-align: bottom;
+  cursor: pointer;
+  min-width: 120px;
+
+  svg {
+    height: 1.3em;
+    margin: 0 0.3em;
+  }
+
+  &:hover {}
+
+}
+
+.btn:disabled,
+.btn[disabled] {
+  opacity: 0.8 !important;
+  cursor: not-allowed;
+}
+
+.btn-block {
+  display: block;
+  margin: 2em 0;
+  width: 100%;
+
+  img,
+  svg {
+    top: 5px;
+    position: relative;
+  }
+}
+
+.btn-lg {
+  height: 48px;
+}
+
+
+.btn-contrast {
+  background: var(--text-color);
+  color: var(--nav-bg);
+
+  &:hover {
+    transform: translateY(-2px);
+    transition: transform 200ms ease;
+  }
+}
+
+.btn-primary {
+  // @include btn-color('green');
+  background: var(--primary-color);
+
+  &:hover {}
+}
+
+.btn-secondary {
+  // @include btn-color('secondary');
+  background: var(--secondary-color);
+}
+
+.btn-success {
+  @include btn-color('green');
+}
+
+.btn-danger {
+  @include btn-color('red');
+}
