@@ -4,11 +4,12 @@ import { LoginFormComponent } from './components/auth/login-form/login-form.comp
 import { SignupFormComponent } from './components/auth/signup-form/signup-form.component';
 import { MainLayoutComponent } from '../layouts/main-layout/main-layout.component';
 import { AuthGuard } from '../core/guards/auth/auth.guard';
+import { NotAuthGuard } from '../core/guards/not-auth/not-auth.guard';
 
 export const SHARED_ROUTES: Routes = [
   {
     path: 'login',
-    canActivate: [AuthGuard],
+    canActivate: [NotAuthGuard],
     component: AuthLayoutComponent,
     children: [
       {
@@ -23,7 +24,7 @@ export const SHARED_ROUTES: Routes = [
   },
   {
     path: 'signup',
-    canActivate: [AuthGuard],
+    canActivate: [NotAuthGuard],
     component: AuthLayoutComponent,
     children: [
       {

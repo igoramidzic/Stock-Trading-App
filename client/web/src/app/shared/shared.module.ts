@@ -6,6 +6,8 @@ import { AuthLayoutComponent } from '../layouts/auth-layout/auth-layout.componen
 import { LoginFormComponent } from './components/auth/login-form/login-form.component';
 import { SignupFormComponent } from './components/auth/signup-form/signup-form.component';
 
+import { FormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     ThemeTogglerComponent,
@@ -14,6 +16,7 @@ import { SignupFormComponent } from './components/auth/signup-form/signup-form.c
     SignupFormComponent,
   ],
   imports: [
+    FormsModule,
     RouterModule.forChild(SHARED_ROUTES)
   ],
   exports: [
