@@ -1,3 +1,25 @@
-<div class="container">
-  Sign up here
-</div>
+<form (ngSubmit)="onSignup()">
+  <div class="mb-5">
+    <div class="row">
+      <div class="col-lg-6">
+        <label for="email">First name</label>
+        <input type="text" class="input input-lg mb-2">
+      </div>
+
+      <div class="col-lg-6">
+        <label for="email">Last name</label>
+        <input type="text" class="input input-lg mb-2">
+      </div>
+    </div>
+
+    <label for="email">Email</label>
+    <input type="text" class="input input-lg mb-2">
+
+    <label for="password">Password</label>
+    <input type="password" class="input input-lg mb-2">
+
+    <a [routerLink]="['/login']">Already have an account? Log in</a>
+  </div>
+
+  <button type="submit" class="btn btn-lg btn-success">Sign up</button>
+</form>

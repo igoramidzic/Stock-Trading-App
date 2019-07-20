@@ -1,0 +1,159 @@
+$colors: ("green": #21ce99,
+  "red": #f45531);
+
+@mixin default-theme {
+  --background: white;
+  --button-text-color: white;
+  --text-color: #171718;
+  --input-background: #FAFAFA;
+  --input-border: #cbcbcd;
+  --input-placeholder: #cbcbcd;
+  --primary-color: map-get($colors, "green");
+  --secondary-color: map-get($colors, "red");
+  transition: all 0.5s ease;
+}
+
+.theme-light {
+  @include default-theme;
+}
+
+.theme-dark {
+  --background: #1b1b1d;
+  --button-text-color: #1b1b1d;
+  --text-color: white;
+  --input-background: #1b1b1d;
+  --input-border: #0e0d0d;
+  --input-placeholder: #858587;
+  --primary-color: map-get($colors, "green");
+  --secondary-color: map-get($colors, "red");
+  transition: all 0.3s ease;
+}
+
+.theme-up {
+  --primary-color: #21ce99;
+  --secondary-color: #f45531;
+}
+
+.theme-down {
+  --primary-color: #f45531;
+  --secondary-color: #21ce99;
+}
+
+:root {
+
+  @each $name,
+  $color in $colors {
+    --#{$name}: #{$color};
+    --#{$name}-dark: #{darken($color, 7%)};
+    --#{$name}-light: #{lighten($color, 7%)};
+  }
+
+  --font-body: 'ratio',
+  sans-serif;
+  --font-head: 'ratio',
+  sans-serif; // effra erbaum
+  --font-size: 13px;
+
+
+  @include default-theme;
+}
+
+body {
+  background: var(--background);
+  color: var(--text-color);
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--font-size);
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: none;
+    color: var(--primary-color);
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--h-color);
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-style: normal;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+i {
+  svg {
+    position: relative;
+    width: 1em;
+    margin: 0 3px;
+    top: 0.125em;
+  }
+}
+
+.zero-top {
+  svg {
+    top: 0;
+  }
+}
+
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  min-height: 250px;
+  margin-top: 120px;
+  font-size: 0.85em;
+  opacity: 0.8;
+}
+
+hr {
+  border: none;
+  border-bottom: var(--h-border);
+}
+
+li {
+  padding: 0.5em 0;
+}
+
+
+blockquote {
+  position: relative;
+  padding-left: 1em;
+  border-left: var(--nav-bg) 3px dashed;
+  font-size: 1.2em;
+  font-weight: 300;
+}
+
+// Color Utilities
+
+@each $name,
+$color in $colors {
+  .#{$name} {
+    color: $color;
+  }
+
+  .#{$name}-bg {
+    background: $color;
+  }
+}
+
+// Random Stuff
+
+::selection {
+  background: var(--green);
+  color: white;
+}

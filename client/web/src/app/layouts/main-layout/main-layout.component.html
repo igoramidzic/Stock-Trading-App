@@ -1,44 +1,36 @@
-<div>
-  <div class="container p-4">
-    <div class="container p-3">
-      <a class="mdc-button" [routerLink]="['/login']">Log in</a>
-      <a class="mdc-button" [routerLink]="['/signup']">Sign up</a>
-      <br><br>
-      <button class="mdc-button mdc-button--unelevated mr-2" (click)="themeService.updateMainTheme(Theme.Light)">
-        Light
-      </button>
-      <button class="mdc-button mdc-button--unelevated mr-2" (click)="themeService.updateMainTheme(Theme.Dark)">
-        Dark
-      </button>
-      <button class="mdc-button mdc-button--unelevated mr-2" (click)="themeService.updateSecondaryTheme(Theme.Up)">
-        Up
-      </button>
-      <button class="mdc-button mdc-button--unelevated" (click)="themeService.updateSecondaryTheme(Theme.Down)">
-        Down
-      </button>
+<div class="container p-5">
 
-      <br><br>
-      <div class="mdc-theme--primary-bg mdc-theme--on-primary">
-        <h2>primary</h2>
-      </div>
-      <div class="mdc-theme--secondary-bg mdc-theme--on-secondary">
-        <h2>secondary</h2>
-      </div>
-      <div class="mdc-theme--surface mdc-theme--on-surface">
-        <h2>surface</h2>
-      </div>
-      <div class="mdc-theme--text-primary-on-background">
-        <h5 class="mdc-theme--text-primary-on-background">primary</h5>
-        <h5 class="mdc-theme--text-secondary-on-background">secondary</h5>
-        <h5 class="mdc-theme--text-hint-on-background">hint</h5>
-        <h5 class="mdc-theme--text-disabled-on-background">disabled</h5>
-        <h5 class="mdc-theme--text-icon-on-background">icon</h5>
-      </div>
-      <button class="mdc-button mdc-button--unelevated">
-        Button
-      </button>
+  <button class="btn btn-sm btn-light" (click)="themeService.updateMainTheme(Theme.Light)">Light</button>
+  <button class="btn btn-sm btn-dark" (click)="themeService.updateMainTheme(Theme.Dark)">Dark</button>
 
-    </div>
-  </div>
-  <router-outlet></router-outlet>
+  <button class="btn btn-sm btn-success" (click)="themeService.updateSecondaryTheme(Theme.Up)">Up</button>
+  <button class="btn btn-sm btn-danger" (click)="themeService.updateSecondaryTheme(Theme.Down)">Down</button>
+
+  <hr>
+
+  <button class="btn btn-lg btn-primary">Hello</button>
+  <button class="btn btn-primary">Hello</button>
+  <button class="btn btn-lg btn-primary btn-outline">Hello</button>
+  <button class="btn btn-primary btn-outline">Hello</button>
+  <br><br>
+  <button class="btn btn-lg btn-secondary">Hello</button>
+  <button class="btn btn btn-secondary">Hello</button>
+  <button class="btn btn-lg btn-secondary btn-outline">Hello</button>
+  <button class="btn btn-secondary btn-outline">Hello</button>
+  <br><br>
+  <button class="btn btn-lg btn-success">Hello</button>
+  <button class="btn btn btn-success">Hello</button>
+  <button class="btn btn-lg btn-success btn-outline">Hello</button>
+  <button class="btn btn-success btn-outline">Hello</button>
+  <br><br>
+  <button class="btn btn-lg btn-danger">Hello</button>
+  <button class="btn btn btn-danger">Hello</button>
+  <button class="btn btn-lg btn-danger btn-outline">Hello</button>
+  <button class="btn btn-danger btn-outline">Hello</button>
+
+  <br><br>
+
+  <input type="text" class="input" placeholder="Placeholder">
+  <br>
+  <input type="text" class="input input-lg" placeholder="Placeholder">
 </div>
