@@ -38,10 +38,8 @@ export class LoginFormComponent implements OnInit {
     this.authService.authenticate(this.loginForm.value)
       .then((res: ClientResponse) => {
         this.router.navigate(['/']);
-        console.log(res)
       })
       .catch((err: ClientResponse) => {
-        console.log(err);
         this.errors = err.messages;
       })
       .finally(() => this.isSubmitting = false);

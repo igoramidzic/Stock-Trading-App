@@ -24,19 +24,19 @@ export class AuthService {
           this._isAuthenticated = true;
           resolve(res);
         }, (err: { error: ClientResponse }) => {
-          resolve(err.error);
+          reject(err.error);
         })
     })
   }
 
   signUp(credentials: SignupCredentials): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.http.post(`${environment.apiBase}/auth/create-user`, {})
+      this.http.post(`${environment.apiBase}/auth/create-user`, credentials)
         .subscribe((res: ClientResponse) => {
           this._isAuthenticated = true;
           resolve(res);
         }, (err: { error: ClientResponse }) => {
-          resolve(err.error);
+          reject(err.error);
         })
     })
   }

@@ -40,10 +40,8 @@ export class SignupFormComponent implements OnInit {
     this.authService.signUp(this.signupForm.value)
       .then((res: ClientResponse) => {
         this.router.navigate(['/']);
-        console.log(res)
       })
       .catch((err: ClientResponse) => {
-        console.log(err);
         this.errors = err.messages;
       })
       .finally(() => this.isSubmitting = false);
