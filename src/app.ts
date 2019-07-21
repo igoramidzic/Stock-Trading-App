@@ -3,6 +3,7 @@ import bodyParser from "body-parser";
 import path from 'path'
 import './db/mongoose'
 import { ENVIRONMENT } from "./util/secrets";
+import * as jwt from 'jsonwebtoken';
 
 // Create Express server
 const app = express()
