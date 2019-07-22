@@ -3,9 +3,7 @@ import bodyParser from "body-parser";
 import path from 'path'
 import './db/mongoose'
 import { ENVIRONMENT } from "./util/secrets";
-import './config/passport';
 import jwtParsing from './config/jwt';
-
 
 // Create Express server
 const app = express()
