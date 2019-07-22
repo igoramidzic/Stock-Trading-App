@@ -1,10 +1,8 @@
 import { Response } from "express";
 
 export enum Theme {
-    OpenUp = 1,
-    OpenDown = 2,
-    ClosedUp = 3,
-    ClosedDown = 4
+    Open = 1,
+    Closed = 2
 }
 
 export class ClientResponse {
@@ -25,6 +23,6 @@ export class ClientResponse {
 
 export let serverError = (res: Response) => {
     const response = new ClientResponse(false, null);
-    response.addMessage("Something went wrong");
+    response.addMessage("Something went wrong. Try again.");
     return res.status(500).json(response);
 }

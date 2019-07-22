@@ -1,36 +1,3 @@
-<div class="container p-5">
-
-  <button class="btn btn-sm btn-light" (click)="themeService.updateMainTheme(Theme.Light)">Light</button>
-  <button class="btn btn-sm btn-dark" (click)="themeService.updateMainTheme(Theme.Dark)">Dark</button>
-
-  <button class="btn btn-sm btn-success" (click)="themeService.updateSecondaryTheme(Theme.Up)">Up</button>
-  <button class="btn btn-sm btn-danger" (click)="themeService.updateSecondaryTheme(Theme.Down)">Down</button>
-
-  <hr>
-
-  <button class="btn btn-lg btn-primary">Hello</button>
-  <button class="btn btn-primary">Hello</button>
-  <button class="btn btn-lg btn-primary btn-outline">Hello</button>
-  <button class="btn btn-primary btn-outline">Hello</button>
-  <br><br>
-  <button class="btn btn-lg btn-secondary">Hello</button>
-  <button class="btn btn btn-secondary">Hello</button>
-  <button class="btn btn-lg btn-secondary btn-outline">Hello</button>
-  <button class="btn btn-secondary btn-outline">Hello</button>
-  <br><br>
-  <button class="btn btn-lg btn-success">Hello</button>
-  <button class="btn btn btn-success">Hello</button>
-  <button class="btn btn-lg btn-success btn-outline">Hello</button>
-  <button class="btn btn-success btn-outline">Hello</button>
-  <br><br>
-  <button class="btn btn-lg btn-danger">Hello</button>
-  <button class="btn btn btn-danger">Hello</button>
-  <button class="btn btn-lg btn-danger btn-outline">Hello</button>
-  <button class="btn btn-danger btn-outline">Hello</button>
-
-  <br><br>
-
-  <input type="text" class="input" placeholder="Placeholder">
-  <br>
-  <input type="text" class="input input-lg" placeholder="Placeholder">
-</div>
+<app-main-navbar></app-main-navbar>
+<app-application-loader *ngIf="isLoading"></app-application-loader>
+<router-outlet></router-outlet>

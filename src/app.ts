@@ -3,7 +3,9 @@ import bodyParser from "body-parser";
 import path from 'path'
 import './db/mongoose'
 import { ENVIRONMENT } from "./util/secrets";
-import * as jwt from 'jsonwebtoken';
+import './config/passport';
+import jwtParsing from './config/jwt';
+
 
 // Create Express server
 const app = express()
@@ -13,6 +15,8 @@ app.set("port", process.env.PORT || 3000);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, './../client/web/dist')));
+
+app.use(jwtParsing)
 
 // API routes
 app.use('/api', require('./api/controllers/index'))

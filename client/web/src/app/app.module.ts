@@ -5,6 +5,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { APP_ROUTES } from './app.routes';
 import { RouterModule } from '@angular/router';
+import { JwtModule } from '@auth0/angular-jwt';
+import { environment } from 'src/environments/environment';
+
+export function tokenGetter() {
+  return localStorage.getItem('access_token');
+}
 
 @NgModule({
   declarations: [
@@ -13,7 +19,15 @@ import { RouterModule } from '@angular/router';
   imports: [
     RouterModule.forRoot(APP_ROUTES),
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter,
+        whitelistedDomains: [environment.baseUrl],
+        throwNoTokenError: false,
+        skipWhenExpired: true
+      }
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -12,14 +12,16 @@ $colors: ("green": #21ce9a,
   --input-placeholder: #cbcbcd;
   --primary-color: map-get($colors, "green");
   --secondary-color: map-get($colors, "red");
-  transition: all 0.5s ease;
+  --success-color: #21ce99;
+  --danger-color: #f45531;
+  transition: all 0.25s ease;
 }
 
-.theme-light {
+.theme-open {
   @include default-theme;
 }
 
-.theme-dark {
+.theme-closed {
   --background: #1b1b1d;
   --button-text-color: #1b1b1d;
   --text-color: white;
@@ -28,17 +30,23 @@ $colors: ("green": #21ce9a,
   --input-placeholder: #858587;
   --primary-color: map-get($colors, "green");
   --secondary-color: map-get($colors, "red");
+  --success-color: #21ce99;
+  --danger-color: #f45531;
   transition: all 0.3s ease;
 }
 
 .theme-up {
   --primary-color: #21ce99;
   --secondary-color: #f45531;
+  --success-color: #21ce99;
+  --danger-color: #f45531;
 }
 
 .theme-down {
   --primary-color: #f45531;
   --secondary-color: #21ce99;
+  --success-color: #21ce99;
+  --danger-color: #f45531;
 }
 
 :root {
@@ -68,13 +76,14 @@ body {
   font-size: var(--font-size);
 }
 
-a {
-  color: var(--primary-color);
+a,
+.link {
+  color: var(--text-color);
   text-decoration: none;
 
   &:hover {
     text-decoration: none;
-    color: var(--primary-color);
+    color: var(--success-color);
   }
 }
 

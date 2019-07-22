@@ -8,7 +8,7 @@ const routes: Router = Router()
  */
 routes.get("/active", (req: Request, res: Response) => {
     const result = {
-        theme: Theme.OpenUp
+        theme: Theme.Open
     }
     res.status(200).json(new ClientResponse(true, result))
 });

@@ -2,13 +2,14 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { MAINLAYOUT_ROUTES } from './main-layout.routes';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { MainLayoutComponent } from './main-layout.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
-    MainLayoutComponent
+    HomeComponent
   ],
   imports: [
+    SharedModule,
     RouterModule.forChild(MAINLAYOUT_ROUTES)
   ],
   exports: [

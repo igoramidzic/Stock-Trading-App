@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ThemeService } from 'src/app/services/theme/theme.service';
 
 @Component({
   selector: 'app-auth-layout',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AuthLayoutComponent implements OnInit {
 
-  constructor() { }
+  constructor(private themeService: ThemeService) { }
 
   ngOnInit() {
+    this.themeService.setDefaultTheme();
   }
 
 }

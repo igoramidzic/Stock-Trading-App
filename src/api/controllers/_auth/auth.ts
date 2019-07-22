@@ -1,10 +1,13 @@
 import { Router, Response, Request } from "express"
+import jwt from 'jsonwebtoken'
+import { SECRET } from "../../../util/secrets";
+import passport from 'passport';
 
 import * as userQueries from '../../queries/users/userQueries'
 import * as userQueryHandlers from '../../queryHandlers/users/userQueryHandlers'
 import * as userCommands from '../../commands/users/userCommands'
 import * as userCommandHandlers from '../../commandHandlers/users/userCommandHandlers'
-import { UserDocument } from "../../../models/users/userModel"
+import { UserDocument, User } from "../../../models/users/userModel"
 import { ClientResponse, serverError } from "../../helpers/helpers"
 
 const routes: Router = Router()
@@ -12,17 +15,34 @@ const routes: Router = Router()
 /**
  * Authenticate a user
  */
-routes.post('/login', (req: Request, res: Response) => {
-    const message: userCommands.AuthenticateUserCommand = req.body
 
-    userCommandHandlers.authenticateUser(message)
+routes.post('/login', (req: Request, res: Response) => {
+
+    const { email, password } = req.body;
+
+    User.findOne({ email })
         .then((user: UserDocument) => {
-            console.log(user)
-            res.status(200).json(new ClientResponse(true, user))
+            if (!user) {
+                const response = new ClientResponse(false, null);
+                response.addMessage("Unable to log in with provided credentials.")
+                return res.status(401).json(response);
+            }
+
+            // Compare passwords
+            user.comparePassword(password, (err: Error, isMatch: boolean) => {
+                if (err) return serverError(res);
+
+                if (!isMatch) {
+                    const response = new ClientResponse(false, null);
+                    response.addMessage("Unable to log in with provided credentials.")
+                    return res.status(401).json(response);
+                }
+
+                const token = jwt.sign({ userId: user.id }, SECRET, { expiresIn: 2400 });
+                return res.status(200).json(new ClientResponse(true, { user, token }));
+            });
         })
-        .catch(() => {
-            return serverError(res);
-        })
+        .catch(err => serverError(res));
 })
 
 /**
@@ -32,8 +52,6 @@ routes.post('/create-user', async (req: Request, res: Response) => {
     const message: userCommands.CreateUserCommand = req.body;
 
     const credentialErrors: string[] = [];
-
-    console.log(message)
 
     if (!message.firstName) credentialErrors.push("First name cannot be empty.")
     if (!message.lastName) credentialErrors.push("Last name cannot be empty.")
@@ -62,12 +80,10 @@ routes.post('/create-user', async (req: Request, res: Response) => {
 
     await userCommandHandlers.createNewUser(message)
         .then((user: UserDocument) => {
-            console.log(user)
-            res.status(200).json({ user })
+            const token = jwt.sign({ userId: user.id }, SECRET);
+            return res.status(200).json(new ClientResponse(true, { user, token }));
         })
-        .catch(() => {
-            return serverError(res);
-        })
+        .catch(() => serverError(res))
 })
 
 module.exports = routes;

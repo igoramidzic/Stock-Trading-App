@@ -1,6 +1,6 @@
 export enum Theme {
-  Light = "theme-light",
-  Dark = "theme-dark",
-  Up = "theme-up",
-  Down = "theme-down"
+  Open = 1,
+  Closed = 2,
+  Up = 3,
+  Down = 4
 }
