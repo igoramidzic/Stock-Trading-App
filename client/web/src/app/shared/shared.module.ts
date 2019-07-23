@@ -10,6 +10,7 @@ import { MainLoaderComponent } from './components/loaders/main-loader/main-loade
 import { MainNavbarComponent } from './components/navs/main-navbar/main-navbar.component';
 import { NotificationsMenuComponent } from './components/navs/main-navbar/notifications-menu/notifications-menu.component';
 import { AccountMenuComponent } from './components/navs/main-navbar/account-menu/account-menu.component';
+import { MainNotFoundPageComponent } from './components/not-found/main-not-found-page/main-not-found-page.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { AccountMenuComponent } from './components/navs/main-navbar/account-menu
     MainLoaderComponent,
     MainNavbarComponent,
     NotificationsMenuComponent,
-    AccountMenuComponent
+    AccountMenuComponent,
+    MainNotFoundPageComponent
   ],
   imports: [
     CommonModule,
