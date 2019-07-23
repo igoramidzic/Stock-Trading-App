@@ -15,7 +15,10 @@ export const LAYOUTS_ROUTES: Routes = [
         children: [{
             path: '',
             pathMatch: 'full',
-            component: LoginFormComponent
+            component: LoginFormComponent,
+            data: {
+                title: 'Log In'
+            }
         }]
     },
     {
@@ -25,58 +28,16 @@ export const LAYOUTS_ROUTES: Routes = [
         children: [{
             path: '',
             pathMatch: 'full',
-            component: SignupFormComponent
+            component: SignupFormComponent,
+            data: {
+                title: 'Sign Up'
+            }
         }]
     },
     {
         path: '',
-        canActivate: [AuthGuard, SelfGuard],
+        canActivate: [AuthGuard],
         component: MainLayoutComponent,
         loadChildren: './main-layout/main-layout.module#MainLayoutModule'
     }
-
-
-
-
-
-
-
-
-
-
-    // {
-    //     path: 'login',
-    //     canActivate: [NotAuthGuard],
-    //     component: AuthLayoutComponent,
-    //     children: [
-    //         {
-    //             path: '',
-    //             component: LoginFormComponent,
-    //             pathMatch: 'full'
-    //         }
-    //     ],
-    //     data: {
-    //         title: 'Log In'
-    //     }
-    // },
-    // {
-    //     path: 'signup',
-    //     canActivate: [NotAuthGuard],
-    //     component: AuthLayoutComponent,
-    //     children: [
-    //         {
-    //             path: '',
-    //             component: SignupFormComponent,
-    //             pathMatch: 'full'
-    //         }
-    //     ],
-    //     data: {
-    //         title: 'Sign Up'
-    //     }
-    // },
-    // {
-    //     path: '',
-    //     canActivate: [AuthGuard],
-    //     loadChildren: '../layouts/main-layout/main-layout.module#MainLayoutModule'
-    // }
 ]

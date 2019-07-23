@@ -4,6 +4,7 @@ import { Title } from '@angular/platform-browser';
 import { map, filter, mergeMap } from 'rxjs/operators'
 import { ThemeService } from './services/theme/theme.service';
 import { Theme } from './core/models/theme/theme';
+import { LoadingService } from './services/loading/loading.service';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +18,7 @@ export class AppComponent implements OnInit {
   constructor(private router: Router,
     private activatedRoute: ActivatedRoute,
     private titleService: Title,
-    public themeService: ThemeService) { }
+    public loadingService: LoadingService) { }
 
   ngOnInit(): void {
     this.router.events

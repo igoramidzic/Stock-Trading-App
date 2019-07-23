@@ -1,7 +1,6 @@
 label {
   display: inline-block;
   font-size: 0.8rem;
-  letter-spacing: .25px;
   font-weight: 300;
 }
 
@@ -14,7 +13,6 @@ label {
   border: 1px solid var(--input-background);
   border-radius: 4px;
   font-size: 1rem;
-  font-weight: 500;
   color: var(--h-color);
   outline: none;
   display: block;
@@ -60,5 +58,4 @@ label {
 .textarea {
   min-height: 150px;
   font-size: 0.95em;
-  font-weight: 400;
 }

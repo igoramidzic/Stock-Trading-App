@@ -5,8 +5,7 @@
 
 $font-size-base: var(--font-size);
 $body-bg: var(--background);
-$dropdown-bg: var(--background);
-$dropdown-link-color: var(--text-color);
+$pre-color: var(--text-color);
 
 @import "../../node_modules/bootstrap/scss/root";
 @import "../../node_modules/bootstrap/scss/reboot";
@@ -18,7 +17,7 @@ $dropdown-link-color: var(--text-color);
 @import "../../node_modules/bootstrap/scss/forms";
 // @import "../../node_modules/bootstrap/scss/buttons";
 @import "../../node_modules/bootstrap/scss/transitions";
-@import "../../node_modules/bootstrap/scss/dropdown";
+// @import "../../node_modules/bootstrap/scss/dropdown";
 // @import "../../node_modules/bootstrap/scss/button-group";
 // @import "../../node_modules/bootstrap/scss/input-group";
 // @import "../../node_modules/bootstrap/scss/custom-forms";
@@ -49,7 +48,5 @@ $dropdown-link-color: var(--text-color);
 @import './scss/btn';
 @import './scss/form';
 @import './scss/alert';
-
-body {
-  min-width: 1036px;
-}
+@import './scss/navbar';
+@import './scss/dropdown';

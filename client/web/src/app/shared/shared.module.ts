@@ -8,13 +8,17 @@ import { MainAlertComponent } from './components/alerts/main-alert/main-alert.co
 import { ApplicationLoaderComponent } from './components/loaders/application-loader/application-loader.component';
 import { MainLoaderComponent } from './components/loaders/main-loader/main-loader.component';
 import { MainNavbarComponent } from './components/navs/main-navbar/main-navbar.component';
+import { NotificationsMenuComponent } from './components/navs/main-navbar/notifications-menu/notifications-menu.component';
+import { AccountMenuComponent } from './components/navs/main-navbar/account-menu/account-menu.component';
 
 @NgModule({
   declarations: [
     MainAlertComponent,
     ApplicationLoaderComponent,
     MainLoaderComponent,
-    MainNavbarComponent
+    MainNavbarComponent,
+    NotificationsMenuComponent,
+    AccountMenuComponent
   ],
   imports: [
     CommonModule,

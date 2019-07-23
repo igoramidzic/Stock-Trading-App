@@ -3,10 +3,12 @@ import { RouterModule } from '@angular/router';
 import { MAINLAYOUT_ROUTES } from './main-layout.routes';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { HomeComponent } from './home/home.component';
+import { AccountComponent } from './account/account.component';
 
 @NgModule({
   declarations: [
-    HomeComponent
+    HomeComponent,
+    AccountComponent
   ],
   imports: [
     SharedModule,

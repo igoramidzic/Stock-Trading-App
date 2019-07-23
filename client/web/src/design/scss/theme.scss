@@ -3,17 +3,22 @@ $colors: ("green": #21ce9a,
   "light-green": #e4fff7,
   "light-red": #ffeeea);
 
+$robinhood-gold: #cea774;
+
 @mixin default-theme {
   --background: white;
   --button-text-color: white;
   --text-color: #171718;
-  --input-background: #FAFAFA;
+  --input-background: #fafafa;
   --input-border: #cbcbcd;
   --input-placeholder: #cbcbcd;
   --primary-color: map-get($colors, "green");
   --secondary-color: map-get($colors, "red");
   --success-color: #21ce99;
   --danger-color: #f45531;
+  --border-color: #f4f4f5;
+  --background-hover: #fafafa;
+  --hint-color: #171718;
   transition: all 0.25s ease;
 }
 
@@ -32,6 +37,9 @@ $colors: ("green": #21ce9a,
   --secondary-color: map-get($colors, "red");
   --success-color: #21ce99;
   --danger-color: #f45531;
+  --border-color: #0E0D18;
+  --background-hover: #171718;
+  --hint-color: #8c8c8e;
   transition: all 0.3s ease;
 }
 
@@ -49,6 +57,14 @@ $colors: ("green": #21ce9a,
   --danger-color: #f45531;
 }
 
+.robinhood-gold {
+  color: #cea774;
+}
+
+.robinhood-gold-bg {
+  background-color: #cea774;
+}
+
 :root {
 
   @each $name,
@@ -58,7 +74,9 @@ $colors: ("green": #21ce9a,
     --#{$name}-light: #{lighten($color, 7%)};
   }
 
-  --font-body: 'ratio',
+  // --font-body: 'ratio',
+  // sans-serif;
+  --font-body: 'Roboto',
   sans-serif;
   --font-head: 'ratio',
   sans-serif; // effra erbaum
@@ -68,22 +86,27 @@ $colors: ("green": #21ce9a,
   @include default-theme;
 }
 
+.hint {
+  color: var(--hint-color);
+  font-weight: 400;
+}
+
 body {
   background: var(--background);
   color: var(--text-color);
   margin: 0;
   font-family: var(--font-body);
   font-size: var(--font-size);
+  letter-spacing: .25px;
 }
 
-a,
-.link {
+a {
   color: var(--text-color);
   text-decoration: none;
 
   &:hover {
     text-decoration: none;
-    color: var(--success-color);
+    color: var(--primary-color);
   }
 }
 
@@ -93,9 +116,9 @@ h3,
 h4,
 h5,
 h6 {
-  color: var(--h-color);
-  font-family: var(--font-head);
-  font-weight: 800;
+  // color: var(--h-color);
+  // font-family: var(--font-head);
+  font-weight: 500;
   font-style: normal;
 }
 

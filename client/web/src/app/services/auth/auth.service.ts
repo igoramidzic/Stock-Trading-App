@@ -5,6 +5,7 @@ import { ClientResponse } from 'src/app/core/models/response/clientResponse';
 import { LoginCredentials, SignupCredentials } from 'src/app/core/models/auth/auth';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
+import { SelfService } from '../self/self.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class AuthService {
   private accessTokenName: string = 'access_token';
 
   constructor(private http: HttpClient, private jwtHelperService: JwtHelperService,
-    private router: Router) { }
+    private router: Router, private selfService: SelfService) { }
 
   isAuthenticated(): boolean {
     const token = localStorage.getItem(this.accessTokenName);
@@ -49,6 +50,7 @@ export class AuthService {
     return new Promise((resolve, reject) => {
       localStorage.removeItem(this.accessTokenName);
       this.router.navigate(['login']);
+      this.selfService.removeUser();
       resolve();
     })
   }

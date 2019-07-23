@@ -1,0 +1,38 @@
+        <path
+          d="M32.9462 49H11.5689C5.86835 49 1.25757 44.4025 1.25757 38.7183H22.6348C28.3354 38.7183 32.9462 43.3158 32.9462 49Z"
+          fill="url(#g-glyph-paint0-linear)"></path>
+        <path
+          d="M14.4192 6.28467C6.45509 6.28467 0 12.7212 0 20.746C0 28.7707 6.45509 35.1237 14.4192 35.1237C22.3832 35.1237 28.8383 28.6871 28.8383 20.746C28.8383 12.8048 22.3832 6.28467 14.4192 6.28467ZM14.503 25.5107C11.8204 25.5107 9.72455 23.3373 9.72455 20.746C9.72455 18.071 11.9042 15.9813 14.503 15.9813C17.1856 15.9813 19.2814 18.1546 19.2814 20.746C19.2814 23.3373 17.1856 25.5107 14.503 25.5107Z"
+          fill="url(#g-glyph-paint1-linear)"></path>
+        <path
+          d="M29.7604 10.2135C32.3994 10.2135 34.5388 8.08026 34.5388 5.44879C34.5388 2.81731 32.3994 0.684082 29.7604 0.684082C27.1213 0.684082 24.9819 2.81731 24.9819 5.44879C24.9819 8.08026 27.1213 10.2135 29.7604 10.2135Z"
+          fill="url(#g-glyph-paint2-linear)"></path>
+        <defs>
+          <linearGradient id="g-glyph-paint0-linear" x1="19.8326" y1="-3.52655" x2="17.0951" y2="45.1079"
+            gradientUnits="userSpaceOnUse">
+            <stop stop-color="#7A522A"></stop>
+            <stop offset="0.2459" stop-color="#CEA774"></stop>
+            <stop offset="0.5771" stop-color="#F9CC95"></stop>
+            <stop offset="0.7051" stop-color="#F0C48E"></stop>
+            <stop offset="0.9131" stop-color="#D8AF7C"></stop>
+            <stop offset="0.9839" stop-color="#CEA774"></stop>
+          </linearGradient>
+          <linearGradient id="g-glyph-paint1-linear" x1="15.8241" y1="-3.75231" x2="13.0865" y2="44.8822"
+            gradientUnits="userSpaceOnUse">
+            <stop stop-color="#7A522A"></stop>
+            <stop offset="0.2459" stop-color="#CEA774"></stop>
+            <stop offset="0.5771" stop-color="#F9CC95"></stop>
+            <stop offset="0.7051" stop-color="#F0C48E"></stop>
+            <stop offset="0.9131" stop-color="#D8AF7C"></stop>
+            <stop offset="0.9839" stop-color="#CEA774"></stop>
+          </linearGradient>
+          <linearGradient id="g-glyph-paint2-linear" x1="30.2752" y1="-2.93885" x2="27.5376" y2="45.6956"
+            gradientUnits="userSpaceOnUse">
+            <stop stop-color="#7A522A"></stop>
+            <stop offset="0.2459" stop-color="#CEA774"></stop>
+            <stop offset="0.5771" stop-color="#F9CC95"></stop>
+            <stop offset="0.7051" stop-color="#F0C48E"></stop>
+            <stop offset="0.9131" stop-color="#D8AF7C"></stop>
+            <stop offset="0.9839" stop-color="#CEA774"></stop>
+          </linearGradient>
+        </defs>

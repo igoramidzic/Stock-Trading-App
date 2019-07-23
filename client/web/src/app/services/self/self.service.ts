@@ -28,4 +28,8 @@ export class SelfService {
   updateSelf(user: User): void {
     this.user$.next(user);
   }
+
+  removeUser(): void {
+    this.user$.next(null);
+  }
 }
