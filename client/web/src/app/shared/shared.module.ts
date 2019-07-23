@@ -11,6 +11,7 @@ import { MainNavbarComponent } from './components/navs/main-navbar/main-navbar.c
 import { NotificationsMenuComponent } from './components/navs/main-navbar/notifications-menu/notifications-menu.component';
 import { AccountMenuComponent } from './components/navs/main-navbar/account-menu/account-menu.component';
 import { MainNotFoundPageComponent } from './components/not-found/main-not-found-page/main-not-found-page.component';
+import { NavSearchComponent } from './components/navs/main-navbar/nav-search/nav-search.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { MainNotFoundPageComponent } from './components/not-found/main-not-found
     MainNavbarComponent,
     NotificationsMenuComponent,
     AccountMenuComponent,
-    MainNotFoundPageComponent
+    MainNotFoundPageComponent,
+    NavSearchComponent
   ],
   imports: [
     CommonModule,

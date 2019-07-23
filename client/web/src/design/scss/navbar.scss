@@ -7,9 +7,9 @@
     height: 64px;
     display: flex;
     align-items: center;
-    width: 1024px;
-    margin: auto;
     max-width: 100%;
+    width: $content-width;
+    margin: auto;
   }
 
   .logo {

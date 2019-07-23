@@ -10,7 +10,10 @@
   white-space: nowrap;
 
   &[aria-expanded="true"] {
-    border-bottom: 2px solid var(--primary-color);
+    // border-bottom: 2px inset var(--primary-color);
+    -webkit-box-shadow: inset 0px -2px 0px 0px var(--primary-color);
+    -moz-box-shadow: inset 0px -2px 0px 0px var(--primary-color);
+    box-shadow: inset 0px -2px 0px 0px var(--primary-color);
     color: var(--primary-color);
   }
 }

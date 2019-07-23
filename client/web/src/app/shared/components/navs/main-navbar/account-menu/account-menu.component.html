@@ -1,7 +1,7 @@
 <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" aria-haspopup="true"
   aria-expanded="false">Account</a>
 <div class="dropdown-menu dropdown-menu-right" style="width: 296px;">
-  <a href="#" class="dropdown-item dropdown-item-account robinhood-gold">
+  <a [routerLink]="['/gold']" class="dropdown-item dropdown-item-account robinhood-gold">
     <div>
       <svg class="dropdown-item-icon" width="35" height="49" viewBox="0 0 35 49" fill="none">
         <path
@@ -46,12 +46,12 @@
       <span class="link-text">Robinhood Gold</span>
     </div>
   </a>
-  <a href="#" class="dropdown-item dropdown-item-account">Free Stock</a>
+  <a [routerLink]="['/account/referral']" class="dropdown-item dropdown-item-account">Free Stock</a>
   <a [routerLink]="['/account']" class="dropdown-item dropdown-item-account">Account</a>
-  <a href="#" class="dropdown-item dropdown-item-account">Banking</a>
-  <a href="#" class="dropdown-item dropdown-item-account">History</a>
-  <a href="#" class="dropdown-item dropdown-item-account dropdown-divider">Settings</a>
-  <a href="#" class="dropdown-item dropdown-item-account">Help</a>
-  <a href="#" class="dropdown-item dropdown-item-account dropdown-divider">Disclosures</a>
+  <a [routerLink]="['/account/banking']" class="dropdown-item dropdown-item-account">Banking</a>
+  <a [routerLink]="['/account/history']" class="dropdown-item dropdown-item-account">History</a>
+  <a [routerLink]="['/account/settings']" class="dropdown-item dropdown-item-account dropdown-divider">Settings</a>
+  <a href="#" class="dropdown-item dropdown-item-account disabled">Help</a>
+  <a href="#" class="dropdown-item dropdown-item-account dropdown-divider disabled">Disclosures</a>
   <a [routerLink]="['/login']" (click)="authService.logout()" class="dropdown-item dropdown-item-account">Log Out</a>
 </div>
