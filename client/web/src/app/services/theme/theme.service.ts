@@ -4,13 +4,25 @@ import { DOCUMENT } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment.prod';
 import { ClientResponse } from 'src/app/core/models/response/clientResponse';
+import { SocketioService } from '../socketio/socketio.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ThemeService {
 
-  constructor(@Inject(DOCUMENT) private document: Document, private http: HttpClient) { }
+  constructor(@Inject(DOCUMENT) private document: Document, private http: HttpClient,
+    private socketioService: SocketioService) {
+    this.socketioService.listen('theme-update')
+      .subscribe((theme: Theme) => {
+        if (theme == 1 || theme == 2)
+          this.setMainTheme(theme)
+        else
+          this.setSecondaryTheme(theme);
+      })
+
+    this.socketioService.emit('connection', 'hello')
+  }
 
   setActiveMainTheme(): Promise<any> {
     return new Promise((resolve, reject) => {

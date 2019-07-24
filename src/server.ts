@@ -8,18 +8,21 @@ const server = http.createServer(app)
 // Start socketio
 const io = socketio(server)
 
-io.on('connection', () => {
-  console.log("New user connected")
-})
-
-setInterval(() => {
-  io.emit('theme-update', Math.floor(Math.random() * 4) + 1)
-}, 5000)
-
 /**
  * Error Handler. Provides full stack - remove for production
  */
 app.use(errorHandler());
+
+/**
+ * Set socketio to app
+ */
+app.set('socketio', io);
+
+/**
+ * Start default socketio emitters
+ */
+import { socketEmitters } from './socketio/socketio';
+socketEmitters(io)
 
 /**
  * Start Express server.
