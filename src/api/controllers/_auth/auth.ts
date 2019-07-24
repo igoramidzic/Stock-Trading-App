@@ -38,7 +38,7 @@ routes.post('/login', (req: Request, res: Response) => {
                     return res.status(401).json(response);
                 }
 
-                const token = jwt.sign({ userId: user.id }, SECRET, { expiresIn: 2400 });
+                const token = jwt.sign({ userId: user.id }, SECRET, { expiresIn: 1000 * 60 * 60 });
                 return res.status(200).json(new ClientResponse(true, { user, token }));
             });
         })

@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
 import { AccountLayoutComponent } from './account-layout/account-layout.component';
 import { SelfGuard } from 'src/app/core/guards/self/self.guard';
-import { MainLayoutComponent } from './main-layout.component';
 import { MainNotFoundPageComponent } from 'src/app/shared/components/not-found/main-not-found-page/main-not-found-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { StocksPageComponent } from './stocks-page/stocks-page.component';

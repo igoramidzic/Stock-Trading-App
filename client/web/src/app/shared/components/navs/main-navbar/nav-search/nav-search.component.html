@@ -1,1 +1,17 @@
-<input class="input" style="width: 478px;" type="search" placeholder="Search" aria-label="Search">
+<div class="search-container is-focused">
+  <form (ngSubmit)="search()" [formGroup]="searchForm">
+    <input class="search-input" style="width: 478px;" formControlName="search" type="search" placeholder="Search"
+      aria-label="Search">
+  </form>
+
+
+  <div class="select-menu-outer">
+    <div role="listbox" tabindex="-1" class="Select-menu" id="react-select-search--list">
+      <div class="_1zJor8RzaCSLZofzdps1c7" data-testid="SearchMenu">
+        <section>
+          <pre *ngIf="stocks">{{ stocks | json }}</pre>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>
