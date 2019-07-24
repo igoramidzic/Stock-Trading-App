@@ -20,6 +20,6 @@
         "src/**/*"
     ],
     "exclude": [
-        "src/api/controllers/stock/stock-symbol-list"
+        "src/api/controllers/stock/*"
     ]
 }

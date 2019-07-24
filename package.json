@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "start": "npm run serve",
-    "build": "npm run build --prefix client/web && npm run build-ts && npm run tslint",
+    "build": "npm run build-ts && npm run tslint && npm run build --prefix client/web",
     "heroku-postbuild": "npm run build --prefix client/web && npm run build-ts && npm run tslint",
     "serve": "node dist/server.js",
     "watch-node": "nodemon dist/server.js",
