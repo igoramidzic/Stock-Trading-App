@@ -7,7 +7,7 @@
   "scripts": {
     "start": "npm run serve",
     "build": "npm run build-ts && npm run tslint && npm run build --prefix client/web",
-    "heroku-postbuild": "npm run build --prefix client/web && npm run build-ts && npm run tslint",
+    "heroku-postbuild": "npm run build-ts && npm run tslint  && npm run build --prefix client/web",
     "serve": "node dist/server.js",
     "watch-node": "nodemon dist/server.js",
     "watch": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"cyan.bold,green.bold\" \"npm run watch-ts\" \"npm run watch-node\"",

@@ -3,13 +3,13 @@ import { Router, Response, Request } from "express";
 import { ClientResponse } from '../../helpers/helpers'
 import app from '../../../app'
 import { Socket } from 'socket.io';
-import symbols from './stock-symbol-list'
+import symbols from './stock-symbol-list';
 import { StockDetails } from "./../../../models/stock/stockDetails";
 
-const routes: Router = Router()
+const routes: Router = Router();
 
 /**
- * Get 
+ * Get
  */
 routes.get("/search/:partial", (req: Request, res: Response) => {
     const partial = req.params.partial;
