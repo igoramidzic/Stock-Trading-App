@@ -1,17 +1,13 @@
-<div class="search-container is-focused">
+<section class="search-container search">
   <form [formGroup]="searchForm">
-    <input class="search-input" style="width: 478px;" formControlName="search" type="search" placeholder="Search"
-      aria-label="Search">
+    <input type="search" formControlName="search" name="stocksearch" placeholder="Search..." autocomplete="off">
+    <ul class="search-ac" *ngIf="stocks">
+      <li *ngFor="let stock of stocks"><a [routerLink]="['/stocks/' + stock.symbol]">
+          <span style="display: inline-block; width: 78px;"
+            [innerHTML]="stock.symbol | highlightSearch : searchForm.controls['search'].value"></span>
+          <span
+            [innerHTML]="stock.name | shorten: 35: '...' | highlightSearch : searchForm.controls['search'].value"></span>
+        </a></li>
+    </ul>
   </form>
-
-
-  <div class="select-menu-outer">
-    <div role="listbox" tabindex="-1" class="Select-menu" id="react-select-search--list">
-      <div class="_1zJor8RzaCSLZofzdps1c7" data-testid="SearchMenu">
-        <section>
-          <pre *ngIf="stocks">{{ stocks | json }}</pre>
-        </section>
-      </div>
-    </div>
-  </div>
-</div>
+</section>

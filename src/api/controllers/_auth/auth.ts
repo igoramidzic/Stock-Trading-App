@@ -3,8 +3,8 @@ import jwt from 'jsonwebtoken'
 import { SECRET } from "../../../util/secrets";
 import passport from 'passport';
 
-import * as userQueries from '../../queries/users/userQueries'
-import * as userQueryHandlers from '../../queryHandlers/users/userQueryHandlers'
+import * as userQueries from '../../queries/user/userQueries'
+import * as userQueryHandlers from '../../queryHandlers/user/userQueryHandlers'
 import * as userCommands from '../../commands/users/userCommands'
 import * as userCommandHandlers from '../../commandHandlers/users/userCommandHandlers'
 import { UserDocument, User } from "../../../models/users/userModel"

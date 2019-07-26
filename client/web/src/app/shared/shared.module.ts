@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
+import { NgPipesModule } from 'ngx-pipes';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MainAlertComponent } from './components/alerts/main-alert/main-alert.component';
@@ -12,6 +13,7 @@ import { NotificationsMenuComponent } from './components/navs/main-navbar/notifi
 import { AccountMenuComponent } from './components/navs/main-navbar/account-menu/account-menu.component';
 import { MainNotFoundPageComponent } from './components/not-found/main-not-found-page/main-not-found-page.component';
 import { NavSearchComponent } from './components/navs/main-navbar/nav-search/nav-search.component';
+import { HighlightSearchPipe } from '../core/pipes/highlight-search/highlight-search.pipe';
 
 @NgModule({
   declarations: [
@@ -22,13 +24,15 @@ import { NavSearchComponent } from './components/navs/main-navbar/nav-search/nav
     NotificationsMenuComponent,
     AccountMenuComponent,
     MainNotFoundPageComponent,
-    NavSearchComponent
+    NavSearchComponent,
+    HighlightSearchPipe
   ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule
+    RouterModule,
+    NgPipesModule
   ],
   exports: [
     RouterModule,
@@ -38,7 +42,8 @@ import { NavSearchComponent } from './components/navs/main-navbar/nav-search/nav
     FormsModule,
     ReactiveFormsModule,
     MainAlertComponent,
-    MainNavbarComponent
+    MainNavbarComponent,
+    HighlightSearchPipe
   ],
   providers: []
 })

@@ -8,7 +8,8 @@ const routes: Router = Router()
  */
 routes.get("/active", (req: Request, res: Response) => {
     const result = {
-        theme: Math.floor(Math.random() * 2) + 1
+        // theme: Math.floor(Math.random() * 2) + 1
+        theme: 1
     }
     res.status(200).json(new ClientResponse(true, result))
 });

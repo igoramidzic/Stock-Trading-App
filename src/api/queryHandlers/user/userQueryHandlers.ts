@@ -1,5 +1,5 @@
 import { User, UserDocument } from "../../../models/users/userModel";
-import { AllUsersQuery, EmailAlreadyTakenQuery } from "../../queries/users/userQueries";
+import { AllUsersQuery, EmailAlreadyTakenQuery } from "../../queries/user/userQueries";
 
 export let isEmailAlreadyTaken = (query: EmailAlreadyTakenQuery) => new Promise((resolve, reject) => {
     User.findOne(query)

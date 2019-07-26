@@ -20,6 +20,7 @@ $content-width: 1024px;
   --border-color: #f4f4f5;
   --background-hover: #fafafa;
   --hint-color: #171718;
+  --box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.01), 0 3px 24px rgba(48, 51, 51, 0.09);
   transition: all 0.25s ease;
 }
 
@@ -41,6 +42,7 @@ $content-width: 1024px;
   --border-color: #0E0D18;
   --background-hover: #171718;
   --hint-color: #8c8c8e;
+  --box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.01), 0 3px 24px rgba(0, 0, 0, 0.6);
   transition: all 0.3s ease;
 }
 
