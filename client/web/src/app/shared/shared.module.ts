@@ -14,6 +14,10 @@ import { AccountMenuComponent } from './components/navs/main-navbar/account-menu
 import { MainNotFoundPageComponent } from './components/not-found/main-not-found-page/main-not-found-page.component';
 import { NavSearchComponent } from './components/navs/main-navbar/nav-search/nav-search.component';
 import { HighlightSearchPipe } from '../core/pipes/highlight-search/highlight-search.pipe';
+import { CollectionsLinkListComponent } from './components/collections-link-list/collections-link-list.component';
+import { Ng2OdometerModule } from 'ng2-odometer';
+import { OdometerComponent } from './components/odometer/odometer.component';
+import { BuyStockCardComponent } from './components/stock/buy-stock-card/buy-stock-card.component';
 
 @NgModule({
   declarations: [
@@ -25,14 +29,18 @@ import { HighlightSearchPipe } from '../core/pipes/highlight-search/highlight-se
     AccountMenuComponent,
     MainNotFoundPageComponent,
     NavSearchComponent,
-    HighlightSearchPipe
+    HighlightSearchPipe,
+    CollectionsLinkListComponent,
+    OdometerComponent,
+    BuyStockCardComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    NgPipesModule
+    NgPipesModule,
+    Ng2OdometerModule
   ],
   exports: [
     RouterModule,
@@ -43,7 +51,13 @@ import { HighlightSearchPipe } from '../core/pipes/highlight-search/highlight-se
     ReactiveFormsModule,
     MainAlertComponent,
     MainNavbarComponent,
-    HighlightSearchPipe
+    HighlightSearchPipe,
+    MainNotFoundPageComponent,
+    NgPipesModule,
+    CollectionsLinkListComponent,
+    Ng2OdometerModule,
+    OdometerComponent,
+    BuyStockCardComponent
   ],
   providers: []
 })

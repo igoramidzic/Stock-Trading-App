@@ -1,4 +1,4 @@
-export type Quote = {
+export type StockQuote = {
     symbol: string;
     companyName: string;
     calculationPrice: string;

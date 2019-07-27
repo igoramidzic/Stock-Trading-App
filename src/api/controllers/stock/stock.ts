@@ -1,11 +1,10 @@
 import * as iex from 'iexcloud_api_wrapper';
 import { Router, Response, Request } from "express";
 import { ClientResponse } from '../../helpers/helpers'
-import app from '../../../app'
-import { Socket } from 'socket.io';
 import { StockDetails, StockDetailsDocument } from "./../../../models/stock/stockDetails";
-import { stockDetailsByFragmentQueryHandler } from '../../queryHandlers/stockDetails/stockDetailsQueryHandlers';
-import { StockDetailsByFragmentQuery } from '../../queries/stockDetail/stockDetailQueries';
+import { stockDetailsListByFragmentQueryHandler, stockDetailsListBySymbolQueryHandler } from '../../queryHandlers/stockDetails/stockDetailsQueryHandlers';
+import { StockDetailsByFragmentQuery, StockDetailsBySymbolQuery } from '../../queries/stockDetail/stockDetailQueries';
+import { Company, Quote } from 'iexcloud_api_wrapper';
 
 const routes: Router = Router();
 
@@ -15,7 +14,7 @@ const routes: Router = Router();
 routes.get("/search/:partial", (req: Request, res: Response) => {
     const partial = req.params.partial;
 
-    stockDetailsByFragmentQueryHandler(new StockDetailsByFragmentQuery(partial))
+    stockDetailsListByFragmentQueryHandler(new StockDetailsByFragmentQuery(partial))
         .then((stockDetails: StockDetailsDocument[]) => {
             return res.status(200).json(new ClientResponse(true, { stocks: stockDetails }))
         })
@@ -25,19 +24,58 @@ routes.get("/search/:partial", (req: Request, res: Response) => {
 });
 
 /**
+ * Get stock details
+ */
+routes.get("/:symbol/details", (req: Request, res: Response) => {
+    // const io: Socket = app.get('socketio')
+
+    const symbolPromise: Promise<StockDetailsDocument>
+        = stockDetailsListBySymbolQueryHandler(new StockDetailsBySymbolQuery(req.params.symbol));
+    const quotePromise: Promise<iex.Quote> = iex.quote(req.params.symbol)
+    const companyPromise: Promise<iex.Company> = iex.company(req.params.symbol)
+
+    Promise.all([symbolPromise, quotePromise, companyPromise])
+        .then((result) => {
+            console.log(result)
+            const response = new ClientResponse(true,
+                { details: { ...result[0].toJSON(), quote: result[1], company: result[2] } })
+            return res.status(200).json(response);
+        })
+        .catch(() => {
+            const response = new ClientResponse(false, null)
+            response.addMessage("This stock could not be found.");
+            return res.status(404).json(response);
+        })
+});
+
+/**
  * Get stock quote
  */
-routes.get("/quote/:symbol", (req: Request, res: Response) => {
-    const io: Socket = app.get('socketio')
-
+routes.get("/:symbol/quote", (req: Request, res: Response) => {
     iex.quote(req.params.symbol)
-        .then((quote: iex.Quote) => {
+        .then((quote: Quote) => {
             const response = new ClientResponse(true, { quote })
             return res.status(200).json(response);
         })
         .catch((err) => {
             const response = new ClientResponse(false, null)
-            response.addMessage("Symbol not found");
+            response.addMessage("This stock could not be found.");
+            return res.status(404).json(response);
+        })
+});
+
+/**
+ * Get stock company
+ */
+routes.get("/:symbol/company", (req: Request, res: Response) => {
+    iex.company(req.params.symbol)
+        .then((company: Company) => {
+            const response = new ClientResponse(true, { company })
+            return res.status(200).json(response);
+        })
+        .catch((err) => {
+            const response = new ClientResponse(false, null)
+            response.addMessage("This stock could not be found.");
             return res.status(404).json(response);
         })
 });

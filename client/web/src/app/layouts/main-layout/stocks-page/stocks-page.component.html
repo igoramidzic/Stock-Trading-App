@@ -1,3 +1,24 @@
-<div class="main-container">
-  Stocks page
+<div class="main-container" *ngIf="stockDetails">
+  <div class="row justify-content-between">
+    <div class="col-12">
+      <div class="mb-2">
+        <app-collections-link-list [collectionLinks]="stockDetails.company.tags | slice : 0 : 3">
+        </app-collections-link-list>
+      </div>
+      <h1>{{ stockDetails.name | shorten : 25 : '...'}}</h1>
+      <!-- <h1 class="font-weight-normal">{{ stockDetails.quote.latestPrice | currency }}</h1> -->
+      <h1 class="font-weight-normal">
+        {{ currencySymbol }}<app-odometer [value]="stockDetails.quote.latestPrice"></app-odometer>
+      </h1>
+      <!-- <pre>{{ stockDetails | json}}</pre> -->
+    </div>
+    <div class="col-5">
+      <div style="width: 275.777777778px">
+        <div class="position-fixed" style="width:inherit; max-width:inherit;">
+          <app-buy-stock-card [quote]="stockDetails.quote"></app-buy-stock-card>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+<app-main-not-found-page *ngIf="!stockDetails"></app-main-not-found-page>

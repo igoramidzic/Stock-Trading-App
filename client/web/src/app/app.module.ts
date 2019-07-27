@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 import { JwtModule } from '@auth0/angular-jwt';
 import { environment } from 'src/environments/environment';
 import { SharedModule } from './shared/shared.module';
+import { Ng2OdometerModule } from 'ng2-odometer';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -29,7 +30,8 @@ export function tokenGetter() {
         throwNoTokenError: false,
         skipWhenExpired: true
       }
-    })
+    }),
+    Ng2OdometerModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

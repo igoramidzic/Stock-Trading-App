@@ -1,0 +1,62 @@
+<div class="card">
+  <form [formGroup]="shareCountForm" (ngSubmit)="reviewOrder()">
+    <div class="pl-4 pr-4 d-flex align-items-center justify-content-between">
+      <h3>Buy {{ quote.symbol }}</h3>
+      <a href="javascript:void(0);" class="dropdown-toggle dropdown-toggle-lg" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+        <svg style="fill: currentColor;" width="28" height="28" viewBox="0 0 28 28">
+          <path fill-rule="evenodd"
+            d="M14,16 C12.8954305,16 12,15.1045695 12,14 C12,12.8954305 12.8954305,12 14,12 C15.1045695,12 16,12.8954305 16,14 C16,15.1045695 15.1045695,16 14,16 Z M6,16 C4.8954305,16 4,15.1045695 4,14 C4,12.8954305 4.8954305,12 6,12 C7.1045695,12 8,12.8954305 8,14 C8,15.1045695 7.1045695,16 6,16 Z M22,16 C20.8954305,16 20,15.1045695 20,14 C20,12.8954305 20.8954305,12 22,12 C23.1045695,12 24,12.8954305 24,14 C24,15.1045695 23.1045695,16 22,16 Z">
+          </path>
+        </svg>
+      </a>
+      <div class="dropdown-menu dropdown-menu-right">
+        <div class="p-4">
+          Will add a menu here
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div class="pl-4 pr-4 pt-2 pb-2">
+      <form [formGroup]="shareCountForm" class="form-group">
+        <label class="d-flex align-items-center justify-content-between lg" for="shares">
+          <div
+            [ngClass]="{ 'danger': shareCountForm.controls['shareCount'].touched && shareCountForm.controls['shareCount'].invalid }">
+            Shares</div>
+          <input style="max-width: 82px;" formControlName="shareCount" min="0" step="1" placeholder="0" type="number"
+            class="input text-right">
+        </label>
+      </form>
+      <div class="form-group">
+        <div class="d-flex align-items-center justify-content-between">
+          <a href="javascript:void(0);" class="primary dropdown-toggle dropdown-toggle-lg" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">Market Price <i class="far fa-question-circle"></i></a>
+          <div class="dropdown-menu dropdown-menu-right">
+            <div class="p-4">
+              Will add a description here
+            </div>
+          </div>
+          <span>{{ quote.latestPrice | currency }}</span>
+        </div>
+      </div>
+      <hr>
+      <div class="form-group">
+        <label class="d-flex align-items-center justify-content-between lg font-weight-bold">
+          <div>Estimated Cost</div>
+          <span>{{ estimatedCost | currency }}</span>
+        </label>
+      </div>
+    </div>
+    <div class="pl-4 pr-4 pt-3 pb-4 text-center">
+      <button type="submit" class="btn btn-lg btn-primary btn-block" [disabled]="isSubmitting">
+        <span *ngIf="!isSubmitting">Review Order</span>
+        <app-main-loader *ngIf="isSubmitting"></app-main-loader>
+      </button>
+    </div>
+  </form>
+  <hr>
+
+  <div class="pl-4 pr-4 pt-3 pb-3 text-center">
+    <a href="javascript:void();" class="font-weight-bold primary">$0.00 Buying Power Available</a>
+  </div>
+</div>

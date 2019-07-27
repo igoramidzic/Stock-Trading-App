@@ -1,18 +1,19 @@
 label {
   display: inline-block;
-  font-size: 0.8rem;
+  font-size: 13px;
+  margin: 0;
   font-weight: 300;
 }
 
 .textarea,
 .input {
+  padding: 0 13px;
   width: 100%;
-  padding: 0 20px;
   box-sizing: border-box;
   background: var(--input-background);
   border: 1px solid var(--input-background);
   border-radius: 4px;
-  font-size: 1rem;
+  font-size: 13px;
   color: var(--h-color);
   outline: none;
   display: block;
@@ -53,9 +54,22 @@ label {
 
 .input-lg {
   height: 48px;
+  padding: 0 20px;
 }
 
 .textarea {
   min-height: 150px;
-  font-size: 0.95em;
+  font-size: 13px;
+}
+
+.form-group {
+  label.lg {
+    height: 48px;
+  }
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }

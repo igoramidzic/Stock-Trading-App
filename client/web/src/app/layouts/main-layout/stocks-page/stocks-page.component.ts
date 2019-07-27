@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { StockDetails } from 'src/app/core/models/stock/stockDetails';
+import { StockQuote } from 'src/app/core/models/stock/quote';
 
 @Component({
   selector: 'app-stocks-page',
@@ -7,9 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StocksPageComponent implements OnInit {
 
-  constructor() { }
+  stockDetails: StockDetails;
+  currencySymbol: string = '$';
+
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.route.params.subscribe(() => {
+      this.stockDetails = this.route.snapshot.data.stockDetails;
+    })
   }
 
 }

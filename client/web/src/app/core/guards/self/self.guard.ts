@@ -5,6 +5,7 @@ import { SelfService } from 'src/app/services/self/self.service';
 import { ClientResponse } from '../../models/response/clientResponse';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { LoadingService } from 'src/app/services/loading/loading.service';
+import { User } from '../../models/user/user';
 
 @Injectable({
   providedIn: 'root'
@@ -25,17 +26,14 @@ export class SelfGuard implements CanActivate {
 
       // Update the user from server
       this.selfService.getSelf()
-        .then((res: ClientResponse) => {
-          this.selfService.updateSelf(res.result.user)
+        .then((user: User) => {
           resolve(true);
         })
         .catch((res: ClientResponse) => {
           this.authService.logout();
           resolve(false);
         })
-        .finally(() => {
-          this.loadingService.stopLoading();
-        })
+        .finally(() => this.loadingService.stopLoading())
     })
   }
 }

@@ -14,12 +14,12 @@ export class SelfService {
 
   constructor(private http: HttpClient) { }
 
-  getSelf(): Promise<any> {
+  getSelf(): Promise<User> {
     return new Promise((resolve, reject) => {
       this.http.get(`${environment.apiBase}/self`)
         .subscribe((res: ClientResponse) => {
           this.updateSelf(res.result.user)
-          resolve(res)
+          resolve(res.result.user)
         },
           (err: ClientResponse) => reject(err))
     })

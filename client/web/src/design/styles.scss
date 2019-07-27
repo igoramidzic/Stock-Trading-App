@@ -6,6 +6,8 @@
 $font-size-base: var(--font-size);
 $body-bg: var(--background);
 $pre-color: var(--text-color);
+$grid-columns: 18;
+$grid-gutter-width: 12px;
 
 @import "../../node_modules/bootstrap/scss/root";
 @import "../../node_modules/bootstrap/scss/reboot";
@@ -14,7 +16,7 @@ $pre-color: var(--text-color);
 @import "../../node_modules/bootstrap/scss/code";
 @import "../../node_modules/bootstrap/scss/grid";
 @import "../../node_modules/bootstrap/scss/tables";
-@import "../../node_modules/bootstrap/scss/forms";
+// @import "../../node_modules/bootstrap/scss/forms";
 // @import "../../node_modules/bootstrap/scss/buttons";
 @import "../../node_modules/bootstrap/scss/transitions";
 // @import "../../node_modules/bootstrap/scss/dropdown";
@@ -52,3 +54,4 @@ $pre-color: var(--text-color);
 @import './scss/dropdown';
 @import './scss/types';
 @import './scss/grid';
+@import './scss/card';

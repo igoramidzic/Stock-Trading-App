@@ -6,6 +6,27 @@ $colors: ("green": #21ce9a,
 $robinhood-gold: #cea774;
 $content-width: 1024px;
 
+@font-face {
+  font-family: 'robinhood-font';
+  src: url('assets/fonts/48a3635ce1e76c0122a143b076f51adf.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'robinhood-font';
+  src: url('assets/fonts/86fda98796bb4100ba905535a77723bd.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'robinhood-font';
+  src: url('assets/fonts/e0be9bd5e372b2c379893b776e7b2b96.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+}
+
 @mixin default-theme {
   --background: white;
   --button-text-color: white;
@@ -77,9 +98,7 @@ $content-width: 1024px;
     --#{$name}-light: #{lighten($color, 7%)};
   }
 
-  // --font-body: 'ratio',
-  // sans-serif;
-  --font-body: 'Roboto',
+  --font-body: 'robinhood-font',
   sans-serif;
   --font-head: 'ratio',
   sans-serif; // effra erbaum
@@ -101,6 +120,7 @@ body {
   font-family: var(--font-body);
   font-size: var(--font-size);
   letter-spacing: .25px;
+  font-weight: 500;
 }
 
 a {
@@ -120,7 +140,7 @@ h4,
 h5,
 h6 {
   // color: var(--h-color);
-  // font-family: var(--font-head);
+  font-family: var(--font-body);
   font-weight: 500;
   font-style: normal;
 }
@@ -153,6 +173,14 @@ i {
   background-color: var(--primary-color);
 }
 
+.danger {
+  color: var(--danger-color);
+}
+
+.danger-bg {
+  background-color: var(--danger-color);
+}
+
 footer {
   display: flex;
   align-items: center;
@@ -166,8 +194,10 @@ footer {
 }
 
 hr {
+  // margin: 15px 0;
+  margin: 0;
   border: none;
-  border-bottom: var(--h-border);
+  border-top: 1px solid var(--border-color);
 }
 
 li {

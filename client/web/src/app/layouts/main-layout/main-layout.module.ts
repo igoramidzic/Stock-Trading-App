@@ -6,6 +6,7 @@ import { AccountLayoutComponent } from './account-layout/account-layout.componen
 import { HomePageComponent } from './home-page/home-page.component';
 import { StocksPageComponent } from './stocks-page/stocks-page.component';
 import { GoldPageComponent } from './gold-page/gold-page.component';
+import { StockDetailsResolver } from 'src/app/core/resolvers/stock-details/stock-details.resolver';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,6 @@ import { GoldPageComponent } from './gold-page/gold-page.component';
   ],
   exports: [
   ],
-  providers: []
+  providers: [StockDetailsResolver]
 })
 export class MainLayoutModule { }

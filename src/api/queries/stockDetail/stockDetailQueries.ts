@@ -6,3 +6,10 @@ export class StockDetailsByFragmentQuery {
     }
 };
 
+export class StockDetailsBySymbolQuery {
+    symbol: string;
+
+    constructor(symbol: string) {
+        this.symbol = symbol;
+    }
+};

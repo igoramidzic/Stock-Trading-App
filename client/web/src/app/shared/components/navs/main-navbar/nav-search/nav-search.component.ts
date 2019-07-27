@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { StockService } from 'src/app/services/stock/stock.service';
-import { Quote } from 'src/app/core/models/stock/quote';
 import { ClientResponse } from 'src/app/core/models/response/clientResponse';
 import { StockDetails } from '../../../../../core/models/stock/stockDetails';
 

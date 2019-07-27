@@ -18,6 +18,7 @@ h6,
 .h6 {
   margin-bottom: 0;
   line-height: 1.2;
+  letter-spacing: -0.29px;
   //   font-family: $headings-font-family;
   //   font-weight: $headings-font-weight;
   //   line-height: $headings-line-height;
@@ -26,7 +27,7 @@ h6,
 
 h1,
 .h1 {
-  font-size: 48px;
+  font-size: 36px;
 }
 
 h2,
@@ -36,17 +37,17 @@ h2,
 
 h3,
 .h3 {
-  @include font-size($h3-font-size);
+  font-size: 16px;
 }
 
 h4,
 .h4 {
-  @include font-size($h4-font-size);
+  font-size: 15px;
 }
 
 h5,
 .h5 {
-  @include font-size($h5-font-size);
+  font-size: 14px;
 }
 
 h6,
@@ -84,17 +85,6 @@ h6,
   line-height: $display-line-height;
 }
 
-
-//
-// Horizontal rules
-//
-
-hr {
-  margin-top: $hr-margin-y;
-  margin-bottom: $hr-margin-y;
-  border: 0;
-  border-top: $hr-border-width solid $hr-border-color;
-}
 
 
 //

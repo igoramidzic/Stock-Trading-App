@@ -1,3 +1,6 @@
+import { StockQuote } from './quote';
+import { StockCompany } from './company';
+
 export type StockDetails = {
     symbol: string;
     exchange: string;
@@ -8,4 +11,6 @@ export type StockDetails = {
     region: string;
     currency: string;
     isEnabled: boolean;
+    quote: StockQuote;
+    company: StockCompany;
 }
