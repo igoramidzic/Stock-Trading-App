@@ -1,1 +1,59 @@
+// .odometer {
+//   line-height: inherit;
+//   height: 35px;
+//   overflow-y: hidden;
+//   display: inline-block;
+//   position: relative;
+//   top: 2px;
 
+//   .o-inner {
+//     display: inline-flex;
+//     align-items: flex-start;
+//   }
+
+//   .o-col {
+//     display: block;
+//     overflow-y: visible;
+//     transition: all .5s ease-in-out;
+//   }
+
+//   &.animate .o-col {
+//     transform: translateY(calc(-100% + 42px));
+//   }
+
+//   .o-col-static {
+//     display: inline-block;
+//   }
+// }
+
+@import url('https://fonts.googleapis.com/css?family=Squada+One');
+
+body {
+  background: #090909;
+}
+
+.num {
+  max-width: 700px;
+  width: 80%;
+  padding: 50px;
+  margin: 30px auto;
+  background: #151515;
+  color: #fff;
+  text-shadow: 0 0 10px rgba(0, 155, 20, 0.8);
+  text-align: center;
+  font-size: 0;
+  font-family: 'Squada One', cursive;
+}
+
+span {
+  font-family: 'Squada One', cursive;
+}
+
+.scrollMeter {
+  font-size: 40px;
+}
+
+.comma {
+  font-size: 24px;
+  vertical-align: bottom;
+}

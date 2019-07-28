@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { StockDetails } from 'src/app/core/models/stock/stockDetails';
-import { StockQuote } from 'src/app/core/models/stock/quote';
 
 @Component({
   selector: 'app-stocks-page',

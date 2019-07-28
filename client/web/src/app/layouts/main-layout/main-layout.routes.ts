@@ -6,6 +6,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { StocksPageComponent } from './stocks-page/stocks-page.component';
 import { GoldPageComponent } from './gold-page/gold-page.component';
 import { StockDetailsResolver } from 'src/app/core/resolvers/stock-details/stock-details.resolver';
+import { UserDetailsResolver } from 'src/app/core/resolvers/user-details/user-details.resolver';
 
 export const MAINLAYOUT_ROUTES: Routes = [
   {
@@ -26,7 +27,8 @@ export const MAINLAYOUT_ROUTES: Routes = [
     path: 'account',
     component: AccountLayoutComponent,
     canActivate: [SelfGuard],
-    loadChildren: './account-layout/account-layout.module#AccountLayoutModule'
+    loadChildren: './account-layout/account-layout.module#AccountLayoutModule',
+    resolve: { user: UserDetailsResolver }
   },
   {
     path: 'stocks/:symbol',

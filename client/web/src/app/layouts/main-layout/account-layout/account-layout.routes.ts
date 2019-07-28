@@ -4,6 +4,7 @@ import { ReferralPageComponent } from './referral-page/referral-page.component';
 import { BankingPageComponent } from './banking-page/banking-page.component';
 import { HistoryPageComponent } from './history-page/history-page.component';
 import { SettingsPageComponent } from './settings-page/settings-page.component';
+import { DocumentsPageComponent } from './documents-page/documents-page.component';
 
 export const ACCOUNT_ROUTES: Routes = [
     {
@@ -42,4 +43,11 @@ export const ACCOUNT_ROUTES: Routes = [
             title: 'Settings'
         }
     },
+    {
+        path: 'documents',
+        component: DocumentsPageComponent,
+        data: {
+            title: 'Documents'
+        }
+    }
 ]

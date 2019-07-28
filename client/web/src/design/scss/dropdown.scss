@@ -219,8 +219,9 @@
   }
 
   .dropdown-item-icon {
-    height: 24px;
-    margin: 0 5px 0 -5px;
+    fill: currentColor;
+    margin-right: 12px;
+    width: 24px;
   }
 
   .link-text {

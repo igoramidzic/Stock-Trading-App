@@ -18,6 +18,16 @@ import { CollectionsLinkListComponent } from './components/collections-link-list
 import { Ng2OdometerModule } from 'ng2-odometer';
 import { OdometerComponent } from './components/odometer/odometer.component';
 import { BuyStockCardComponent } from './components/stock/buy-stock-card/buy-stock-card.component';
+import { AccountNavbarComponent } from './components/navs/account-navbar/account-navbar.component';
+import { FreeStockIconComponent } from './components/navs/main-navbar/account-menu/icons/free-stock-icon/free-stock-icon.component';
+import { RobinhoodGoldIconComponent } from './components/navs/main-navbar/account-menu/icons/robinhood-gold-icon/robinhood-gold-icon.component';
+import { AccountIconComponent } from './components/navs/main-navbar/account-menu/icons/account-icon/account-icon.component';
+import { BankingIconComponent } from './components/navs/main-navbar/account-menu/icons/banking-icon/banking-icon.component';
+import { HistoryIconComponent } from './components/navs/main-navbar/account-menu/icons/history-icon/history-icon.component';
+import { SettingsIconComponent } from './components/navs/main-navbar/account-menu/icons/settings-icon/settings-icon.component';
+import { HelpIconComponent } from './components/navs/main-navbar/account-menu/icons/help-icon/help-icon.component';
+import { DisclosuresIconComponent } from './components/navs/main-navbar/account-menu/icons/disclosures-icon/disclosures-icon.component';
+import { LogoutIconComponent } from './components/navs/main-navbar/account-menu/icons/logout-icon/logout-icon.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +42,17 @@ import { BuyStockCardComponent } from './components/stock/buy-stock-card/buy-sto
     HighlightSearchPipe,
     CollectionsLinkListComponent,
     OdometerComponent,
-    BuyStockCardComponent
+    BuyStockCardComponent,
+    AccountNavbarComponent,
+    FreeStockIconComponent,
+    RobinhoodGoldIconComponent,
+    AccountIconComponent,
+    BankingIconComponent,
+    HistoryIconComponent,
+    SettingsIconComponent,
+    HelpIconComponent,
+    DisclosuresIconComponent,
+    LogoutIconComponent,
   ],
   imports: [
     CommonModule,
@@ -57,7 +77,10 @@ import { BuyStockCardComponent } from './components/stock/buy-stock-card/buy-sto
     CollectionsLinkListComponent,
     Ng2OdometerModule,
     OdometerComponent,
-    BuyStockCardComponent
+    BuyStockCardComponent,
+    AccountNavbarComponent,
+    FreeStockIconComponent,
+    RobinhoodGoldIconComponent
   ],
   providers: []
 })

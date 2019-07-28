@@ -7,6 +7,7 @@ import { AccountPageComponent } from './account-page/account-page.component';
 import { BankingPageComponent } from './banking-page/banking-page.component';
 import { HistoryPageComponent } from './history-page/history-page.component';
 import { SettingsPageComponent } from './settings-page/settings-page.component';
+import { DocumentsPageComponent } from './documents-page/documents-page.component';
 
 @NgModule({
     declarations: [
@@ -14,7 +15,8 @@ import { SettingsPageComponent } from './settings-page/settings-page.component';
         AccountPageComponent,
         BankingPageComponent,
         HistoryPageComponent,
-        SettingsPageComponent
+        SettingsPageComponent,
+        DocumentsPageComponent
     ],
     imports: [
         SharedModule,

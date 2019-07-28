@@ -1,4 +1,10 @@
-<div class="main-container">
-  Account navbar
+<div class="main-account-nav-wrapper-wrapper">
+  <div class="account-navbar-wrapper">
+    <div class="main-container">
+      <app-account-navbar [user]="user"></app-account-navbar>
+    </div>
+  </div>
 </div>
-<router-outlet></router-outlet>
+<div class="main-container">
+  <router-outlet></router-outlet>
+</div>
