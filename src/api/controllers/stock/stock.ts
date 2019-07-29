@@ -36,7 +36,6 @@ routes.get("/:symbol/details", (req: Request, res: Response) => {
 
     Promise.all([symbolPromise, quotePromise, companyPromise])
         .then((result) => {
-            console.log(result)
             const response = new ClientResponse(true,
                 { details: { ...result[0].toJSON(), quote: result[1], company: result[2] } })
             return res.status(200).json(response);

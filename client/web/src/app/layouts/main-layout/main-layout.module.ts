@@ -8,6 +8,7 @@ import { StocksPageComponent } from './stocks-page/stocks-page.component';
 import { GoldPageComponent } from './gold-page/gold-page.component';
 import { StockDetailsResolver } from 'src/app/core/resolvers/stock-details/stock-details.resolver';
 import { UserDetailsResolver } from 'src/app/core/resolvers/user-details/user-details.resolver';
+import { ThemeService } from 'src/app/services/theme/theme.service';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,6 @@ import { UserDetailsResolver } from 'src/app/core/resolvers/user-details/user-de
   ],
   exports: [
   ],
-  providers: [StockDetailsResolver, UserDetailsResolver]
+  providers: [StockDetailsResolver, UserDetailsResolver, ThemeService]
 })
 export class MainLayoutModule { }

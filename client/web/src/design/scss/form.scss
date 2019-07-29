@@ -6,7 +6,8 @@ label {
 }
 
 .textarea,
-.input {
+.input,
+.select {
   padding: 0 13px;
   width: 100%;
   box-sizing: border-box;
@@ -14,11 +15,11 @@ label {
   border: 1px solid var(--input-background);
   border-radius: 4px;
   font-size: 13px;
-  color: var(--h-color);
+  color: var(--text-color);
   outline: none;
   display: block;
   font-family: var(--font-body);
-  transition: .25s ease-in-out;
+  transition: .25s ease;
 
   &:hover {
     background: var(--background);
@@ -41,18 +42,24 @@ label {
   &.ng-valid.ng-touched {
     // border-bottom: 3px solid var(--green);
   }
-
 }
 
-.theme-closed .input {
+.select {
+  cursor: pointer;
+}
+
+.theme-closed .input,
+.theme-closed .select {
   border: 1px solid var(--input-border);
 }
 
-.input {
+.input,
+.select {
   height: 36px;
 }
 
-.input-lg {
+.input-lg,
+.select-lg {
   height: 48px;
   padding: 0 20px;
 }

@@ -4,12 +4,11 @@ import { Theme, ClientResponse } from '../../helpers/helpers'
 const routes: Router = Router()
 
 /**
- * Get current theme
+ * Get current (random) theme
  */
 routes.get("/active", (req: Request, res: Response) => {
     const result = {
-        // theme: Math.floor(Math.random() * 2) + 1
-        theme: 1
+        theme: Math.floor(Math.random() * 2) + 1
     }
     res.status(200).json(new ClientResponse(true, result))
 });

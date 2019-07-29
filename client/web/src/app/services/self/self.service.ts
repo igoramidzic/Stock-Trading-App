@@ -32,4 +32,10 @@ export class SelfService {
   removeUser(): void {
     this.user$.next(null);
   }
+
+  fullName(): string {
+    if (!this.user$.value)
+      return "";
+    return this.user$.value.firstName + " " + this.user$.value.lastName;
+  }
 }

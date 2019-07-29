@@ -1,40 +1,34 @@
 <a href="javascript:void(0);" class="dropdown-toggle nav-link" data-toggle="dropdown" aria-haspopup="true"
-  aria-expanded="false">Account</a>
-<div class="dropdown-menu dropdown-menu-right" style="width: 296px;">
-  <a [routerLink]="['/gold']" class="dropdown-item dropdown-item-account robinhood-gold">
-    <app-robinhood-gold-icon></app-robinhood-gold-icon>
-    Robinhood Gold
-  </a>
-  <a [routerLink]="['/account/referral']" class="dropdown-item dropdown-item-account">
-    <app-free-stock-icon></app-free-stock-icon>
-    Free Stock
+  aria-expanded="false">{{ selfService.fullName() }}</a>
+<div class="dropdown-menu dropdown-menu-right" style="width: 248px;">
+  <a (click)="themeService.toggleTheme()" class="dropdown-item dropdown-item-account dropdown-divider">
+    <div class="w-100 d-flex align-items-center justify-content-between">
+      <div>
+        Dark Theme
+      </div>
+      <div>
+        <span *ngIf="themeService.usingDarkTheme()">
+          <i class="primary fas fa-toggle-on"></i>
+        </span>
+        <span *ngIf="!themeService.usingDarkTheme()">
+          <i class="fas fa-toggle-off"></i>
+        </span>
+      </div>
+    </div>
   </a>
   <a [routerLink]="['/account']" class="dropdown-item dropdown-item-account">
-    <app-account-icon></app-account-icon>
     Account
   </a>
   <a [routerLink]="['/account/banking']" class="dropdown-item dropdown-item-account">
-    <app-banking-icon></app-banking-icon>
     Banking
   </a>
   <a [routerLink]="['/account/history']" class="dropdown-item dropdown-item-account">
-    <app-history-icon></app-history-icon>
     History
   </a>
   <a [routerLink]="['/account/settings']" class="dropdown-item dropdown-item-account dropdown-divider">
-    <app-settings-icon></app-settings-icon>
     Settings
   </a>
-  <a href="#" class="dropdown-item dropdown-item-account disabled">
-    <app-help-icon></app-help-icon>
-    Help
-  </a>
-  <a href="#" class="dropdown-item dropdown-item-account dropdown-divider disabled">
-    <app-disclosures-icon></app-disclosures-icon>
-    Disclosures
-  </a>
   <a [routerLink]="['/login']" (click)="authService.logout()" class="dropdown-item dropdown-item-account">
-    <app-logout-icon></app-logout-icon>
     Log Out
   </a>
 </div>

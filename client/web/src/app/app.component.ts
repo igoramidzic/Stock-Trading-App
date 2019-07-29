@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { map, filter, mergeMap } from 'rxjs/operators'
-import { ThemeService } from './services/theme/theme.service';
-import { Theme } from './core/models/theme/theme';
 import { LoadingService } from './services/loading/loading.service';
 
 @Component({
@@ -12,8 +10,6 @@ import { LoadingService } from './services/loading/loading.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-
-  Theme = Theme;
 
   constructor(private router: Router,
     private activatedRoute: ActivatedRoute,
@@ -32,9 +28,9 @@ export class AppComponent implements OnInit {
       .pipe(mergeMap((route) => route.data))
       .subscribe((event) => {
         if (event['title'])
-          this.titleService.setTitle(event['title'] + ' | Robinhoood')
+          this.titleService.setTitle(event['title'] + ' | Batman')
         else
-          this.titleService.setTitle('Robinhood')
+          this.titleService.setTitle('Batman')
       });
   }
 }

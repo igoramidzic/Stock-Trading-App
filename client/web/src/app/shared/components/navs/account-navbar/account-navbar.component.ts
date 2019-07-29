@@ -14,8 +14,6 @@ export class AccountNavbarComponent implements OnInit {
     { label: 'Account', route: '' },
     { label: 'Banking', route: '/banking' },
     { label: 'History', route: '/history' },
-    { label: 'Documents', route: '/documents' },
-    { label: 'Free Stock', route: '/referral' },
     { label: 'Settings', route: '/settings' }
   ]
 

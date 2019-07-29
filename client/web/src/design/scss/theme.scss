@@ -1,31 +1,31 @@
-$colors: ("green": #21ce9a,
-  "red": #f45531,
+$colors: ("green": #0e688f,
+  "red": #d14128,
   "light-green": #e4fff7,
   "light-red": #ffeeea);
 
-$robinhood-gold: #cea774;
+$batman-gold: #f8b967;
 $content-width: 1024px;
 
-@font-face {
-  font-family: 'robinhood-font';
-  src: url('assets/fonts/48a3635ce1e76c0122a143b076f51adf.otf') format('opentype');
-  font-weight: 500;
-  font-style: normal;
-}
+// @font-face {
+//   font-family: 'batman-font';
+//   src: url('assets/fonts/48a3635ce1e76c0122a143b076f51adf.otf') format('opentype');
+//   font-weight: 500;
+//   font-style: normal;
+// }
 
-@font-face {
-  font-family: 'robinhood-font';
-  src: url('assets/fonts/86fda98796bb4100ba905535a77723bd.otf') format('opentype');
-  font-weight: 400;
-  font-style: normal;
-}
+// @font-face {
+//   font-family: 'batman-font';
+//   src: url('assets/fonts/86fda98796bb4100ba905535a77723bd.otf') format('opentype');
+//   font-weight: 400;
+//   font-style: normal;
+// }
 
-@font-face {
-  font-family: 'robinhood-font';
-  src: url('assets/fonts/e0be9bd5e372b2c379893b776e7b2b96.otf') format('opentype');
-  font-weight: 300;
-  font-style: normal;
-}
+// @font-face {
+//   font-family: 'batman-font';
+//   src: url('assets/fonts/e0be9bd5e372b2c379893b776e7b2b96.otf') format('opentype');
+//   font-weight: 300;
+//   font-style: normal;
+// }
 
 @mixin default-theme {
   --background: white;
@@ -36,12 +36,12 @@ $content-width: 1024px;
   --input-placeholder: #cbcbcd;
   --primary-color: map-get($colors, "green");
   --secondary-color: map-get($colors, "red");
-  --success-color: #21ce99;
-  --danger-color: #f45531;
-  --border-color: #f4f4f5;
-  --background-hover: #fafafa;
+  --success-color: #0e688f;
+  --danger-color: #d14128;
+  --border-color: #f2f2f2;
+  --background-hover: #f2f2f2;
   --hint-color: #171718;
-  --box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.01), 0 3px 24px rgba(48, 51, 51, 0.09);
+  --box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.01), 0 3px 24px rgba(42, 46, 46, 0.09);
   transition: all 0.25s ease;
 }
 
@@ -58,35 +58,35 @@ $content-width: 1024px;
   --input-placeholder: #858587;
   --primary-color: map-get($colors, "green");
   --secondary-color: map-get($colors, "red");
-  --success-color: #21ce99;
-  --danger-color: #f45531;
+  --success-color: #0e688f;
+  --danger-color: #d14128;
   --border-color: #0E0D18;
-  --background-hover: #171718;
+  --background-hover: #131314;
   --hint-color: #8c8c8e;
   --box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.01), 0 3px 24px rgba(0, 0, 0, 0.6);
   transition: all 0.3s ease;
 }
 
 .theme-up {
-  --primary-color: #21ce99;
-  --secondary-color: #f45531;
-  --success-color: #21ce99;
-  --danger-color: #f45531;
+  --primary-color: #0e688f;
+  --secondary-color: #d14128;
+  --success-color: #0e688f;
+  --danger-color: #d14128;
 }
 
 .theme-down {
-  --primary-color: #f45531;
-  --secondary-color: #21ce99;
-  --success-color: #21ce99;
-  --danger-color: #f45531;
+  --primary-color: #d14128;
+  --secondary-color: #0e688f;
+  --success-color: #0e688f;
+  --danger-color: #d14128;
 }
 
-.robinhood-gold {
-  color: #cea774;
+.batman-gold {
+  color: #f8b967;
 }
 
-.robinhood-gold-bg {
-  background-color: #cea774;
+.batman-gold-bg {
+  background-color: #f8b967;
 }
 
 :root {
@@ -98,7 +98,7 @@ $content-width: 1024px;
     --#{$name}-light: #{lighten($color, 7%)};
   }
 
-  --font-body: 'robinhood-font',
+  --font-body: 'Roboto',
   sans-serif;
   --font-head: 'ratio',
   sans-serif; // effra erbaum

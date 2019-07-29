@@ -1,11 +1,13 @@
 <a href="javascript:void(0);" class="dropdown-toggle nav-link" data-toggle="dropdown" aria-haspopup="true"
   aria-expanded="false">Notifications</a>
 <div class="dropdown-menu dropdown-menu-right" style="width: 340px">
-  <a [routerLink]="['/account/history']" class="dropdown-item dropdown-item-notification dropdown-divider">
-    <div class="p-4">
-      <h6>Transfer Complete</h6>
-      <span class="hint">Your $9723.10 transfer to your bank is complete.</span>
+  <a [routerLink]="['/account/history']" class="dropdown-item dropdown-normal-link text-center dropdown-divider">View
+    All</a>
+  <a [routerLink]="['/account/history']" class="dropdown-item dropdown-item-notification"
+    *ngFor="let notification of notifications">
+    <div class="p-3">
+      <h6>{{ notification.event }}</h6>
+      <span class="hint">{{ notification.message}}</span>
     </div>
   </a>
-  <a [routerLink]="['/account/history']" class="dropdown-item dropdown-normal-link text-center">View History</a>
 </div>
