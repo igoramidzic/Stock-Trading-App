@@ -1,5 +1,5 @@
-$colors: ("green": #0e688f,
-  "red": #d14128,
+$colors: ("green": #fce137,
+  "red": #24759e,
   "light-green": #e4fff7,
   "light-red": #ffeeea);
 
@@ -36,8 +36,8 @@ $content-width: 1024px;
   --input-placeholder: #cbcbcd;
   --primary-color: map-get($colors, "green");
   --secondary-color: map-get($colors, "red");
-  --success-color: #0e688f;
-  --danger-color: #d14128;
+  --success-color: #fce137;
+  --danger-color: #fce137;
   --border-color: #f2f2f2;
   --background-hover: #f2f2f2;
   --hint-color: #171718;
@@ -58,8 +58,8 @@ $content-width: 1024px;
   --input-placeholder: #858587;
   --primary-color: map-get($colors, "green");
   --secondary-color: map-get($colors, "red");
-  --success-color: #0e688f;
-  --danger-color: #d14128;
+  --success-color: #fce137;
+  --danger-color: #fce137;
   --border-color: #0E0D18;
   --background-hover: #131314;
   --hint-color: #8c8c8e;
@@ -68,17 +68,17 @@ $content-width: 1024px;
 }
 
 .theme-up {
-  --primary-color: #0e688f;
-  --secondary-color: #d14128;
-  --success-color: #0e688f;
-  --danger-color: #d14128;
+  --primary-color: #fce137;
+  --secondary-color: #fce137;
+  --success-color: #fce137;
+  --danger-color: #fce137;
 }
 
 .theme-down {
-  --primary-color: #d14128;
-  --secondary-color: #0e688f;
-  --success-color: #0e688f;
-  --danger-color: #d14128;
+  --primary-color: #fce137;
+  --secondary-color: #fce137;
+  --success-color: #fce137;
+  --danger-color: #fce137;
 }
 
 .batman-gold {

@@ -17,6 +17,7 @@ export class SelfGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     return new Promise((resolve, reject) => {
       this.loadingService.startLoading();
+      console.log("Here")
 
       // If we already have the user
       if (this.selfService.user$.value) {

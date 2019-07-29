@@ -33,6 +33,7 @@ export const MAINLAYOUT_ROUTES: Routes = [
   {
     path: 'stocks/:symbol',
     component: StocksPageComponent,
+    canActivate: [SelfGuard],
     resolve: { stockDetails: StockDetailsResolver }
   },
   {
