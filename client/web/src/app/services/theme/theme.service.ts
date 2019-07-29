@@ -46,7 +46,6 @@ export class ThemeService {
   }
 
   private storeThemeChoice(theme: Theme): void {
-    console.log(theme)
     localStorage.setItem(this.darkThemeStorageName, theme.toString());
   }
 }

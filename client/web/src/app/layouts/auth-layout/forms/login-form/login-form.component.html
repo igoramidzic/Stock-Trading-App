@@ -6,13 +6,13 @@
     <label class="mb-2" for="password">Password</label>
     <input type="password" name="password" formControlName="password" class="input input-lg mb-2">
 
-    <a class="green" [routerLink]="['/signup']">Don't have an account? Sign up</a>
+    <a class="primary" [routerLink]="['/signup']">Don't have an account? Sign up</a>
 
     <app-main-alert [errors]="errors"></app-main-alert>
   </div>
 
 
-  <button class="btn btn-lg btn-success" [disabled]="isSubmitting">
+  <button class="btn btn-lg btn-primary" [disabled]="isSubmitting">
     <span *ngIf="!isSubmitting">Sign In</span>
     <app-main-loader *ngIf="isSubmitting"></app-main-loader>
   </button>

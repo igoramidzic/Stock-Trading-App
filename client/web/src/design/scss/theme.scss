@@ -1,9 +1,8 @@
-$colors: ("green": #fce137,
-  "red": #24759e,
-  "light-green": #e4fff7,
-  "light-red": #ffeeea);
+$colors: ("yello": #fce137,
+  "blue": #24759e,
+  "green": #2bd0ba,
+  "red": #d14128);
 
-$batman-gold: #f8b967;
 $content-width: 1024px;
 
 // @font-face {
@@ -34,10 +33,10 @@ $content-width: 1024px;
   --input-background: #fafafa;
   --input-border: #cbcbcd;
   --input-placeholder: #cbcbcd;
-  --primary-color: map-get($colors, "green");
-  --secondary-color: map-get($colors, "red");
-  --success-color: #fce137;
-  --danger-color: #fce137;
+  --primary-color: #24759e;
+  --secondary-color: #fce137;
+  --success-color: #2bd0ba;
+  --danger-color: #d14128;
   --border-color: #f2f2f2;
   --background-hover: #f2f2f2;
   --hint-color: #171718;
@@ -56,37 +55,15 @@ $content-width: 1024px;
   --input-background: #1b1b1d;
   --input-border: #0e0d0d;
   --input-placeholder: #858587;
-  --primary-color: map-get($colors, "green");
-  --secondary-color: map-get($colors, "red");
-  --success-color: #fce137;
-  --danger-color: #fce137;
+  --primary-color: #fce137;
+  --secondary-color: #24759e;
+  --success-color: #2bd0ba;
+  --danger-color: #d14128;
   --border-color: #0E0D18;
   --background-hover: #131314;
   --hint-color: #8c8c8e;
   --box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.01), 0 3px 24px rgba(0, 0, 0, 0.6);
   transition: all 0.3s ease;
-}
-
-.theme-up {
-  --primary-color: #fce137;
-  --secondary-color: #fce137;
-  --success-color: #fce137;
-  --danger-color: #fce137;
-}
-
-.theme-down {
-  --primary-color: #fce137;
-  --secondary-color: #fce137;
-  --success-color: #fce137;
-  --danger-color: #fce137;
-}
-
-.batman-gold {
-  color: #f8b967;
-}
-
-.batman-gold-bg {
-  background-color: #f8b967;
 }
 
 :root {

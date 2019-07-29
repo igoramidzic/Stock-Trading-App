@@ -2,7 +2,7 @@ import * as iex from 'iexcloud_api_wrapper';
 import { Router, Response, Request } from "express";
 import { ClientResponse } from '../../helpers/helpers'
 import { StockDetails, StockDetailsDocument } from "./../../../models/stock/stockDetails";
-import { stockDetailsListByFragmentQueryHandler, stockDetailsListBySymbolQueryHandler } from '../../queryHandlers/stockDetails/stockDetailsQueryHandlers';
+import { stockDetailsListByFragmentQueryHandler, stockDetailsBySymbolQueryHandler } from '../../queryHandlers/stockDetails/stockDetailsQueryHandlers';
 import { StockDetailsByFragmentQuery, StockDetailsBySymbolQuery } from '../../queries/stockDetail/stockDetailQueries';
 import { Company, Quote } from 'iexcloud_api_wrapper';
 
@@ -30,7 +30,7 @@ routes.get("/:symbol/details", (req: Request, res: Response) => {
     // const io: Socket = app.get('socketio')
 
     const symbolPromise: Promise<StockDetailsDocument>
-        = stockDetailsListBySymbolQueryHandler(new StockDetailsBySymbolQuery(req.params.symbol));
+        = stockDetailsBySymbolQueryHandler(new StockDetailsBySymbolQuery(req.params.symbol));
     const quotePromise: Promise<iex.Quote> = iex.quote(req.params.symbol)
     const companyPromise: Promise<iex.Company> = iex.company(req.params.symbol)
 
