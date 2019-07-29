@@ -1,10 +1,6 @@
 <div class="main-container" *ngIf="stockDetails">
   <div class="row justify-content-between">
     <div class="col-12">
-      <div class="mb-2">
-        <app-collections-link-list [collectionLinks]="stockDetails.company.tags | slice : 0 : 3">
-        </app-collections-link-list>
-      </div>
       <h1>{{ stockDetails.name | shorten : 25 : '...'}}</h1>
       <!-- <h1 class="font-weight-normal">{{ stockDetails.quote.latestPrice | currency }}</h1> -->
       <h1 class="font-weight-normal">
