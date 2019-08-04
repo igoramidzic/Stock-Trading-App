@@ -18,15 +18,30 @@ export class SelfService {
     return new Promise((resolve, reject) => {
       this.http.get(`${environment.apiBase}/self`)
         .subscribe((res: ClientResponse) => {
-          this.updateSelf(res.result.user)
+          this.user$.next(res.result.user);
           resolve(res.result.user)
         },
           (err: ClientResponse) => reject(err))
     })
   }
 
-  updateSelf(user: User): void {
-    this.user$.next(user);
+  updateSelf(user: User): Promise<User> {
+    return new Promise((resolve, reject) => {
+      this.http.put(`${environment.apiBase}/self`, user)
+        .subscribe((res: ClientResponse) => {
+          this.user$.next(res.result.user);
+          resolve(res.result.user)
+        }, (err: { error: ClientResponse }) => reject(err.error))
+    })
+  }
+
+  updatePassword(passwords: { currentPassword: string; newPassword: string; confirmPassword: string }): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      this.http.put(`${environment.apiBase}/self/password`, passwords)
+        .subscribe((res: ClientResponse) => {
+          resolve(res.isSuccess)
+        }, (err: { error: ClientResponse }) => reject(err.error))
+    })
   }
 
   removeUser(): void {

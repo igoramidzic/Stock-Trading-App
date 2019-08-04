@@ -11,6 +11,23 @@ export let createNewUser = (command: userCommands.CreateUserCommand) => new Prom
         })
 })
 
-export let authenticateUser = (command: userCommands.AuthenticateUserCommand) => new Promise((resolve, reject) => {
-    resolve({ firstName: "Igor", lastName: "Amidzic", email: "amidzicigor46@gmail.com" });
+export let updateUserDetails = (userId: string, user: User) => new Promise((resolve, reject) => {
+    User.findByIdAndUpdate(userId, user, { new: true })
+        .then((user: UserDocument) => {
+            resolve(user)
+        })
+        .catch((error: any) => {
+            reject(error)
+        })
+})
+
+export let updateUserPassword = (userId: string, password: string) => new Promise((resolve, reject) => {
+    User.findById(userId)
+        .then((user: UserDocument) => {
+            user.password = password;
+            user.save().then(() => resolve(true));
+        })
+        .catch((error: any) => {
+            reject(error);
+        })
 })

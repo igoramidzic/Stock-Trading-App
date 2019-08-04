@@ -42,6 +42,11 @@ label {
   &.ng-valid.ng-touched {
     // border-bottom: 3px solid var(--green);
   }
+
+  &:disabled {
+    background: var(--input-background);
+    border: 1px solid var(--input-background);
+  }
 }
 
 .select {

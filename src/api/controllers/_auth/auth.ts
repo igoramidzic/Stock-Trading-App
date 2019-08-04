@@ -63,16 +63,9 @@ routes.post('/create-user', async (req: Request, res: Response) => {
         return res.status(400).json(new ClientResponse(false, null, credentialErrors));
 
     // Check if email is already taken
-    let userExists;
-    await userQueryHandlers.isEmailAlreadyTaken(new userQueries.EmailAlreadyTakenQuery(message.email))
-        .then((isExists: boolean) => {
-            userExists = isExists;
-        })
-        .catch(() => {
-            return serverError(res);
-        })
+    const emailAlreadyTaken = await userQueryHandlers.isEmailAlreadyTaken(message.email)
 
-    if (userExists) {
+    if (emailAlreadyTaken) {
         const response = new ClientResponse(false, null);
         response.addMessage("Email is already taken.");
         return res.status(400).json(response);

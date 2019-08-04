@@ -1,4 +1,4 @@
-import { Response } from "express";
+import { Response, Request } from "express";
 
 export enum Theme {
     Open = 1,
@@ -26,3 +26,11 @@ export let serverError = (res: Response) => {
     response.addMessage("Something went wrong. Try again.");
     return res.status(500).json(response);
 }
+
+export const asyncHandler = (fn: any) =>
+    (req: Request, res: Response, next: any) => {
+        Promise.resolve(fn(req, res, next))
+            .catch(() => {
+                serverError(res)
+            });
+    };

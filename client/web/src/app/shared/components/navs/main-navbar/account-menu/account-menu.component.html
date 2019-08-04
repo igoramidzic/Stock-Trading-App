@@ -1,5 +1,5 @@
 <a href="javascript:void(0);" class="dropdown-toggle nav-link" data-toggle="dropdown" aria-haspopup="true"
-  aria-expanded="false">{{ selfService.fullName() }}</a>
+  aria-expanded="false">{{ selfService.fullName() | shorten : 30 : '...' }}</a>
 <div class="dropdown-menu dropdown-menu-right" style="width: 248px;">
   <a (click)="themeService.toggleTheme()" class="dropdown-item dropdown-item-account dropdown-divider">
     <div class="w-100 d-flex align-items-center justify-content-between">
@@ -16,10 +16,10 @@
       </div>
     </div>
   </a>
-  <a [routerLink]="['/account']" class="dropdown-item dropdown-item-account">
+  <a [routerLink]="['/account']" class="dropdown-item dropdown-item-account dropdown-divider">
     Account
   </a>
-  <a [routerLink]="['/account/banking']" class="dropdown-item dropdown-item-account">
+  <!-- <a [routerLink]="['/account/banking']" class="dropdown-item dropdown-item-account">
     Banking
   </a>
   <a [routerLink]="['/account/history']" class="dropdown-item dropdown-item-account">
@@ -27,7 +27,7 @@
   </a>
   <a [routerLink]="['/account/settings']" class="dropdown-item dropdown-item-account dropdown-divider">
     Settings
-  </a>
+  </a> -->
   <a [routerLink]="['/login']" (click)="authService.logout()" class="dropdown-item dropdown-item-account">
     Log Out
   </a>

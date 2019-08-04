@@ -18,7 +18,7 @@ export const MAINLAYOUT_ROUTES: Routes = [
         path: '',
         component: HomePageComponent,
         data: {
-          title: 'Home'
+          title: 'Portfolio'
         }
       }
     ]

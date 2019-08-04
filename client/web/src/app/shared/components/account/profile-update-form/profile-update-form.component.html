@@ -1,0 +1,27 @@
+<form [formGroup]="profileForm" (ngSubmit)="updateProfile()">
+  <div class="row mb-2">
+    <div class="col-6">
+      <label class="mb-2" for="firstName">First name</label>
+      <input type="text" name="firstName" formControlName="firstName" autocomplete="off" class="input"
+        [attr.disabled]="isSubmitting ? '' : null">
+    </div>
+    <div class="col-6">
+      <label class="mb-2" for="lastName">Last name</label>
+      <input type="text" name="lastName" formControlName="lastName" autocomplete="off" class="input"
+        [attr.disabled]="isSubmitting ? '' : null">
+    </div>
+  </div>
+
+  <label class="mb-2" for="email">Email</label>
+  <input type="email" name="email" formControlName="email" autocomplete="off" class="input mb-3"
+    [attr.disabled]="isSubmitting ? '' : null">
+
+  <app-main-error-alert [errors]="errors"></app-main-error-alert>
+  <app-main-success-alert *ngIf="done" [message]="'Successfully updated'"></app-main-success-alert>
+
+  <button type="submit" class="btn btn-primary btn-lg mt-3"
+    [disabled]="isSubmitting || !profileForm.dirty || profileForm.invalid">
+    <span *ngIf="!isSubmitting">Update</span>
+    <app-main-loader *ngIf="isSubmitting"></app-main-loader>
+  </button>
+</form>

@@ -1,5 +1,5 @@
-<div class="alert">
-  <span class="alert-message" *ngFor="let error of errors">
+<div class="alert" *ngIf="errors && errors.length > 0">
+  <span class="alert-message red" *ngFor="let error of errors">
     <span style="vertical-align:middle;"><i class="fas fa-exclamation-circle alert-icon"></i></span>
     <span class="message-content" style="vertical-align:middle;">{{ error}}</span>
   </span>

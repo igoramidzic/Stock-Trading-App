@@ -1,6 +1,13 @@
 import mongoose from "mongoose";
 import bcrypt from 'bcrypt-nodejs';
 
+export type User = {
+    firstName?: string,
+    lastName?: string,
+    email?: string,
+    password?: string
+}
+
 export type UserDocument = mongoose.Document & {
     firstName: string,
     lastName: string,

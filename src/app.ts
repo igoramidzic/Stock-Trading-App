@@ -16,6 +16,12 @@ app.use(express.static(path.join(__dirname, './../client/web/dist')));
 
 app.use(jwtParsing)
 
+const asyncHandler = (fn: any) => (req: Request, res: Response, next: any) => {
+  return Promise
+    .resolve(fn(req, res, next))
+    .catch(next);
+};
+
 // API routes
 app.use('/api', require('./api/controllers/index'))
 

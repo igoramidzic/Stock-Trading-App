@@ -1,0 +1,13 @@
+<div class="alert" *ngIf="message">
+  <span class="alert-message green">
+    <span style="vertical-align:middle;"><i class="fas fa-check-circle alert-icon"></i></span>
+    <span class="message-content" style="vertical-align:middle;">{{ message }}</span>
+  </span>
+</div>
+
+<div class="alert" *ngIf="messages && messages.length > 0">
+  <span class="alert-message green" *ngFor="let message of messages">
+    <span style="vertical-align:middle;"><i class="fas fa-check-circle alert-icon"></i></span>
+    <span class="message-content" style="vertical-align:middle;">{{ message }}</span>
+  </span>
+</div>

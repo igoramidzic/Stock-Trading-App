@@ -5,7 +5,6 @@ import { RouterModule } from "@angular/router";
 import { NgPipesModule } from "ngx-pipes";
 import { FormsModule } from "@angular/forms";
 import { ReactiveFormsModule } from "@angular/forms";
-import { MainAlertComponent } from "./components/alerts/main-alert/main-alert.component";
 import { ApplicationLoaderComponent } from "./components/loaders/application-loader/application-loader.component";
 import { MainLoaderComponent } from "./components/loaders/main-loader/main-loader.component";
 import { MainNavbarComponent } from "./components/navs/main-navbar/main-navbar.component";
@@ -21,10 +20,14 @@ import { BuyStockCardComponent } from "./components/stock/buy-stock-card/buy-sto
 import { AccountNavbarComponent } from "./components/navs/account-navbar/account-navbar.component";
 import { CurrencyMaskModule } from "ng2-currency-mask";
 import { TransferFundsComponent } from './components/banking/transfer-funds/transfer-funds.component';
+import { ProfileUpdateFormComponent } from './components/account/profile-update-form/profile-update-form.component';
+import { PasswordUpdateFormComponent } from './components/account/password-update-form/password-update-form.component';
+import { MainSuccessAlertComponent } from './components/alerts/main-success-alert/main-success-alert.component';
+import { MainErrorAlertComponent } from './components/alerts/main-error-alert/main-error-alert.component';
 
 @NgModule({
   declarations: [
-    MainAlertComponent,
+    MainErrorAlertComponent,
     ApplicationLoaderComponent,
     MainLoaderComponent,
     MainNavbarComponent,
@@ -37,7 +40,10 @@ import { TransferFundsComponent } from './components/banking/transfer-funds/tran
     OdometerComponent,
     BuyStockCardComponent,
     AccountNavbarComponent,
-    TransferFundsComponent
+    TransferFundsComponent,
+    ProfileUpdateFormComponent,
+    PasswordUpdateFormComponent,
+    MainSuccessAlertComponent
   ],
   imports: [
     CommonModule,
@@ -55,7 +61,7 @@ import { TransferFundsComponent } from './components/banking/transfer-funds/tran
     MainLoaderComponent,
     FormsModule,
     ReactiveFormsModule,
-    MainAlertComponent,
+    MainErrorAlertComponent,
     MainNavbarComponent,
     HighlightSearchPipe,
     MainNotFoundPageComponent,
@@ -66,7 +72,10 @@ import { TransferFundsComponent } from './components/banking/transfer-funds/tran
     BuyStockCardComponent,
     AccountNavbarComponent,
     TransferFundsComponent,
-    CurrencyMaskModule
+    CurrencyMaskModule,
+    ProfileUpdateFormComponent,
+    PasswordUpdateFormComponent,
+    MainSuccessAlertComponent
   ],
   providers: []
 })
