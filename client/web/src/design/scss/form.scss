@@ -22,7 +22,7 @@ label {
   transition: .25s ease;
 
   &:hover {
-    background: var(--background);
+    background: var(--input-background-hover);
     border: 1px solid var(--input-border);
   }
 
@@ -31,8 +31,8 @@ label {
   }
 
   &:focus {
-    background: var(--background);
-    border: 1px solid map-get($colors, "green");
+    background: var(--input-background-hover);
+    border: 1px solid var(--primary-color);
   }
 
   &.ng-touched.ng-invalid {
@@ -55,7 +55,7 @@ label {
 
 .theme-closed .input,
 .theme-closed .select {
-  border: 1px solid var(--input-border);
+  // border: 1px solid var(--input-border);
 }
 
 .input,

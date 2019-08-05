@@ -1,14 +1,13 @@
-<div class="main-container" *ngIf="stockDetails">
+<div class="container-fluid main-container" *ngIf="stockDetails">
   <div class="row justify-content-between">
-    <div class="col-9">
-      <h1>{{ stockDetails.name | shorten : 30 : '...'}}</h1>
-      <!-- <h1 class="font-weight-normal">{{ stockDetails.quote.latestPrice | currency }}</h1> -->
-      <h1 class="font-weight-normal">
+    <div class="col-md-16 mb-4">
+      <h2>{{ stockDetails.name | shorten : 30 : '...'}}</h2>
+      <h2 class="font-weight-normal">
         {{ currencySymbol }}<app-odometer [value]="stockDetails.quote.latestPrice"></app-odometer>
-      </h1>
+      </h2>
       <!-- <pre>{{ stockDetails | json}}</pre> -->
     </div>
-    <div class="col-3">
+    <div class="col-md-8">
       <div>
         <app-buy-stock-card [quote]="stockDetails.quote"></app-buy-stock-card>
       </div>

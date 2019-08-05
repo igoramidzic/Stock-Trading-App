@@ -49,21 +49,25 @@ routes.post('/login', (req: Request, res: Response) => {
  * Create a new user
  */
 routes.post('/create-user', async (req: Request, res: Response) => {
-    const message: userCommands.CreateUserCommand = req.body;
+    let user: User = req.body;
+
+    user.firstName = user.firstName.trim();
+    user.lastName = user.lastName.trim();
+    user.email = user.email.toLowerCase().trim();
 
     const credentialErrors: string[] = [];
 
-    if (!message.firstName) credentialErrors.push("First name cannot be empty.")
-    if (!message.lastName) credentialErrors.push("Last name cannot be empty.")
-    if (!message.email) credentialErrors.push("Email cannot be empty.")
-    if (!message.password || message.password.length < 8)
+    if (!user.firstName) credentialErrors.push("First name cannot be empty.")
+    if (!user.lastName) credentialErrors.push("Last name cannot be empty.")
+    if (!user.email) credentialErrors.push("Email cannot be empty.")
+    if (!user.password || user.password.length < 8)
         credentialErrors.push("Password must be at least 8 characters long.")
 
     if (credentialErrors.length > 0)
         return res.status(400).json(new ClientResponse(false, null, credentialErrors));
 
     // Check if email is already taken
-    const emailAlreadyTaken = await userQueryHandlers.isEmailAlreadyTaken(message.email)
+    const emailAlreadyTaken = await userQueryHandlers.isEmailAlreadyTaken(user.email)
 
     if (emailAlreadyTaken) {
         const response = new ClientResponse(false, null);
@@ -71,10 +75,10 @@ routes.post('/create-user', async (req: Request, res: Response) => {
         return res.status(400).json(response);
     }
 
-    await userCommandHandlers.createNewUser(message)
-        .then((user: UserDocument) => {
-            const token = jwt.sign({ userId: user.id }, SECRET);
-            return res.status(200).json(new ClientResponse(true, { user, token }));
+    await userCommandHandlers.createNewUser(user)
+        .then((newUser: UserDocument) => {
+            const token = jwt.sign({ userId: newUser.id }, SECRET);
+            return res.status(200).json(new ClientResponse(true, { newUser, token }));
         })
         .catch(() => serverError(res))
 })

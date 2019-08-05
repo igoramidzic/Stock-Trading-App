@@ -1,11 +1,11 @@
 <form [formGroup]="profileForm" (ngSubmit)="updateProfile()">
   <div class="row mb-2">
-    <div class="col-6">
+    <div class="col-sm-12">
       <label class="mb-2" for="firstName">First name</label>
-      <input type="text" name="firstName" formControlName="firstName" autocomplete="off" class="input"
+      <input type="text" name="firstName" formControlName="firstName" autocomplete="off" class="input mb-2 mb-sm-0"
         [attr.disabled]="isSubmitting ? '' : null">
     </div>
-    <div class="col-6">
+    <div class="col-sm-12">
       <label class="mb-2" for="lastName">Last name</label>
       <input type="text" name="lastName" formControlName="lastName" autocomplete="off" class="input"
         [attr.disabled]="isSubmitting ? '' : null">

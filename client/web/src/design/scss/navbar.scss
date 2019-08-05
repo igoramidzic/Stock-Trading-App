@@ -1,19 +1,32 @@
 .my-navbar {
   background-color: var(--background);
-  position: sticky;
+  // position: sticky;
   transition: all 0.25s ease;
+  // height: 64px;
 
-  .content {
+  .navbar {
+    background-color: var(--background);
+    max-width: 1054px;
     height: 64px;
-    display: flex;
-    align-items: center;
-    max-width: 100%;
-    width: $content-width;
     margin: auto;
   }
 
+  // .content {
+  //   height: 64px;
+  //   display: flex;
+  //   align-items: center;
+  //   max-width: 100%;
+  //   width: $content-width;
+  //   margin: auto;
+  // }
+
   .logo {
     margin-right: 6px;
+  }
+
+  .nav-link {
+    padding-left: 0;
+    padding-right: 0;
   }
 
   .nav-container {
@@ -48,14 +61,14 @@
 }
 
 @media (min-width: 1200px) {
-  .my-navbar .logo {
-    position: absolute;
-    left: 48px;
-    margin-right: 0;
-  }
+  // .my-navbar .logo {
+  //   position: absolute;
+  //   left: 48px;
+  //   margin-right: 0;
+  // }
 
-  .my-navbar .nav-container {
-    position: absolute;
-    right: 48px;
-  }
+  // .my-navbar .nav-container {
+  //   position: absolute;
+  //   right: 48px;
+  // }
 }

@@ -13,13 +13,17 @@
         </g>
       </svg>
       <input type="search" formControlName="search" name="stocksearch" placeholder="Search" autocomplete="off">
-      <ul class="search-ac" *ngIf="stocks">
-        <li *ngFor="let stock of stocks"><a [routerLink]="['/stocks/' + stock.symbol]">
+      <ul class="search-ac p-0 pb-2 pt-2" *ngIf="stocks">
+        <span *ngIf="stocks?.length == 0" class="hint pl-4 pr-4 pt-1 pb-1">We were unable to find any results for your
+          search.</span>
+        <li *ngFor="let stock of stocks">
+          <a class="pl-4 pr-4" [routerLink]="['/stocks/' + stock.symbol]">
             <span style="display: inline-block; width: 78px;"
               [innerHTML]="stock.symbol | highlightSearch : searchForm.controls['search'].value"></span>
             <span
               [innerHTML]="stock.name | shorten: 35: '...' | highlightSearch : searchForm.controls['search'].value"></span>
-          </a></li>
+          </a>
+        </li>
       </ul>
     </form>
   </section>

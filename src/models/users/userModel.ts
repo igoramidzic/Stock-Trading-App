@@ -47,6 +47,8 @@ userSchema.methods.toJSON = function () {
 userSchema.pre("save", function save(next) {
     const user: any = this;
 
+    user.email = user.email.toLowerCase().trim();
+
     if (!user.isModified("password")) { return next(); }
 
     bcrypt.genSalt(10, (err, salt) => {

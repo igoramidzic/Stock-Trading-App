@@ -1,6 +1,7 @@
-<nav class="my-navbar sticky-top">
-  <div class="content">
-    <a class="logo" [routerLink]="['']">
+<div class="my-navbar sticky-top">
+  <nav class="navbar navbar-expand-lg">
+    <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+    <a class="logo mr-4" [routerLink]="['']">
       <svg style="fill: currentColor;" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="48" height="32"
         viewBox="0 3 24 18">
         <g id="surface1">
@@ -11,7 +12,9 @@
       </svg>
     </a>
 
-    <app-nav-search></app-nav-search>
+    <div class="mr-auto d-none d-lg-inline-block">
+      <app-nav-search></app-nav-search>
+    </div>
 
     <div class="nav-container">
       <ul class="nav-items">
@@ -26,6 +29,5 @@
         </li>
       </ul>
     </div>
-
-  </div>
-</nav>
+  </nav>
+</div>

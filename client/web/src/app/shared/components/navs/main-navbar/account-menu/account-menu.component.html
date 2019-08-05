@@ -1,5 +1,8 @@
 <a href="javascript:void(0);" class="dropdown-toggle nav-link" data-toggle="dropdown" aria-haspopup="true"
-  aria-expanded="false">{{ selfService.fullName() | shorten : 30 : '...' }}</a>
+  aria-expanded="false">
+  Account
+  <!-- {{ selfService.fullName() | shorten : 30 : '...' }} -->
+</a>
 <div class="dropdown-menu dropdown-menu-right" style="width: 248px;">
   <a (click)="themeService.toggleTheme()" class="dropdown-item dropdown-item-account dropdown-divider">
     <div class="w-100 d-flex align-items-center justify-content-between">

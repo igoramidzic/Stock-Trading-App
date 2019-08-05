@@ -17,23 +17,20 @@ routes.get("/", (req: Request, res: Response) => {
  * Update user details
  */
 routes.put("/", asyncHandler(async (req: Request, res: Response) => {
-    const { firstName, lastName, email } = req.body;
+    let user: User = req.body;
 
-    const user: User = {
-        firstName, lastName, email
-    }
+    user.firstName = user.firstName.trim();
+    user.lastName = user.lastName.trim();
+    user.email = user.email.toLowerCase().trim();
 
     const credentialErrors: string[] = [];
 
-    if (!firstName) credentialErrors.push("First name cannot be empty.")
-    if (!lastName) credentialErrors.push("Last name cannot be empty.")
-    if (!email) credentialErrors.push("Email cannot be empty.")
-
-    if (credentialErrors.length > 0)
-        return res.status(400).json(new ClientResponse(false, null, credentialErrors));
+    if (!user.firstName) credentialErrors.push("First name cannot be empty.")
+    if (!user.lastName) credentialErrors.push("Last name cannot be empty.")
+    if (!user.email) credentialErrors.push("Email cannot be empty.")
 
     // Check if email is already taken
-    if (req.user.email !== email && await isEmailAlreadyTaken(email)) {
+    if (req.user.email !== user.email && await isEmailAlreadyTaken(user.email)) {
         const response = new ClientResponse(false, null);
         response.addMessage("Email is already taken.")
         return res.status(400).json(response);

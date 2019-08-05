@@ -1,23 +1,27 @@
 import { User, UserDocument } from '../../../models/users/userModel'
-import * as userCommands from '../../commands/users/userCommands'
 
-export let createNewUser = (command: userCommands.CreateUserCommand) => new Promise((resolve, reject) => {
-    User.create(command)
+export let createNewUser = (user: User) => new Promise((resolve, reject) => {
+    user.email = user.email.toLowerCase().trim();
+    User.create(user)
         .then((user: UserDocument) => {
             resolve(user)
         })
         .catch((error: any) => {
+            console.log(error)
             reject(error)
         })
 })
 
-export let updateUserDetails = (userId: string, user: User) => new Promise((resolve, reject) => {
-    User.findByIdAndUpdate(userId, user, { new: true })
+export let updateUserDetails = (userId: string, updateUserDetails: User) => new Promise((resolve, reject) => {
+    User.findById(userId)
         .then((user: UserDocument) => {
-            resolve(user)
+            user.firstName = updateUserDetails.firstName.trim();
+            user.lastName = updateUserDetails.lastName.trim();
+            user.email = updateUserDetails.email.toLowerCase().trim();
+            user.save().then((updatedUser: UserDocument) => resolve(updatedUser));
         })
         .catch((error: any) => {
-            reject(error)
+            reject(error);
         })
 })
 

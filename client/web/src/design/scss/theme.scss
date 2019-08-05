@@ -3,28 +3,7 @@ $colors: ("yello": #fce137,
   "green": #2bd0ba,
   "red": #d14128);
 
-$content-width: 1024px;
-
-// @font-face {
-//   font-family: 'batman-font';
-//   src: url('assets/fonts/48a3635ce1e76c0122a143b076f51adf.otf') format('opentype');
-//   font-weight: 500;
-//   font-style: normal;
-// }
-
-// @font-face {
-//   font-family: 'batman-font';
-//   src: url('assets/fonts/86fda98796bb4100ba905535a77723bd.otf') format('opentype');
-//   font-weight: 400;
-//   font-style: normal;
-// }
-
-// @font-face {
-//   font-family: 'batman-font';
-//   src: url('assets/fonts/e0be9bd5e372b2c379893b776e7b2b96.otf') format('opentype');
-//   font-weight: 300;
-//   font-style: normal;
-// }
+$content-width: 1054px;
 
 @mixin default-theme {
   --background: white;
@@ -33,6 +12,7 @@ $content-width: 1024px;
   --input-background: #fafafa;
   --input-border: #cbcbcd;
   --input-placeholder: #cbcbcd;
+  --input-background-hover: var(--background);
   --primary-color: #24759e;
   --secondary-color: #fce137;
   --success-color: #2bd0ba;
@@ -52,9 +32,10 @@ $content-width: 1024px;
   --background: #1b1b1d;
   --button-text-color: #1b1b1d;
   --text-color: white;
-  --input-background: #1b1b1d;
-  --input-border: #0e0d0d;
+  --input-background: #131314;
+  --input-border: #8c8c8e;
   --input-placeholder: #858587;
+  --input-background-hover: #131314;
   --primary-color: #fce137;
   --secondary-color: #24759e;
   --success-color: #2bd0ba;
