@@ -49,7 +49,7 @@ routes.post('/login', (req: Request, res: Response) => {
  * Create a new user
  */
 routes.post('/create-user', async (req: Request, res: Response) => {
-    let user: User = req.body;
+    const user: User = req.body;
 
     user.firstName = user.firstName.trim();
     user.lastName = user.lastName.trim();

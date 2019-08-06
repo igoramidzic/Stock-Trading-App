@@ -17,7 +17,7 @@ routes.get("/", (req: Request, res: Response) => {
  * Update user details
  */
 routes.put("/", asyncHandler(async (req: Request, res: Response) => {
-    let user: User = req.body;
+    const user: User = req.body;
 
     user.firstName = user.firstName.trim();
     user.lastName = user.lastName.trim();
