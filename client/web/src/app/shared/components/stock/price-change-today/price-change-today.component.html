@@ -1,0 +1,4 @@
+<p>{{ priceChange > 0 ? '+' : '-' }}{{ ((priceChange > 0 ? priceChange : priceChange*-1) || 0) | currency }}
+  ({{ (percentChange > 0 ? percentChange*100 : percentChange*-100) | number : '1.2-2'}}%)
+  <span class="hint">Today</span>
+</p>

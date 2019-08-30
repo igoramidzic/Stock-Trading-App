@@ -1,11 +1,12 @@
 <div class="container-fluid main-container" *ngIf="stockDetails">
   <div class="row justify-content-between">
     <div class="col-md-16 mb-4">
-      <h2>{{ stockDetails.name | shorten : 30 : '...'}}</h2>
+      <h2 class="mb-1">{{ stockDetails.name | shorten : 30 : '...'}}</h2>
       <h2 class="font-weight-normal">
         {{ currencySymbol }}<app-odometer [value]="stockDetails.quote.latestPrice"></app-odometer>
       </h2>
-      <!-- <pre>{{ stockDetails | json}}</pre> -->
+      <app-price-change-today [priceChange]="stockDetails.quote.change"
+        [percentChange]="stockDetails.quote.changePercent"></app-price-change-today>
     </div>
     <div class="col-md-8">
       <div>

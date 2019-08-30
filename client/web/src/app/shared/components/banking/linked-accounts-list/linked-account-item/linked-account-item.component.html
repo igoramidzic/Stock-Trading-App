@@ -1,0 +1,7 @@
+<div class="d-flex align-items-center justify-content-between">
+  <h3 class="font-weight-normal">{{ bankAccount.name }}</h3>
+  <button class="btn btn-primary btn-outline btn-lg" [disabled]="isSubmitting" (click)="removeAccount()">
+    <span *ngIf="!isSubmitting">Remove</span>
+    <app-main-loader *ngIf="isSubmitting"></app-main-loader>
+  </button>
+</div>

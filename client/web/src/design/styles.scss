@@ -7,6 +7,8 @@ $font-size-base: var(--font-size);
 $body-bg: var(--background);
 $pre-color: var(--text-color);
 $grid-columns: 24;
+$list-group-border-color: var(--border-color);
+$list-group-border-radius: 2px;
 // $grid-gutter-width: 12px;
 
 @import "../../node_modules/bootstrap/scss/root";
@@ -33,7 +35,7 @@ $grid-columns: 24;
 // @import "../../node_modules/bootstrap/scss/alert";
 // @import "../../node_modules/bootstrap/scss/progress";
 // @import "../../node_modules/bootstrap/scss/media";
-// @import "../../node_modules/bootstrap/scss/list-group";
+@import "../../node_modules/bootstrap/scss/list-group";
 // @import "../../node_modules/bootstrap/scss/close";
 // @import "../../node_modules/bootstrap/scss/toasts";
 // @import "../../node_modules/bootstrap/scss/modal";

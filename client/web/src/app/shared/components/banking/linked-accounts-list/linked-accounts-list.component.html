@@ -1,0 +1,8 @@
+<ul class="list-group">
+  <li class="list-group-item" *ngFor="let bankAccount of bankAccounts">
+    <app-linked-account-item [bankAccount]="bankAccount" (removedAccount)="removedAccount($event)">
+    </app-linked-account-item>
+  </li>
+</ul>
+
+<hr class="my-4" *ngIf="bankAccounts.length > 0">

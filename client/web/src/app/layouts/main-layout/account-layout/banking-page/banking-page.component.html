@@ -1,12 +1,20 @@
-<div class="row justify-content-between">
-  <div class="col-12">
-    <h2 class="mb-3">Linked Accounts</h2>
+<div class="row">
+  <div class="col-md-8 pr-5 mb-3 mb-lg-0">
+    <h3 class="primary">Transfer Funds</h3>
+    <p class="hint pr-5">Move funds between your bank and Batman accounts.</p>
   </div>
-  <div class="col-5">
-    <div style="width: 275.777777778px">
-      <div class="position-fixed" style="width:inherit; max-width:inherit;">
-        <app-transfer-funds></app-transfer-funds>
-      </div>
-    </div>
+  <div class="col-md-16">
+    <app-transfer-funds-form></app-transfer-funds-form>
+  </div>
+</div>
+
+<div class="row mt-5">
+  <div class="col-md-8 pr-5 mb-3 mb-lg-0">
+    <h3 class="primary">Linked Accounts</h3>
+    <p class="hint pr-5">Available bank accounts for fund transfers.</p>
+  </div>
+  <div class="col-md-16">
+    <app-linked-accounts-list [bankAccounts]="bankAccounts"></app-linked-accounts-list>
+    <app-link-account-form></app-link-account-form>
   </div>
 </div>

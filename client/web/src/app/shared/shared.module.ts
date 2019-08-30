@@ -24,6 +24,11 @@ import { ProfileUpdateFormComponent } from './components/account/profile-update-
 import { PasswordUpdateFormComponent } from './components/account/password-update-form/password-update-form.component';
 import { MainSuccessAlertComponent } from './components/alerts/main-success-alert/main-success-alert.component';
 import { MainErrorAlertComponent } from './components/alerts/main-error-alert/main-error-alert.component';
+import { PriceChangeTodayComponent } from './components/stock/price-change-today/price-change-today.component';
+import { TransferFundsFormComponent } from './components/banking/transfer-funds-form/transfer-funds-form.component';
+import { LinkedAccountsListComponent } from './components/banking/linked-accounts-list/linked-accounts-list.component';
+import { LinkAccountFormComponent } from './components/banking/link-account-form/link-account-form.component';
+import { LinkedAccountItemComponent } from './components/banking/linked-accounts-list/linked-account-item/linked-account-item.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +48,12 @@ import { MainErrorAlertComponent } from './components/alerts/main-error-alert/ma
     TransferFundsComponent,
     ProfileUpdateFormComponent,
     PasswordUpdateFormComponent,
-    MainSuccessAlertComponent
+    MainSuccessAlertComponent,
+    PriceChangeTodayComponent,
+    TransferFundsFormComponent,
+    LinkedAccountsListComponent,
+    LinkAccountFormComponent,
+    LinkedAccountItemComponent
   ],
   imports: [
     CommonModule,
@@ -75,7 +85,12 @@ import { MainErrorAlertComponent } from './components/alerts/main-error-alert/ma
     CurrencyMaskModule,
     ProfileUpdateFormComponent,
     PasswordUpdateFormComponent,
-    MainSuccessAlertComponent
+    MainSuccessAlertComponent,
+    PriceChangeTodayComponent,
+    TransferFundsFormComponent,
+    LinkedAccountsListComponent,
+    LinkAccountFormComponent,
+    LinkedAccountItemComponent
   ],
   providers: []
 })
