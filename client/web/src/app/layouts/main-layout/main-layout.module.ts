@@ -21,6 +21,6 @@ import { ThemeService } from 'src/app/services/theme/theme.service';
   ],
   exports: [
   ],
-  providers: [StockDetailsResolver, UserDetailsResolver, ThemeService]
+  providers: [StockDetailsResolver, ThemeService]
 })
 export class MainLayoutModule { }

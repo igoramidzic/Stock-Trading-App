@@ -1,1 +1,30 @@
-<p>link-account-form works!</p>
+<h3 class="primary">Add Account</h3>
+<p class="hint mb-3">Please don't use your real bank details.</p>
+
+<form [formGroup]="linkAccountForm" (ngSubmit)="onCreateAccount()">
+  <div class="row mb-2">
+    <div class="col-sm-12">
+      <label class="mb-2" for="account-name">Account Name</label>
+      <input type="text" name="account-name" formControlName="name" autocomplete="off" class="input mb-2 mb-sm-0"
+        [attr.disabled]="isSubmitting ? '' : null">
+    </div>
+    <div class="col-sm-12">
+      <label class="mb-2" for="account-number">Account Number</label>
+      <input type="text" name="account-number" formControlName="accountNumber" autocomplete="off" class="input"
+        [attr.disabled]="isSubmitting ? '' : null">
+    </div>
+  </div>
+
+  <label class="mb-2" for="email">Balance</label>
+  <input currencyMask [options]="{ align: 'left' }" formControlName="balance" min="0" step="1" placeholder="$ 0.00"
+    type="text" class="input" />
+
+  <app-main-error-alert [errors]="errors"></app-main-error-alert>
+  <app-main-success-alert *ngIf="done" [message]="'Successfully created'"></app-main-success-alert>
+
+  <button type="submit" class="btn btn-primary btn-lg mt-3"
+    [disabled]="isSubmitting || !linkAccountForm.dirty || linkAccountForm.invalid">
+    <span *ngIf="!isSubmitting">Add</span>
+    <app-main-loader *ngIf="isSubmitting"></app-main-loader>
+  </button>
+</form>

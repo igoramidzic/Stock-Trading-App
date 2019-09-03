@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { BankAccount } from 'src/app/core/models/banking/banking';
+import { BankingService } from 'src/app/services/banking/banking.service';
 
 @Component({
   selector: 'app-linked-accounts-list',
@@ -9,13 +10,19 @@ import { BankAccount } from 'src/app/core/models/banking/banking';
 export class LinkedAccountsListComponent implements OnInit {
 
   @Input() bankAccounts: BankAccount[];
+  @Output() accountDeletedEmitter = new EventEmitter<BankAccount>();
 
-  constructor() { }
+  constructor(private bankingService: BankingService) { }
 
   ngOnInit() {
   }
 
   removedAccount(account: BankAccount): void {
-    this.bankAccounts = this.bankAccounts.filter(a => a._id != account._id);
+    this.bankingService.deleteBankAccount(account._id)
+      .then((bankAccount: BankAccount) => {
+        this.accountDeletedEmitter.emit(bankAccount);
+      })
+      .catch((error) => {
+      })
   }
 }

@@ -22,6 +22,6 @@ export class LinkedAccountItemComponent implements OnInit {
     setTimeout(() => {
       this.removedAccount.emit(this.bankAccount);
       this.isSubmitting = false;
-    }, 2000);
+    }, 10);
   }
 }

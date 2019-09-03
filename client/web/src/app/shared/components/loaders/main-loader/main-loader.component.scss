@@ -18,10 +18,26 @@
   margin: 0 auto;
   width: 8%;
   height: 20%;
-  background-color: white;
   border-radius: 100%;
+  background-color: white;
   -webkit-animation: sk-circleFadeDelay 1.2s infinite ease-in-out both;
   animation: sk-circleFadeDelay 1.2s infinite ease-in-out both;
+}
+
+.sk-fading-circle .sk-circle.primary:before {
+  background-color: var(--primary-color);
+}
+
+.sk-fading-circle .sk-circle.secondary:before {
+  background-color: var(--secondary-color);
+}
+
+.sk-fading-circle .sk-circle.green:before {
+  background-color: var(--green-color);
+}
+
+.sk-fading-circle .sk-circle.red:before {
+  background-color: var(--red-color);
 }
 
 .sk-fading-circle .sk-circle2 {

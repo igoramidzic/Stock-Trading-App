@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BankAccount } from 'src/app/core/models/banking/banking';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-banking-page',
@@ -10,13 +11,19 @@ export class BankingPageComponent implements OnInit {
 
   bankAccounts: BankAccount[];
 
-  constructor() { }
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.bankAccounts = [
-      { _id: "1", name: 'Wells Fargo Checking' },
-      { _id: "2", name: 'Capital One Checking' }
-    ];
+    this.bankAccounts = this.route.snapshot.data.bankAccounts;
   }
 
+  accountCreated(bankAccount: BankAccount): void {
+    console.log(this.bankAccounts)
+    this.bankAccounts.push(bankAccount);
+    console.log(this.bankAccounts)
+  }
+
+  accountDeleted(bankAccount: BankAccount): void {
+    this.bankAccounts = this.bankAccounts.filter(a => a._id != bankAccount._id);
+  }
 }

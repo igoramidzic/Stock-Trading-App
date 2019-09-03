@@ -1,6 +1,5 @@
-export type BankAccount = {
-    _id: string;
+export class BankAccountsQuery {
     name: string;
     accountNumber: string;
     balance: number;
-}
+};

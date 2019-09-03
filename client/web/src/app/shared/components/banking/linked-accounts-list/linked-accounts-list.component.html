@@ -3,6 +3,7 @@
     <app-linked-account-item [bankAccount]="bankAccount" (removedAccount)="removedAccount($event)">
     </app-linked-account-item>
   </li>
+  <li *ngIf="bankAccounts?.length == 0" class="list-group-item text-center hint">
+    There are currently no bank accounts linked.
+  </li>
 </ul>
-
-<hr class="my-4" *ngIf="bankAccounts.length > 0">

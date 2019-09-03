@@ -6,6 +6,8 @@ import { AccountPageComponent } from './account-page/account-page.component';
 import { BankingPageComponent } from './banking-page/banking-page.component';
 import { HistoryPageComponent } from './history-page/history-page.component';
 import { SettingsPageComponent } from './settings-page/settings-page.component';
+import { BankAccountsResolver } from 'src/app/core/resolvers/bankAccounts/bankAccounts.resolver';
+import { UserDetailsResolver } from 'src/app/core/resolvers/user-details/user-details.resolver';
 
 @NgModule({
     declarations: [
@@ -20,6 +22,6 @@ import { SettingsPageComponent } from './settings-page/settings-page.component';
     ],
     exports: [
     ],
-    providers: []
+    providers: [BankAccountsResolver, UserDetailsResolver]
 })
 export class AccountLayoutModule { }

@@ -11,6 +11,7 @@ routes.use((req: Request, res: Response, next: any) => {
 }), routes.use('/themes', require('./themes/themes')),
     routes.use('/self', require('./self/self')),
     routes.use('/stock', require('./stock/stock')),
+    routes.use('/bankAccounts', require('./bankAccount/bankAccount')),
     routes.use('**', (req, res) => {
         res.status(404).json({
             error: 'Api endpoint does not exist'

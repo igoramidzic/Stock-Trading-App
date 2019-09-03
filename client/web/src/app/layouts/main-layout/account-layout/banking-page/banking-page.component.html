@@ -14,7 +14,11 @@
     <p class="hint pr-5">Available bank accounts for fund transfers.</p>
   </div>
   <div class="col-md-16">
-    <app-linked-accounts-list [bankAccounts]="bankAccounts"></app-linked-accounts-list>
-    <app-link-account-form></app-link-account-form>
+    <app-linked-accounts-list (accountDeletedEmitter)="accountDeleted($event)" [bankAccounts]="bankAccounts">
+    </app-linked-accounts-list>
+
+    <hr class="my-4">
+
+    <app-link-account-form (accountCreatedEmitter)="accountCreated($event)"></app-link-account-form>
   </div>
 </div>
