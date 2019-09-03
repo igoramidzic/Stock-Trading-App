@@ -2,7 +2,7 @@ import { BankAccountsQuery } from "../../../api/queries/bankaccount/bankAccountQ
 import { BankAccount, BankAccountDocument } from "../../../models/bank-account/bank-account";
 
 export let getBankAccounts = (query: BankAccountsQuery) => new Promise((resolve, reject) => {
-    BankAccount.find(query)
+    BankAccount.find({ ...query, active: true }).sort('name accountNumber')
         .then((bankAccounts: BankAccountDocument[]) => {
             resolve(bankAccounts);
         })

@@ -17,7 +17,7 @@
 
   <label class="mb-2" for="email">Balance</label>
   <input currencyMask [options]="{ align: 'left' }" formControlName="balance" min="0" step="1" placeholder="$ 0.00"
-    type="text" class="input" />
+    type="text" class="input mb-3" />
 
   <app-main-error-alert [errors]="errors"></app-main-error-alert>
   <app-main-success-alert *ngIf="done" [message]="'Successfully created'"></app-main-success-alert>

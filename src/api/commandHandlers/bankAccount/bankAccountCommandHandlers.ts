@@ -14,7 +14,7 @@ export let createBankAccount = (bankAccount: BankAccount, userId: string) =>
 
 export let deleteBankAccount = (bankAccount: BankAccountDocument) =>
     new Promise((resolve, reject) => {
-        BankAccount.findByIdAndDelete(bankAccount._id)
+        BankAccount.findByIdAndUpdate(bankAccount._id, { active: false })
             .then((bankAccountRes: BankAccountDocument) => {
                 resolve(bankAccountRes)
             })

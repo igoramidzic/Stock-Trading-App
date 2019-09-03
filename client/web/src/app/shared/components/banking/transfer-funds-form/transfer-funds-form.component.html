@@ -1,1 +1,40 @@
-<p>transfer-funds-form works!</p>
+<form [formGroup]="transferForm" (ngSubmit)="onCreateAccount()" *ngIf="bankAccounts.length > 0">
+  <div class="row mb-2">
+    <div class="col-sm-12">
+      <label class="mb-2" for="account-name">From</label>
+      <select type="text" name="account-name" formControlName="from" autocomplete="off" class="input mb-2 mb-sm-0"
+        [attr.disabled]="isSubmitting ? '' : null">
+        <option value="123">Batman</option>
+        <hr class="my-1">
+        <option *ngFor="let bankAccount of bankAccounts" [value]="bankAccount._id">{{ bankAccount.name }}</option>
+      </select>
+    </div>
+    <div class="col-sm-12">
+      <label class="mb-2" for="account-number">To</label>
+      <select type="text" name="account-name" formControlName="to" autocomplete="off" class="input mb-2 mb-sm-0"
+        [attr.disabled]="isSubmitting ? '' : null">
+        <option value="123">Batman</option>
+        <hr class="my-1">
+        <option *ngFor="let bankAccount of bankAccounts" value="bankAccount._id">{{ bankAccount.name }}</option>
+      </select>
+    </div>
+  </div>
+
+  <label class="mb-2" for="email">Amount</label>
+  <input currencyMask [options]="{ align: 'left' }" formControlName="amount" min="0" step="1" placeholder="$ 0.00"
+    type="text" class="input mb-3" />
+
+  <app-main-error-alert [errors]="errors"></app-main-error-alert>
+  <app-main-success-alert *ngIf="done" [message]="'Successfully transfered - jk still in development'">
+  </app-main-success-alert>
+
+  <button type="submit" class="btn btn-primary btn-lg mt-3"
+    [disabled]="isSubmitting || !transferForm.dirty || transferForm.invalid">
+    <span *ngIf="!isSubmitting">Transfer</span>
+    <app-main-loader *ngIf="isSubmitting"></app-main-loader>
+  </button>
+</form>
+<div *ngIf="bankAccounts.length == 0">
+  <h4 class="hint"><i class="fas fa-exclamation-circle mr-1"></i> Please add a bank account below to make a transfer.
+  </h4>
+</div>
