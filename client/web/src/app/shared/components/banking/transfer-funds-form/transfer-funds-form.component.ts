@@ -23,7 +23,7 @@ export class TransferFundsFormComponent implements OnInit {
 
   ngOnInit() {
     this.transferForm = this.fb.group({
-      from: new FormControl(this.bankAccounts[0]._id, [Validators.required]),
+      from: new FormControl(this.bankAccounts.length > 0 ? this.bankAccounts[0]._id : null, [Validators.required]),
       to: new FormControl('123', [Validators.required]),
       amount: new FormControl(null, [Validators.required])
     })
