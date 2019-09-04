@@ -1,6 +1,6 @@
 import { Router, Response, Request } from "express";
 import { ClientResponse, serverError, asyncHandler } from '../../helpers/helpers'
-import { updateUserDetails, updateUserPassword } from "../../../api/commandHandlers/users/userCommandHandlers";
+import { updateUserDetails, updateUserPassword, deleteUser } from "../../../api/commandHandlers/users/userCommandHandlers";
 import { UserDocument, User } from "../../../models/users/userModel";
 import { isEmailAlreadyTaken } from "../../../api/queryHandlers/user/userQueryHandlers";
 
@@ -73,6 +73,17 @@ routes.put("/password", asyncHandler(async (req: Request, res: Response, next: a
         updateUserPassword(req.user.id, newPassword)
             .then(() => res.json(new ClientResponse(true, null)))
     })
+}));
+
+/**
+ * Delete user
+ */
+routes.delete("/", asyncHandler(async (req: Request, res: Response, next: any) => {
+    deleteUser(req.user.id)
+        .then((user: UserDocument) => res.json(new ClientResponse(true, user)))
+        .catch((error) => {
+            serverError(res);
+        })
 }));
 
 module.exports = routes;

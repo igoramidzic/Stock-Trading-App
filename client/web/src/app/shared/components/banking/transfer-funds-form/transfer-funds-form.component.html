@@ -4,7 +4,7 @@
       <label class="mb-2" for="account-name">From</label>
       <select type="text" name="account-name" formControlName="from" autocomplete="off" class="input mb-2 mb-sm-0"
         [attr.disabled]="isSubmitting ? '' : null">
-        <option value="123">Batman</option>
+        <option [value]="account._id">Batman</option>
         <hr class="my-1">
         <option *ngFor="let bankAccount of bankAccounts" [value]="bankAccount._id">{{ bankAccount.name }}</option>
       </select>

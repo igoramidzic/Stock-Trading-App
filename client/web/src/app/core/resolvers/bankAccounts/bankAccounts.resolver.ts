@@ -13,6 +13,5 @@ export class BankAccountsResolver implements Resolve<any> {
         this.loadingService.startLoading();
         return this.bankingService.getBankAccounts()
             .catch(() => { })
-            .finally(() => this.loadingService.stopLoading())
     }
 }

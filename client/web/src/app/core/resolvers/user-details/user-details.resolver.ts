@@ -12,6 +12,5 @@ export class UserDetailsResolver implements Resolve<any> {
         this.loadingService.startLoading();
         return this.selfService.getSelf()
             .catch(() => { })
-            .finally(() => this.loadingService.stopLoading())
     }
 }

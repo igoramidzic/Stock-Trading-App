@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoadingService } from 'src/app/services/loading/loading.service';
 
 @Component({
   selector: 'app-settings-page',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SettingsPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private loadingService: LoadingService) {
+    this.loadingService.stopLoading();
+  }
 
   ngOnInit() {
   }

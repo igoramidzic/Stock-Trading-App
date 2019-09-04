@@ -16,3 +16,11 @@ export type UpdateUserCommand = {
     lastName?: string;
     email?: string;
 }
+
+export class DeleteUserCommand {
+    id: string;
+
+    constructor(id: string) {
+        this.id = id;
+    }
+}

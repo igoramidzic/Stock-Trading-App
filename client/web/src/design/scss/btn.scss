@@ -22,7 +22,7 @@
 .btn {
   height: 36px;
   outline: none;
-  background: var(--poop);
+  @include btn-color(var(--hint-color));
   color: var(--button-text-color);
   font-size: 1em;
   border: none;
@@ -84,6 +84,10 @@
 
 .btn-danger {
   @include btn-color(map-get($colors, "red"));
+}
+
+.btn-outline {
+  @include btn-outline-color(var(--hint-color));
 }
 
 .btn-primary.btn-outline {

@@ -1,0 +1,8 @@
+<div class="d-flex align-items-center justify-content-start">
+  <button (click)="onClick()" class="btn btn-danger btn-lg" [disabled]="isSubmitting">
+    <span *ngIf="!isSubmitting">Delete Account</span>
+    <app-main-loader *ngIf="isSubmitting"></app-main-loader>
+  </button>
+  <app-main-success-alert class="ml-3" *ngIf="showGoodChoice" [message]="'Thanks for sticking \'round!'">
+  </app-main-success-alert>
+</div>

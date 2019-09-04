@@ -8,6 +8,7 @@ import { HistoryPageComponent } from './history-page/history-page.component';
 import { SettingsPageComponent } from './settings-page/settings-page.component';
 import { BankAccountsResolver } from 'src/app/core/resolvers/bankAccounts/bankAccounts.resolver';
 import { UserDetailsResolver } from 'src/app/core/resolvers/user-details/user-details.resolver';
+import { AccountResolver } from 'src/app/core/resolvers/account/account.resolver';
 
 @NgModule({
     declarations: [
@@ -22,6 +23,6 @@ import { UserDetailsResolver } from 'src/app/core/resolvers/user-details/user-de
     ],
     exports: [
     ],
-    providers: [BankAccountsResolver, UserDetailsResolver]
+    providers: [BankAccountsResolver, UserDetailsResolver, AccountResolver]
 })
 export class AccountLayoutModule { }

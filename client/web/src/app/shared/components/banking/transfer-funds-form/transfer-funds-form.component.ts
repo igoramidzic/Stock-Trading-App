@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { BankAccount } from 'src/app/core/models/banking/banking';
+import { Account } from '../../../../core/models/account/account';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { BankingService } from 'src/app/services/banking/banking.service';
 
@@ -11,6 +12,7 @@ import { BankingService } from 'src/app/services/banking/banking.service';
 export class TransferFundsFormComponent implements OnInit {
 
   @Input() bankAccounts: BankAccount[];
+  @Input() account: Account;
 
   isSubmitting: boolean = false;
   errors: string[];

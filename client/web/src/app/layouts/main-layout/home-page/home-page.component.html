@@ -1,4 +1,16 @@
 <div class="container-fluid main-container">
-  <h2 class="mb-2">Nothing to see on the home page yet.</h2>
-  <h3>Please search for a stock at the top.</h3>
+  <h3 class="mb-2">Things you can do:</h3>
+  <div class="row">
+    <ul class="col-md-12 list-group">
+      <li class="list-group-item p-4" *ngFor="let thing of thingsToDo; let i = index">
+        <div class="d-flex align-items-top justify-content-start">
+          <span class="mr-3">{{i + 1}}.</span>
+          <div>
+            <p class="mb-0">{{ thing.title }}</p>
+            <p class="mb-0 hint">{{ thing.description }}</p>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
 </div>

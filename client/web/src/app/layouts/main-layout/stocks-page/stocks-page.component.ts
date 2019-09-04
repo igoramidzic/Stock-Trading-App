@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { StockDetails } from 'src/app/core/models/stock/stockDetails';
 import { Title } from '@angular/platform-browser';
 import { CurrencyPipe } from '@angular/common';
+import { LoadingService } from 'src/app/services/loading/loading.service';
 
 @Component({
   selector: 'app-stocks-page',
@@ -16,7 +17,9 @@ export class StocksPageComponent implements OnInit {
   currencySymbol: string = '$';
 
   constructor(private route: ActivatedRoute, private titleService: Title,
-    private cp: CurrencyPipe) { }
+    private cp: CurrencyPipe, private loadingService: LoadingService) {
+    this.loadingService.stopLoading()
+  }
 
   ngOnInit() {
     this.route.params.subscribe(() => {

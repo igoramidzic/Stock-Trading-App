@@ -1,5 +1,7 @@
 import mongoose from "mongoose";
 import bcrypt from 'bcrypt-nodejs';
+import { Account, AccountDocument } from "../account/account";
+import { BankAccount } from "../bank-account/bank-account";
 
 export type User = {
     firstName?: string,

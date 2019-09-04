@@ -5,6 +5,7 @@ import { HistoryPageComponent } from './history-page/history-page.component';
 import { SettingsPageComponent } from './settings-page/settings-page.component';
 import { BankAccountsResolver } from 'src/app/core/resolvers/bankAccounts/bankAccounts.resolver';
 import { UserDetailsResolver } from 'src/app/core/resolvers/user-details/user-details.resolver';
+import { AccountResolver } from 'src/app/core/resolvers/account/account.resolver';
 
 export const ACCOUNT_ROUTES: Routes = [
     {
@@ -12,7 +13,6 @@ export const ACCOUNT_ROUTES: Routes = [
         pathMatch: 'full',
         component: AccountPageComponent,
         resolve: { user: UserDetailsResolver },
-
         data: {
             title: 'Account'
         }
@@ -20,7 +20,7 @@ export const ACCOUNT_ROUTES: Routes = [
     {
         path: 'banking',
         component: BankingPageComponent,
-        resolve: { bankAccounts: BankAccountsResolver },
+        resolve: { bankAccounts: BankAccountsResolver, account: AccountResolver },
         data: {
             title: 'Account'
         }
@@ -35,6 +35,7 @@ export const ACCOUNT_ROUTES: Routes = [
     {
         path: 'settings',
         component: SettingsPageComponent,
+        resolve: { user: UserDetailsResolver },
         data: {
             title: 'Account'
         }

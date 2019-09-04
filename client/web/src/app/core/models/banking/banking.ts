@@ -1,6 +1,6 @@
-export type BankAccount = {
-    _id: string;
+import { Account } from '../../models/account/account';
+
+export interface BankAccount extends Account {
     name: string;
     accountNumber: string;
-    balance: number;
 }

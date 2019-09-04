@@ -30,6 +30,10 @@ import { LinkedAccountsListComponent } from './components/banking/linked-account
 import { LinkAccountFormComponent } from './components/banking/link-account-form/link-account-form.component';
 import { LinkedAccountItemComponent } from './components/banking/linked-accounts-list/linked-account-item/linked-account-item.component';
 
+import { MatDialogModule } from '@angular/material/dialog';
+import { DeleteAccountFormComponent } from './components/account/delete-account-form/delete-account-form.component';
+import { DeleteAccountDialogComponent } from './components/account/delete-account-dialog/delete-account-dialog.component';
+
 @NgModule({
   declarations: [
     MainErrorAlertComponent,
@@ -53,7 +57,9 @@ import { LinkedAccountItemComponent } from './components/banking/linked-accounts
     TransferFundsFormComponent,
     LinkedAccountsListComponent,
     LinkAccountFormComponent,
-    LinkedAccountItemComponent
+    LinkedAccountItemComponent,
+    DeleteAccountFormComponent,
+    DeleteAccountDialogComponent
   ],
   imports: [
     CommonModule,
@@ -62,7 +68,8 @@ import { LinkedAccountItemComponent } from './components/banking/linked-accounts
     RouterModule,
     NgPipesModule,
     Ng2OdometerModule,
-    CurrencyMaskModule
+    CurrencyMaskModule,
+    MatDialogModule
   ],
   exports: [
     RouterModule,
@@ -90,8 +97,12 @@ import { LinkedAccountItemComponent } from './components/banking/linked-accounts
     TransferFundsFormComponent,
     LinkedAccountsListComponent,
     LinkAccountFormComponent,
-    LinkedAccountItemComponent
+    LinkedAccountItemComponent,
+    DeleteAccountFormComponent,
+    DeleteAccountDialogComponent,
+    MatDialogModule
   ],
-  providers: []
+  providers: [],
+  entryComponents: [DeleteAccountDialogComponent]
 })
 export class SharedModule { }

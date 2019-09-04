@@ -44,6 +44,15 @@ export class SelfService {
     })
   }
 
+  deleteSelf(): Promise<User> {
+    return new Promise((resolve, reject) => {
+      this.http.delete(`${environment.apiBase}/self`)
+        .subscribe((res: ClientResponse) => {
+          resolve(res.result.user)
+        }, (err: { error: ClientResponse }) => reject(err.error))
+    })
+  }
+
   removeUser(): void {
     this.user$.next(null);
   }

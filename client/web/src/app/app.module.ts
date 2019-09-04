@@ -9,6 +9,8 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { environment } from 'src/environments/environment';
 import { SharedModule } from './shared/shared.module';
 import { Ng2OdometerModule } from 'ng2-odometer';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -23,6 +25,7 @@ export function tokenGetter() {
     RouterModule.forRoot(APP_ROUTES),
     BrowserModule,
     HttpClientModule,
+    BrowserAnimationsModule,
     JwtModule.forRoot({
       config: {
         tokenGetter,

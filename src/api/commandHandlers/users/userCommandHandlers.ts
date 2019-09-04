@@ -1,10 +1,18 @@
 import { User, UserDocument } from '../../../models/users/userModel'
+import { createAccount } from '../account/accountCommandHandlers';
 
 export let createNewUser = (user: User) => new Promise((resolve, reject) => {
     user.email = user.email.toLowerCase().trim();
+
     User.create(user)
         .then((user: UserDocument) => {
-            resolve(user)
+            createAccount(0, user._id)
+                .then(() => {
+                    resolve(user)
+                })
+                .catch((error: any) => {
+                    reject(error)
+                })
         })
         .catch((error: any) => {
             console.log(error)
@@ -30,6 +38,16 @@ export let updateUserPassword = (userId: string, password: string) => new Promis
         .then((user: UserDocument) => {
             user.password = password;
             user.save().then(() => resolve(true));
+        })
+        .catch((error: any) => {
+            reject(error);
+        })
+})
+
+export let deleteUser = (userId: string) => new Promise((resolve, reject) => {
+    User.findByIdAndDelete({ _id: userId })
+        .then((user: UserDocument) => {
+            resolve(user)
         })
         .catch((error: any) => {
             reject(error);

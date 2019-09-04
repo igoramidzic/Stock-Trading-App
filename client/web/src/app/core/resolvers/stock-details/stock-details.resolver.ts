@@ -15,6 +15,5 @@ export class StockDetailsResolver implements Resolve<any> {
     this.loadingService.startLoading();
     return this.stockService.stockDetails(route.params.symbol)
       .catch(() => { })
-      .finally(() => this.loadingService.stopLoading())
   }
 }
