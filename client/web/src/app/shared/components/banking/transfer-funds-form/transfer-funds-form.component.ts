@@ -21,7 +21,7 @@ export class TransferFundsFormComponent implements OnInit {
   done: boolean;
 
   transferForm: FormGroup;
-  @Output() transferCompleteEmitter = new EventEmitter<AccountTransfer>();
+  @Output() transferCompleteEmitter = new EventEmitter<Transfer>();
 
   constructor(private fb: FormBuilder, private transferService: TransferService) { }
 
@@ -29,7 +29,7 @@ export class TransferFundsFormComponent implements OnInit {
     this.transferForm = this.fb.group({
       from: new FormControl(this.bankAccounts.length > 0 ? this.bankAccounts[0]._id : null, [Validators.required]),
       to: new FormControl(this.account._id, [Validators.required]),
-      amount: new FormControl(null, [Validators.required])
+      amount: new FormControl(null, [Validators.required, Validators.min(0.01)])
     })
 
     this.transferForm.valueChanges.subscribe(() => {
@@ -65,16 +65,14 @@ export class TransferFundsFormComponent implements OnInit {
       .then((transfer: Transfer) => {
         this.transferForm.controls['amount'].reset();
         this.done = true;
+        this.transferCompleteEmitter.emit(transfer);
       })
       .catch((error) => {
         this.errors = error.messages
       })
       .finally(() => {
         this.isSubmitting = false;
-
       })
-
-
   }
 
   selectFrom(): void {

@@ -1,11 +1,13 @@
 import { Router, Response, Request } from "express";
 import { ClientResponse, serverError } from '../../helpers/helpers'
-import { BankAccountsQuery } from "../../../api/queries/bankaccount/bankAccountQueries";
-import { getBankAccounts } from "../../../api/queryHandlers/bankAccount/bankAccountQueryHandlers";
-import { Transfer, TransferDocument } from "../../../models/transfer/transfer";
+import { getBankAccount } from "../../../api/queryHandlers/bankAccount/bankAccountQueryHandlers";
+import { Transfer } from "../../../models/transfer/transfer";
 import { createTransfer } from "../../../api/commandHandlers/transfer/transferCommandHandlers";
-import { BankAccount } from "../../../models/bank-account/bank-account";
+import { BankAccountDocument } from "../../../models/bank-account/bank-account";
 import mongoose from "mongoose";
+import { getAccount } from "../../../api/queryHandlers/account/accountQueryHandlers";
+import { AccountQuery } from "../../../api/queries/account/accountQueries";
+import { AccountDocument } from "../../../models/account/account";
 
 const routes: Router = Router()
 
@@ -23,21 +25,28 @@ routes.post("/", async (req: Request, res: Response) => {
     if (!transfer.bankAccountId || !mongoose.Types.ObjectId.isValid(transfer.bankAccountId)) errors.push("BankAccountId is not valid")
 
     // Check if bank account exists
-    await getBankAccounts(new BankAccountsQuery(req.user._id, transfer.bankAccountId))
-        .then((bankAccounts: BankAccount[]) => {
-            if (bankAccounts.length == 0)
-                errors.push("Bank account cannot be found.")
-        })
-        .catch(() => {
-            return serverError(res);
-        })
+    const bankAccount: BankAccountDocument = await getBankAccount(transfer.bankAccountId, req.user._id);
+
+    console.log(bankAccount);
+
+    if (!bankAccount)
+        errors.push("Bank account does not exist.");
+    else if (transfer.isDeposit && bankAccount.balance < transfer.amount)
+        errors.push("Not enough funds in " + bankAccount.name + ".")
+
+    const account: AccountDocument = await getAccount(new AccountQuery(req.user._id));
+
+    if (!account)
+        errors.push("Batman account was not found. Delete your account.");
+    else if (!transfer.isDeposit && account.balance < transfer.amount)
+        errors.push("Not enough funds in Batman.")
 
     if (errors.length > 0)
         return res.status(400).json(new ClientResponse(false, null, errors));
 
-    createTransfer(req.user._id, transfer, "something temporary here")
-        .then((transfer: TransferDocument) => {
-            return res.status(200).json(new ClientResponse(true, { transfer }))
+    createTransfer(req.user._id, transfer, account, bankAccount)
+        .then((result: any) => {
+            return res.status(200).json(new ClientResponse(true, result))
         })
         .catch(() => {
             return serverError(res)

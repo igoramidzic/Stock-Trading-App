@@ -4,18 +4,24 @@
       <label class="mb-2" for="account-name">From</label>
       <select type="text" name="account-name" formControlName="from" autocomplete="off" class="input mb-2 mb-sm-0"
         [attr.disabled]="isSubmitting ? '' : null">
-        <option [value]="account._id">Batman</option>
+        <option [value]="account._id">Batman - {{ account.balance | currency }}</option>
         <hr class="my-1">
-        <option *ngFor="let bankAccount of bankAccounts" [value]="bankAccount._id">{{ bankAccount.name }}</option>
+        <option *ngFor="let bankAccount of bankAccounts" [value]="bankAccount._id">
+          {{ bankAccount.name }}
+          ({{bankAccount.balance | currency}})
+        </option>
       </select>
     </div>
     <div class="col-sm-12">
       <label class="mb-2" for="account-number">To</label>
       <select type="text" name="account-name" formControlName="to" autocomplete="off" class="input mb-2 mb-sm-0"
         [attr.disabled]="isSubmitting ? '' : null">
-        <option [value]="account._id">Batman</option>
+        <option [value]="account._id">Batman ({{ account.balance | currency }})</option>
         <hr class="my-1">
-        <option *ngFor="let bankAccount of bankAccounts" [value]="bankAccount._id">{{ bankAccount.name }}</option>
+        <option *ngFor="let bankAccount of bankAccounts" [value]="bankAccount._id">
+          {{ bankAccount.name }}
+          ({{bankAccount.balance | currency}})
+        </option>
       </select>
     </div>
   </div>
