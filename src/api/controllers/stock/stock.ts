@@ -1,6 +1,6 @@
 import * as iex from 'iexcloud_api_wrapper';
 import { Router, Response, Request } from "express";
-import { ClientResponse } from '../../helpers/helpers'
+import { ClientResponse, serverError } from '../../helpers/helpers'
 import { StockDetails, StockDetailsDocument } from "./../../../models/stock/stockDetails";
 import { stockDetailsListByFragmentQueryHandler, stockDetailsBySymbolQueryHandler } from '../../queryHandlers/stockDetails/stockDetailsQueryHandlers';
 import { StockDetailsByFragmentQuery, StockDetailsBySymbolQuery } from '../../queries/stockDetail/stockDetailQueries';
@@ -19,7 +19,7 @@ routes.get("/search/:partial", (req: Request, res: Response) => {
             return res.status(200).json(new ClientResponse(true, { stocks: stockDetails }))
         })
         .catch((err) => {
-            return res.status(200).json(null)
+            return serverError(res)
         })
 });
 

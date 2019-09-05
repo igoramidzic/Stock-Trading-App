@@ -3,6 +3,8 @@ import { BankAccount } from 'src/app/core/models/banking/banking';
 import { Account } from '../../../../core/models/account/account';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { BankingService } from 'src/app/services/banking/banking.service';
+import { TransferService } from 'src/app/services/transfer/transfer.service';
+import { Transfer } from 'src/app/core/models/transfer/transfer';
 
 @Component({
   selector: 'app-transfer-funds-form',
@@ -21,17 +23,25 @@ export class TransferFundsFormComponent implements OnInit {
   transferForm: FormGroup;
   @Output() transferCompleteEmitter = new EventEmitter<AccountTransfer>();
 
-  constructor(private fb: FormBuilder, private bankingService: BankingService) { }
+  constructor(private fb: FormBuilder, private transferService: TransferService) { }
 
   ngOnInit() {
     this.transferForm = this.fb.group({
       from: new FormControl(this.bankAccounts.length > 0 ? this.bankAccounts[0]._id : null, [Validators.required]),
-      to: new FormControl('123', [Validators.required]),
+      to: new FormControl(this.account._id, [Validators.required]),
       amount: new FormControl(null, [Validators.required])
     })
 
     this.transferForm.valueChanges.subscribe(() => {
       this.done = false;
+    })
+
+    this.transferForm.controls['from'].valueChanges.subscribe((value) => {
+      this.selectFrom();
+    })
+
+    this.transferForm.controls['to'].valueChanges.subscribe(() => {
+      this.selectTo();
     })
   }
 
@@ -43,11 +53,50 @@ export class TransferFundsFormComponent implements OnInit {
 
     this.errors = null;
 
-    setTimeout(() => {
-      this.isSubmitting = false;
-      this.transferForm.controls['amount'].reset();
-      this.done = true;
-    }, 300);
+    const bankAccountId = this.transferForm.controls['from'].value == this.account._id ? this.transferForm.controls['to'].value : this.transferForm.controls['from'].value;
+    const isDeposit = this.transferForm.controls['from'].value == this.account._id ? false : true;
+    const transferDetails: Transfer = {
+      bankAccountId: bankAccountId,
+      amount: this.transferForm.controls['amount'].value,
+      isDeposit: isDeposit
+    };
+
+    this.transferService.createTransfer(transferDetails)
+      .then((transfer: Transfer) => {
+        this.transferForm.controls['amount'].reset();
+        this.done = true;
+      })
+      .catch((error) => {
+        this.errors = error.messages
+      })
+      .finally(() => {
+        this.isSubmitting = false;
+
+      })
+
+
+  }
+
+  selectFrom(): void {
+    const from = this.transferForm.controls['from']
+    const to = this.transferForm.controls['to']
+
+    if (from.value == to.value || from.value != this.account._id)
+      if (from.value == this.account._id)
+        to.setValue(this.bankAccounts[0]._id)
+      else
+        to.setValue(this.account._id)
+  }
+
+  selectTo(): void {
+    const from = this.transferForm.controls['from']
+    const to = this.transferForm.controls['to']
+
+    if (to.value == from.value || to.value != this.account._id)
+      if (to.value == this.account._id)
+        from.setValue(this.bankAccounts[0]._id)
+      else
+        from.setValue(this.account._id)
   }
 }
 

@@ -13,9 +13,9 @@
       <label class="mb-2" for="account-number">To</label>
       <select type="text" name="account-name" formControlName="to" autocomplete="off" class="input mb-2 mb-sm-0"
         [attr.disabled]="isSubmitting ? '' : null">
-        <option value="123">Batman</option>
+        <option [value]="account._id">Batman</option>
         <hr class="my-1">
-        <option *ngFor="let bankAccount of bankAccounts" value="bankAccount._id">{{ bankAccount.name }}</option>
+        <option *ngFor="let bankAccount of bankAccounts" [value]="bankAccount._id">{{ bankAccount.name }}</option>
       </select>
     </div>
   </div>
@@ -25,7 +25,7 @@
     type="text" class="input mb-3" />
 
   <app-main-error-alert [errors]="errors"></app-main-error-alert>
-  <app-main-success-alert *ngIf="done" [message]="'Successfully transfered - jk still in development'">
+  <app-main-success-alert *ngIf="done" [message]="'Successfully transfered'">
   </app-main-success-alert>
 
   <button type="submit" class="btn btn-primary btn-lg mt-3"

@@ -1,5 +1,5 @@
 import { Router, Response, Request } from "express";
-import { ClientResponse } from '../../helpers/helpers'
+import { ClientResponse, serverError } from '../../helpers/helpers'
 import { BankAccountsQuery } from "../../../api/queries/bankaccount/bankAccountQueries";
 import { getBankAccounts } from "../../../api/queryHandlers/bankAccount/bankAccountQueryHandlers";
 import { BankAccountDocument, BankAccount } from "../../../models/bank-account/bank-account";
@@ -21,8 +21,8 @@ routes.get("/", (req: Request, res: Response) => {
         .then((bankAccounts: BankAccountDocument[]) => {
             return res.status(200).json(new ClientResponse(true, { bankAccounts: bankAccounts }))
         })
-        .catch((err) => {
-            return res.status(500).json(null)
+        .catch(() => {
+            return serverError(res);
         })
 });
 
@@ -50,8 +50,8 @@ routes.post("/", (req: Request, res: Response) => {
         .then((bankAccountDetails: BankAccountDocument) => {
             return res.status(200).json(new ClientResponse(true, { bankAccount: bankAccountDetails }))
         })
-        .catch((err) => {
-            return res.status(200).json(null)
+        .catch(() => {
+            return serverError(res)
         })
 });
 
@@ -78,8 +78,8 @@ routes.delete("/:id", (req: Request, res: Response) => {
                     return res.status(500).json(null)
                 })
         })
-        .catch((err) => {
-            return res.status(500).json(null)
+        .catch(() => {
+            return serverError(res)
         })
 });
 

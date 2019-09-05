@@ -1,5 +1,5 @@
 import { Router, Response, Request } from "express";
-import { ClientResponse } from '../../helpers/helpers'
+import { ClientResponse, serverError } from '../../helpers/helpers'
 import { AccountQuery } from "../../../api/queries/account/accountQueries";
 import { getAccount } from "../../../api/queryHandlers/account/accountQueryHandlers";
 import { AccountDocument } from "../../../models/account/account";
@@ -11,11 +11,11 @@ const routes: Router = Router()
  */
 routes.get("/", (req: Request, res: Response) => {
     getAccount(new AccountQuery(req.user._id))
-        .then((account: AccountDocument[]) => {
+        .then((account: AccountDocument) => {
             return res.status(200).json(new ClientResponse(true, { account }))
         })
-        .catch((err) => {
-            return res.status(500).json(null)
+        .catch(() => {
+            return serverError(res)
         })
 });
 
