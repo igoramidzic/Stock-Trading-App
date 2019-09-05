@@ -13,7 +13,7 @@ export class AccountNavbarComponent implements OnInit {
   links: { label: string, route: string }[] = [
     { label: 'Account', route: '' },
     { label: 'Banking', route: '/banking' },
-    // { label: 'History', route: '/history' },
+    { label: 'History', route: '/history' },
     { label: 'Settings', route: '/settings' }
   ]
 

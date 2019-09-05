@@ -20,7 +20,7 @@ export let createTransfer = (user: string, transfer: Transfer, account: AccountD
         })
     })
 
-let accountTransfer = (amount: number, account: AccountDocument) =>
+const accountTransfer = (amount: number, account: AccountDocument) =>
     new Promise(async (resolve, reject) => {
         Account.findByIdAndUpdate(account._id, { balance: account.balance + amount }, { new: true })
             .then((updatedAccount: AccountDocument) => {
@@ -31,7 +31,7 @@ let accountTransfer = (amount: number, account: AccountDocument) =>
             })
     })
 
-let bankAccountTransfer = (amount: number, account: BankAccountDocument) =>
+const bankAccountTransfer = (amount: number, account: BankAccountDocument) =>
     new Promise(async (resolve, reject) => {
         BankAccount.findByIdAndUpdate(account._id, { balance: account.balance + amount }, { new: true })
             .then((updatedAccount: BankAccountDocument) => {
