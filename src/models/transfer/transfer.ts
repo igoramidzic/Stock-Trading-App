@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { BankAccountDocument } from "../bank-account/bank-account";
 
 export type Transfer = {
     bankAccountId?: string;
@@ -7,7 +8,7 @@ export type Transfer = {
 }
 
 export type TransferDocument = mongoose.Document & {
-    bankAccount?: string;
+    bankAccount?: BankAccountDocument;
     amount?: number;
     isDeposit?: boolean;
 };

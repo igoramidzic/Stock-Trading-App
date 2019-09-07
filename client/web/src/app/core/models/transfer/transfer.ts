@@ -7,4 +7,6 @@ export type Transfer = {
     amount: number;
     bankAccount?: BankAccount;
     account?: Account;
+    createdAt?: Date;
+    updatedAt?: Date;
 }

@@ -33,6 +33,7 @@ import { LinkedAccountItemComponent } from './components/banking/linked-accounts
 import { MatDialogModule } from '@angular/material/dialog';
 import { DeleteAccountFormComponent } from './components/account/delete-account-form/delete-account-form.component';
 import { DeleteAccountDialogComponent } from './components/account/delete-account-dialog/delete-account-dialog.component';
+import { TransferHistoryListComponent } from './components/history/transfer-history-list/transfer-history-list.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { DeleteAccountDialogComponent } from './components/account/delete-accoun
     LinkAccountFormComponent,
     LinkedAccountItemComponent,
     DeleteAccountFormComponent,
-    DeleteAccountDialogComponent
+    DeleteAccountDialogComponent,
+    TransferHistoryListComponent
   ],
   imports: [
     CommonModule,
@@ -100,7 +102,8 @@ import { DeleteAccountDialogComponent } from './components/account/delete-accoun
     LinkedAccountItemComponent,
     DeleteAccountFormComponent,
     DeleteAccountDialogComponent,
-    MatDialogModule
+    MatDialogModule,
+    TransferHistoryListComponent
   ],
   providers: [],
   entryComponents: [DeleteAccountDialogComponent]

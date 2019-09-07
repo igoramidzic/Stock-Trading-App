@@ -1,15 +1,29 @@
 import { Router, Response, Request } from "express";
 import { ClientResponse, serverError } from '../../helpers/helpers'
 import { getBankAccount } from "../../../api/queryHandlers/bankAccount/bankAccountQueryHandlers";
-import { Transfer } from "../../../models/transfer/transfer";
+import { Transfer, TransferDocument } from "../../../models/transfer/transfer";
 import { createTransfer } from "../../../api/commandHandlers/transfer/transferCommandHandlers";
 import { BankAccountDocument } from "../../../models/bank-account/bank-account";
 import mongoose from "mongoose";
 import { getAccount } from "../../../api/queryHandlers/account/accountQueryHandlers";
 import { AccountQuery } from "../../../api/queries/account/accountQueries";
 import { AccountDocument } from "../../../models/account/account";
+import { getTransfers } from "../../../api/queryHandlers/transfer/transferQueryHandlers";
 
 const routes: Router = Router()
+
+/**
+ * Get transfers
+ */
+routes.get("/", async (req: Request, res: Response) => {
+    getTransfers(req.user._id)
+        .then((transfers: TransferDocument[]) => {
+            return res.status(200).json(new ClientResponse(true, { transfers }))
+        })
+        .catch(() => {
+            return serverError(res)
+        })
+});
 
 /**
  * Create transfer

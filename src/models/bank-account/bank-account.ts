@@ -27,7 +27,7 @@ bankAccountSchema.methods.toJSON = function () {
     const bankAccountObject = bankAccount.toObject();
 
     delete bankAccountObject.userId;
-    delete bankAccountObject.active;
+
     const whereToSplit = Math.floor(bankAccountObject.accountNumber.length / 2);
     const front = bankAccountObject.accountNumber.split('').splice(0, whereToSplit).join('').replace(/./g, '*');
     const back = bankAccountObject.accountNumber.split('').splice(whereToSplit, bankAccountObject.accountNumber.length).join('');

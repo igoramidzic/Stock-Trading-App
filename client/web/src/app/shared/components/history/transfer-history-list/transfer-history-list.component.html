@@ -1,0 +1,51 @@
+<h2 class="mb-4">Transfers</h2>
+
+<ul class="list-group">
+  <li *ngFor="let transfer of transfers; let i = index;" class="list-group-item p-0 hover">
+    <div class="p-4" style="cursor: pointer;" data-toggle="collapse" [attr.data-target]="'#transferDetails' + i"
+      aria-expanded="false" [attr.aria-controls]="'transferDetails' + i">
+      <div class="d-flex align-items-center justify-content-between">
+        <div>
+          <h3 class="d-inline-block mb-1">{{ transfer.isDeposit ? "Deposit from " : "Withdrawal to " }}
+            <del *ngIf="!transfer.bankAccount.active">{{ transfer.bankAccount.name }}</del>
+            <span *ngIf="transfer.bankAccount.active">{{ transfer.bankAccount.name }}</span>
+          </h3>
+          <p class="font-weight-light mb-0">{{ transfer.createdAt | date }}</p>
+        </div>
+        <div>
+          <h3 [ngClass]="{'green': transfer.isDeposit, 'red': !transfer.isDeposit}">
+            {{ transfer.isDeposit ? '+' : '-' }}{{ transfer.amount | currency }}</h3>
+        </div>
+      </div>
+    </div>
+    <div class="collapse p-0 px-4 pb-4" [id]="'transferDetails' + i">
+      <div class="row">
+        <div class="col-12 col-md-8 mb-3">
+          <h5 class="mb-1">Amount</h5>
+          <p class="font-weight-light mb-0">{{ transfer.amount | currency }}</p>
+        </div>
+        <div class="col-12 col-md-8 mb-3">
+          <h5 class="mb-1">Bank Account</h5>
+          <p class="font-weight-light mb-0">{{ transfer.bankAccount.name }} <span
+              class="hint">{{ transfer.bankAccount.accountNumber }}</span></p>
+        </div>
+        <div class="col-12 col-md-8 mb-3">
+          <h5 class="mb-1">Initiated</h5>
+          <p class="font-weight-light mb-0">{{ transfer.createdAt | date }}</p>
+        </div>
+        <div class="col-12 col-md-8 mb-3">
+          <h5 class="mb-1">Last Updated</h5>
+          <p class="font-weight-light mb-0">{{ transfer.updatedAt | date }}</p>
+        </div>
+        <div class="col-12 col-md-8 mb-3">
+          <h5 class="mb-1">Status</h5>
+          <p class="font-weight-light mb-0">Complete</p>
+        </div>
+      </div>
+    </div>
+  </li>
+
+  <li class="list-group-item p-4" *ngIf="transfers.length == 0">
+    <span class="hint">There are currently no Transfers</span>
+  </li>
+</ul>
