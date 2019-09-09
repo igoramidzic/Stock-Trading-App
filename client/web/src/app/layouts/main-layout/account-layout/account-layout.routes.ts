@@ -13,7 +13,7 @@ export const ACCOUNT_ROUTES: Routes = [
         path: '',
         pathMatch: 'full',
         component: AccountPageComponent,
-        resolve: { user: UserDetailsResolver },
+        resolve: { account: AccountResolver },
         data: {
             title: 'Account'
         }

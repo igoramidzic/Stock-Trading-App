@@ -20,8 +20,8 @@ import { BuyStockCardComponent } from "./components/stock/buy-stock-card/buy-sto
 import { AccountNavbarComponent } from "./components/navs/account-navbar/account-navbar.component";
 import { CurrencyMaskModule } from "ng2-currency-mask";
 import { TransferFundsComponent } from './components/banking/transfer-funds/transfer-funds.component';
-import { ProfileUpdateFormComponent } from './components/account/profile-update-form/profile-update-form.component';
-import { PasswordUpdateFormComponent } from './components/account/password-update-form/password-update-form.component';
+import { ProfileUpdateFormComponent } from './components/settings/profile-update-form/profile-update-form.component';
+import { PasswordUpdateFormComponent } from './components/settings/password-update-form/password-update-form.component';
 import { MainSuccessAlertComponent } from './components/alerts/main-success-alert/main-success-alert.component';
 import { MainErrorAlertComponent } from './components/alerts/main-error-alert/main-error-alert.component';
 import { PriceChangeTodayComponent } from './components/stock/price-change-today/price-change-today.component';
@@ -31,9 +31,10 @@ import { LinkAccountFormComponent } from './components/banking/link-account-form
 import { LinkedAccountItemComponent } from './components/banking/linked-accounts-list/linked-account-item/linked-account-item.component';
 
 import { MatDialogModule } from '@angular/material/dialog';
-import { DeleteAccountFormComponent } from './components/account/delete-account-form/delete-account-form.component';
-import { DeleteAccountDialogComponent } from './components/account/delete-account-dialog/delete-account-dialog.component';
+import { DeleteAccountFormComponent } from './components/settings/delete-account-form/delete-account-form.component';
+import { DeleteAccountDialogComponent } from './components/settings/delete-account-dialog/delete-account-dialog.component';
 import { TransferHistoryListComponent } from './components/history/transfer-history-list/transfer-history-list.component';
+import { PortfolioValueComponent } from './components/account/portfolio-value/portfolio-value.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { TransferHistoryListComponent } from './components/history/transfer-hist
     LinkedAccountItemComponent,
     DeleteAccountFormComponent,
     DeleteAccountDialogComponent,
-    TransferHistoryListComponent
+    TransferHistoryListComponent,
+    PortfolioValueComponent
   ],
   imports: [
     CommonModule,
@@ -103,7 +105,8 @@ import { TransferHistoryListComponent } from './components/history/transfer-hist
     DeleteAccountFormComponent,
     DeleteAccountDialogComponent,
     MatDialogModule,
-    TransferHistoryListComponent
+    TransferHistoryListComponent,
+    PortfolioValueComponent
   ],
   providers: [],
   entryComponents: [DeleteAccountDialogComponent]

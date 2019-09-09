@@ -41,8 +41,6 @@ routes.post("/", async (req: Request, res: Response) => {
     // Check if bank account exists
     const bankAccount: BankAccountDocument = await getBankAccount(transfer.bankAccountId, req.user._id);
 
-    console.log(bankAccount);
-
     if (!bankAccount)
         errors.push("Bank account does not exist.");
     else if (transfer.isDeposit && bankAccount.balance < transfer.amount)
