@@ -1,0 +1,11 @@
+<button (click)="toggleWatch()" class="btn btn-lg btn-block btn-outline btn-primary" [disabled]="submitting">
+  <span *ngIf="!submitting">
+    <span *ngIf="!watching">
+      Add to Watchlist
+    </span>
+    <span *ngIf="watching">
+      Remove from Watchlist
+    </span>
+  </span>
+  <app-main-loader [color]="'primary'" *ngIf="submitting"></app-main-loader>
+</button>

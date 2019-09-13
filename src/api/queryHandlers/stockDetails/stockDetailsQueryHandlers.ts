@@ -17,11 +17,23 @@ export const stockDetailsListByFragmentQueryHandler = (query: StockDetailsByFrag
 });
 
 export let stockDetailsBySymbolQueryHandler = (query: StockDetailsBySymbolQuery): Promise<StockDetailsDocument> => new Promise((resolve, reject) => {
-    StockDetails.findOne({ symbol: { $regex: query.symbol, $options: "i" } })
+    StockDetails.findOne({ symbol: { $regex: new RegExp("^" + query.symbol, "i") } })
+        .then((stockDetails: StockDetailsDocument) => {
+            console.log(stockDetails)
+            resolve(stockDetails)
+        })
+        .catch((err) => {
+            reject(err)
+        })
+});
+
+export let stockDetailsByIdQueryHandler = (_id: string): Promise<StockDetailsDocument> => new Promise((resolve, reject) => {
+    StockDetails.findById(_id)
         .then((stockDetails: StockDetailsDocument) => {
             resolve(stockDetails)
         })
         .catch((err) => {
+            console.log(err)
             reject(err)
         })
 });

@@ -14,6 +14,8 @@ routes.use((req: Request, res: Response, next: any) => {
     routes.use('/bankAccounts', require('./bankAccount/bankAccount')),
     routes.use('/account', require('./account/account')),
     routes.use('/transfers', require('./transfer/transfer')),
+    routes.use('/portfolio', require('./portfolio/portfolioController')),
+    routes.use('/watchlist', require('./watchlist/watchlistController')),
     routes.use('**', (req, res) => {
         res.status(404).json({
             error: 'Api endpoint does not exist'

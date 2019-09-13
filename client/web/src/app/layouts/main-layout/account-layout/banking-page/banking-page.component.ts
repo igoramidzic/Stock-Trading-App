@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { BankAccount } from 'src/app/core/models/banking/banking';
 import { Account } from '../../../../core/models/account/account';
 import { ActivatedRoute } from '@angular/router';
-import { LoadingService } from 'src/app/services/loading/loading.service';
 import { Transfer } from 'src/app/core/models/transfer/transfer';
 
 @Component({
@@ -15,9 +14,7 @@ export class BankingPageComponent implements OnInit {
   bankAccounts: BankAccount[];
   account: Account;
 
-  constructor(private route: ActivatedRoute, private loadingService: LoadingService) {
-    this.loadingService.stopLoading();
-  }
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.bankAccounts = this.route.snapshot.data.bankAccounts;

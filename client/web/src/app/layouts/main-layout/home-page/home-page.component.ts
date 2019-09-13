@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SelfService } from 'src/app/services/self/self.service';
+import { StockDetails } from 'src/app/core/models/stock/stockDetails';
+import { WatchlistService } from 'src/app/services/watchlist/watchlist.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-home-page',
@@ -9,8 +12,10 @@ import { SelfService } from 'src/app/services/self/self.service';
 export class HomePageComponent implements OnInit {
 
   thingsToDo: ThingToDo[];
+  watchlist: StockDetails[];
 
-  constructor(public selfService: SelfService) { }
+  constructor(public selfService: SelfService, private watchlistService: WatchlistService,
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.thingsToDo = [
@@ -31,8 +36,9 @@ export class HomePageComponent implements OnInit {
         description: 'Visit the Settings tab in the Account menu. I\'ll miss you, ' + this.selfService.user$.value.firstName + '.'
       }
     ]
-  }
 
+    this.watchlist = this.route.snapshot.data.watchlist;
+  }
 }
 
 interface ThingToDo {

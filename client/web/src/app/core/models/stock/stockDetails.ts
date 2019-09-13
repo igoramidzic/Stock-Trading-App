@@ -2,6 +2,7 @@ import { StockQuote } from './quote';
 import { StockCompany } from './company';
 
 export type StockDetails = {
+    _id?: string;
     symbol: string;
     exchange: string;
     name: string;

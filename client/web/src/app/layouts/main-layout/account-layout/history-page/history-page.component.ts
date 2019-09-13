@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { LoadingService } from 'src/app/services/loading/loading.service';
 import { ActivatedRoute } from '@angular/router';
 import { Transfer } from 'src/app/core/models/transfer/transfer';
 
@@ -12,9 +11,7 @@ export class HistoryPageComponent implements OnInit {
 
   transfers: Transfer[];
 
-  constructor(private route: ActivatedRoute, private loadingService: LoadingService) {
-    this.loadingService.stopLoading();
-  }
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.transfers = this.route.snapshot.data.transfers;

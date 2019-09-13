@@ -1,7 +1,7 @@
-<div class="container-fluid main-container">
+<div class="container-fluid main-container pb-5">
   <h3 class="mb-2">Things you can do:</h3>
   <div class="row">
-    <ul class="col-md-12 list-group">
+    <ul class="col-md-16 list-group mb-4 mb-md-0">
       <li class="list-group-item p-4" *ngFor="let thing of thingsToDo; let i = index">
         <div class="d-flex align-items-top justify-content-start">
           <span class="mr-3">{{i + 1}}.</span>
@@ -12,5 +12,9 @@
         </div>
       </li>
     </ul>
+
+    <div class="col-md-8">
+      <app-watch-list [watchlist]="watchlist"></app-watch-list>
+    </div>
   </div>
 </div>

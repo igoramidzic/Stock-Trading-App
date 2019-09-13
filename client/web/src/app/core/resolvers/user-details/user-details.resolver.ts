@@ -5,11 +5,9 @@ import { SelfService } from 'src/app/services/self/self.service';
 
 @Injectable()
 export class UserDetailsResolver implements Resolve<any> {
-    constructor(private selfService: SelfService,
-        private loadingService: LoadingService) { }
+    constructor(private selfService: SelfService) { }
 
     resolve() {
-        this.loadingService.startLoading();
         return this.selfService.getSelf()
             .catch(() => { })
     }

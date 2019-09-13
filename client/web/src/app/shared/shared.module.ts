@@ -35,6 +35,9 @@ import { DeleteAccountFormComponent } from './components/settings/delete-account
 import { DeleteAccountDialogComponent } from './components/settings/delete-account-dialog/delete-account-dialog.component';
 import { TransferHistoryListComponent } from './components/history/transfer-history-list/transfer-history-list.component';
 import { PortfolioValueComponent } from './components/account/portfolio-value/portfolio-value.component';
+import { SearchStockModalComponent } from './components/stock/search-stock-modal/search-stock-modal.component';
+import { WatchListComponent } from './components/watchlist/watch-list/watch-list.component';
+import { WatchlistBtnComponent } from './components/watchlist/watchlist-btn/watchlist-btn.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +66,10 @@ import { PortfolioValueComponent } from './components/account/portfolio-value/po
     DeleteAccountFormComponent,
     DeleteAccountDialogComponent,
     TransferHistoryListComponent,
-    PortfolioValueComponent
+    PortfolioValueComponent,
+    SearchStockModalComponent,
+    WatchListComponent,
+    WatchlistBtnComponent
   ],
   imports: [
     CommonModule,
@@ -106,9 +112,12 @@ import { PortfolioValueComponent } from './components/account/portfolio-value/po
     DeleteAccountDialogComponent,
     MatDialogModule,
     TransferHistoryListComponent,
-    PortfolioValueComponent
+    PortfolioValueComponent,
+    SearchStockModalComponent,
+    WatchListComponent,
+    WatchlistBtnComponent
   ],
   providers: [],
-  entryComponents: [DeleteAccountDialogComponent]
+  entryComponents: [DeleteAccountDialogComponent, SearchStockModalComponent]
 })
 export class SharedModule { }

@@ -6,8 +6,9 @@ import { AccountLayoutComponent } from './account-layout/account-layout.componen
 import { HomePageComponent } from './home-page/home-page.component';
 import { StocksPageComponent } from './stocks-page/stocks-page.component';
 import { StockDetailsResolver } from 'src/app/core/resolvers/stock-details/stock-details.resolver';
-import { UserDetailsResolver } from 'src/app/core/resolvers/user-details/user-details.resolver';
 import { ThemeService } from 'src/app/services/theme/theme.service';
+import { AccountResolver } from 'src/app/core/resolvers/account/account.resolver';
+import { WatchlistResolver, AlreadyWatchingResolver } from 'src/app/core/resolvers/watchlist/watchlist.resolver';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,6 @@ import { ThemeService } from 'src/app/services/theme/theme.service';
   ],
   exports: [
   ],
-  providers: [StockDetailsResolver, ThemeService]
+  providers: [StockDetailsResolver, ThemeService, AccountResolver, WatchlistResolver, AlreadyWatchingResolver]
 })
 export class MainLayoutModule { }

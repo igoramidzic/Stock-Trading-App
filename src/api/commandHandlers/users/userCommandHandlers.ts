@@ -1,21 +1,18 @@
 import { User, UserDocument } from '../../../models/users/userModel'
 import { createAccount } from '../account/accountCommandHandlers';
+import { createPortfolio } from '../portfolioCommandHandlers/portfolioCommandHandlers';
 
 export let createNewUser = (user: User) => new Promise((resolve, reject) => {
     user.email = user.email.toLowerCase().trim();
 
     User.create(user)
-        .then((user: UserDocument) => {
-            createAccount(0, user._id)
-                .then(() => {
-                    resolve(user)
-                })
-                .catch((error: any) => {
-                    reject(error)
-                })
+        .then(async (user: UserDocument) => {
+            await createAccount(0, user._id);
+            await createPortfolio(user._id);
+
+            resolve(user);
         })
         .catch((error: any) => {
-            console.log(error)
             reject(error)
         })
 })

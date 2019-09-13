@@ -1,16 +1,22 @@
 <div class="container-fluid main-container" *ngIf="stockDetails">
   <div class="row justify-content-between">
     <div class="col-md-16 mb-4">
-      <h2 class="mb-1">{{ stockDetails.name | shorten : 30 : '...'}}</h2>
-      <h2 class="font-weight-normal">
-        {{ currencySymbol }}<app-odometer [value]="stockDetails.quote.latestPrice"></app-odometer>
-      </h2>
-      <app-price-change-today [priceChange]="stockDetails.quote.change"
-        [percentChange]="stockDetails.quote.changePercent"></app-price-change-today>
+      <div class="d-flex align-items-top justify-content-between">
+        <div>
+          <h2 class="mb-1">{{ stockDetails.name | shorten : 30 : '...'}}</h2>
+          <h2 class="font-weight-normal">
+            {{ currencySymbol }}<app-odometer [value]="stockDetails.quote.latestPrice"></app-odometer>
+          </h2>
+          <app-price-change-today [priceChange]="stockDetails.quote.change"
+            [percentChange]="stockDetails.quote.changePercent"></app-price-change-today>
+        </div>
+      </div>
+
     </div>
     <div class="col-md-8">
-      <div>
-        <app-buy-stock-card [quote]="stockDetails.quote"></app-buy-stock-card>
+      <app-buy-stock-card [account]="account" [quote]="stockDetails.quote"></app-buy-stock-card>
+      <div class="p-4">
+        <app-watchlist-btn [watching]="isWatching" [stock]="stockDetails"></app-watchlist-btn>
       </div>
     </div>
   </div>

@@ -4,6 +4,7 @@ import { StockDetails } from 'src/app/core/models/stock/stockDetails';
 import { Title } from '@angular/platform-browser';
 import { CurrencyPipe } from '@angular/common';
 import { LoadingService } from 'src/app/services/loading/loading.service';
+import { Account } from 'src/app/core/models/account/account';
 
 @Component({
   selector: 'app-stocks-page',
@@ -14,16 +15,20 @@ import { LoadingService } from 'src/app/services/loading/loading.service';
 export class StocksPageComponent implements OnInit {
 
   stockDetails: StockDetails;
+  account: Account;
+  isWatching: boolean;
   currencySymbol: string = '$';
 
   constructor(private route: ActivatedRoute, private titleService: Title,
-    private cp: CurrencyPipe, private loadingService: LoadingService) {
-    this.loadingService.stopLoading()
+    private cp: CurrencyPipe) {
   }
 
   ngOnInit() {
     this.route.params.subscribe(() => {
       this.stockDetails = this.route.snapshot.data.stockDetails;
+      this.account = this.route.snapshot.data.account;
+      this.isWatching = this.route.snapshot.data.isWatching;
+
       this.setPageTitle(this.stockDetails.symbol, this.stockDetails.quote.latestPrice);
     })
   }

@@ -1,4 +1,4 @@
-<div class="card">
+<div class="list-group-item p-0">
   <form [formGroup]="shareCountForm" (ngSubmit)="reviewOrder()">
     <div class="pl-4 pr-4 d-flex align-items-center justify-content-between">
       <h3>Buy {{ quote.symbol }}</h3>
@@ -57,6 +57,7 @@
   <hr>
 
   <div class="pl-4 pr-4 pt-3 pb-3 text-center">
-    <a href="javascript:void();" class="font-weight-bold primary">$0.00 Funds Available</a>
+    <a [routerLink]="['/account/banking']" class="font-weight-bold primary">{{ account.balance | currency }} Funds
+      Available</a>
   </div>
 </div>

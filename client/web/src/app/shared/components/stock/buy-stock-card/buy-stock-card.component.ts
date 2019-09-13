@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { StockQuote } from 'src/app/core/models/stock/quote';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { Account } from 'src/app/core/models/account/account';
 
 @Component({
   selector: 'app-buy-stock-card',
@@ -11,6 +12,7 @@ export class BuyStockCardComponent implements OnInit {
 
   isSubmitting: boolean = false;
   @Input() quote: StockQuote;
+  @Input() account: Account;
   shareCountForm: FormGroup;
   estimatedCost: number = 0;
 

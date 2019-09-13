@@ -1,0 +1,24 @@
+<ul class="list-group">
+  <li class="list-group-item p-3">
+    <h3>Watchlist</h3>
+  </li>
+  <li class="list-group-item p-0" *ngFor="let stock of watchlist; let i = index;">
+    <a [routerLink]="['/stocks/' + stock.stockDetails.symbol]">
+      <div class="dropdown-item d-flex align-items-center justify-content-between py-2 px-3">
+        <span>{{ stock.stockDetails.symbol }}</span>
+        <div class="text-right">
+          <div>
+            {{ stock.quote.latestPrice | currency}}
+          </div>
+          <div [ngClass]="{'green': stock.quote.changePercent >= 0, 'red': stock.quote.changePercent < 0}">
+            {{ stock.quote.changePercent >= 0 ? '+' : '-' }}{{ (stock.quote.changePercent > 0 ? stock.quote.changePercent*100 : stock.quote.changePercent*-100) | number : '1.2-2'}}%
+          </div>
+        </div>
+      </div>
+
+    </a>
+  </li>
+  <div *ngIf="watchlist.length == 0" class="hint text-center px-5 py-4">
+    Search your favorite stock and add it to your Watchlist.
+  </div>
+</ul>

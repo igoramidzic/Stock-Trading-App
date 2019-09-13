@@ -1,7 +1,6 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 import bcrypt from 'bcrypt-nodejs';
-import { Account, AccountDocument } from "../account/account";
-import { BankAccount } from "../bank-account/bank-account";
+import { StockDetailsDocument, stockDetailsSchema } from "../stock/stockDetails";
 
 export type User = {
     firstName?: string,
@@ -17,6 +16,7 @@ export type UserDocument = mongoose.Document & {
     password: string,
 
     tokens: AuthToken[],
+    watchStocks: StockDetailsDocument[],
 
     comparePassword: comparePasswordFunction
 };
@@ -33,7 +33,8 @@ const userSchema = new mongoose.Schema({
     lastName: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true, minLength: 8 },
-    tokens: { type: Array }
+    tokens: { type: Array },
+    watchStocks: [{ type: Schema.Types.ObjectId, ref: 'StockDetails' }],
 }, { timestamps: true });
 
 userSchema.methods.toJSON = function () {
@@ -42,6 +43,7 @@ userSchema.methods.toJSON = function () {
 
     delete userObject.password;
     delete userObject.tokens;
+    delete userObject.watchStocks;
 
     return userObject;
 }
