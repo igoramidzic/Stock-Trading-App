@@ -14,7 +14,7 @@ const routes: Router = Router()
  * Get watched stocks
  */
 routes.get("/", async (req: Request, res: Response) => {
-    let watchlist: StockDetailsDocument[];
+    let watchlist: StockDetailsDocument[] = [];
 
     const watchlistWithQuote: { stockDetails: StockDetailsDocument, quote?: Quote }[] = [];
 
