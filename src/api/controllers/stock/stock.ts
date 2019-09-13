@@ -16,7 +16,6 @@ routes.get("/search/:partial", (req: Request, res: Response) => {
 
     stockDetailsListByFragmentQueryHandler(new StockDetailsByFragmentQuery(partial))
         .then((stockDetails: StockDetailsDocument[]) => {
-            console.log(stockDetails)
             return res.status(200).json(new ClientResponse(true, { stocks: stockDetails }))
         })
         .catch((err) => {

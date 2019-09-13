@@ -5,6 +5,7 @@ import { Title } from '@angular/platform-browser';
 import { CurrencyPipe } from '@angular/common';
 import { LoadingService } from 'src/app/services/loading/loading.service';
 import { Account } from 'src/app/core/models/account/account';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-stocks-page',

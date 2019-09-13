@@ -19,7 +19,6 @@ export const stockDetailsListByFragmentQueryHandler = (query: StockDetailsByFrag
 export let stockDetailsBySymbolQueryHandler = (query: StockDetailsBySymbolQuery): Promise<StockDetailsDocument> => new Promise((resolve, reject) => {
     StockDetails.findOne({ symbol: { $regex: new RegExp("^" + query.symbol, "i") } })
         .then((stockDetails: StockDetailsDocument) => {
-            console.log(stockDetails)
             resolve(stockDetails)
         })
         .catch((err) => {
@@ -33,7 +32,6 @@ export let stockDetailsByIdQueryHandler = (_id: string): Promise<StockDetailsDoc
             resolve(stockDetails)
         })
         .catch((err) => {
-            console.log(err)
             reject(err)
         })
 });

@@ -1,13 +1,14 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { WatchlistService } from 'src/app/services/watchlist/watchlist.service';
 import { StockDetails } from 'src/app/core/models/stock/stockDetails';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-watchlist-btn',
   templateUrl: './watchlist-btn.component.html',
   styleUrls: ['./watchlist-btn.component.scss']
 })
-export class WatchlistBtnComponent implements OnInit {
+export class WatchlistBtnComponent implements OnInit, OnChanges {
 
   @Input() stock: StockDetails;
   @Input() watching: boolean;
@@ -18,6 +19,14 @@ export class WatchlistBtnComponent implements OnInit {
   constructor(private watchlistService: WatchlistService) { }
 
   ngOnInit() {
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.stock)
+      this.stock = changes.stock.currentValue;
+
+    if (changes.watching)
+      this.watching = changes.watching.currentValue;
   }
 
   toggleWatch(): void {
