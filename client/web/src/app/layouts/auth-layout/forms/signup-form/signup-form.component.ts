@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ClientResponse } from 'src/app/core/models/response/clientResponse';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { SelfService } from 'src/app/services/self/self.service';
+import { User } from 'src/app/core/models/user/user';
 
 @Component({
   selector: 'app-signup-form',
@@ -27,8 +28,6 @@ export class SignupFormComponent implements OnInit {
       email: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required])
     })
-
-    this.selfService.user$.subscribe((user) => console.log(user))
   }
 
   onSignup(): void {
@@ -41,9 +40,9 @@ export class SignupFormComponent implements OnInit {
     this.errors = [];
 
     this.authService.signUp(this.signupForm.value)
-      .then((res: ClientResponse) => {
+      .then((user: User) => {
         this.router.navigate(['/']);
-        this.selfService.updateSelf(res.result.user)
+        this.selfService.user$.next(user);
       })
       .catch((err: ClientResponse) => {
         this.errors = err.messages;
