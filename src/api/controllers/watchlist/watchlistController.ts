@@ -46,7 +46,7 @@ routes.get("/", async (req: Request, res: Response) => {
 });
 
 /**
- * Get watched stocks
+ * Get if stock is watched
  */
 routes.get("/:stockId", async (req: Request, res: Response) => {
     const { stockId } = req.params;

@@ -24,16 +24,24 @@ export class HomePageComponent implements OnInit {
         description: 'Type \'AAPL\' in the search bar above.'
       },
       {
-        title: 'Update your name, email, or password.',
-        description: 'Visit the Settings tab in the Account menu.'
+        title: 'Add stock to Watchlist.',
+        description: 'Add your favorite stock to your Watchlist.'
       },
       {
         title: 'Link your bank account with Batman.',
         description: 'Visit the Banking tab in the Account menu.'
       },
       {
-        title: 'Add stock to Watchlist.',
-        description: 'Search for your favorite stock and add it to your Watchlist.'
+        title: 'Transfer funds to your Batman account.',
+        description: 'Visit the Banking tab in the Account menu and transfer funds.'
+      },
+      {
+        title: 'Purchase your first stock.',
+        description: 'Search for a stock and purchase shares.'
+      },
+      {
+        title: 'Update your name, email, or password.',
+        description: 'Visit the Settings tab in the Account menu.'
       },
       {
         title: 'Delete your account.',

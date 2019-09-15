@@ -4,7 +4,6 @@ import _ from 'lodash';
 
 export let addWatchStock = (user: UserDocument, stock: StockDetailsDocument) =>
     new Promise(async (resolve, reject) => {
-
         user.watchStocks.push(stock)
         user.save()
             .then((user: UserDocument) => {

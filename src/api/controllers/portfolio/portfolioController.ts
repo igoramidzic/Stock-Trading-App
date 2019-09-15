@@ -9,6 +9,8 @@ import { getAccount } from "../../../api/queryHandlers/account/accountQueryHandl
 import { buyStock, sellStock } from "../../../api/commandHandlers/transaction/transactionCommandHandlers";
 import { Quote } from "iexcloud_api_wrapper";
 import * as iex from 'iexcloud_api_wrapper';
+import { addWatchStock } from "../../../api/commandHandlers/watching/watchingCommandHandlers";
+import { getIfWatchingStock } from "../../../api/queryHandlers/watching/watchingQueryHandlers";
 
 const routes: Router = Router()
 
@@ -71,7 +73,9 @@ routes.post("/buy", async (req: Request, res: Response) => {
         return res.status(400).json(new ClientResponse(false, null, ['Not enough funds in account.']));
 
     buyStock(req.user._id, account, stockDetails, portfolio, quantity, price)
-        .then((transaction: PortfolioDocument) => {
+        .then(async (transaction: PortfolioDocument) => {
+            if (!await getIfWatchingStock(req.user, stockDetails._id))
+                await addWatchStock(req.user, stockDetails);
             return res.status(200).json(new ClientResponse(true, { transaction }))
         })
         .catch(() => {
