@@ -9,6 +9,8 @@ import { SettingsPageComponent } from './settings-page/settings-page.component';
 import { BankAccountsResolver } from 'src/app/core/resolvers/bankAccounts/bankAccounts.resolver';
 import { UserDetailsResolver } from 'src/app/core/resolvers/user-details/user-details.resolver';
 import { TransfersResolver } from 'src/app/core/resolvers/transfers/transfers.resolver';
+import { TransactionsResolver } from 'src/app/core/resolvers/transactions/transactions.resolver';
+import { PortfolioResolver } from 'src/app/core/resolvers/portfolio/portfolio.resolver';
 
 @NgModule({
     declarations: [
@@ -23,6 +25,6 @@ import { TransfersResolver } from 'src/app/core/resolvers/transfers/transfers.re
     ],
     exports: [
     ],
-    providers: [BankAccountsResolver, UserDetailsResolver, TransfersResolver]
+    providers: [BankAccountsResolver, UserDetailsResolver, TransfersResolver, TransactionsResolver, PortfolioResolver]
 })
 export class AccountLayoutModule { }

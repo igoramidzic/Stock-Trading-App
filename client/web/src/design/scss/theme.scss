@@ -91,6 +91,12 @@ a {
   }
 }
 
+a.no-highlight {
+  &:hover {
+    color: var(--text-color);
+  }
+}
+
 .hover:hover {
   transition: .25s ease;
   background-color: var(--background-hover);

@@ -1,7 +1,8 @@
 import mongoose from "mongoose";
+import { Quote } from "iexcloud_api_wrapper";
 
 export type StockDetails = {
-    _id?: string;
+    _id?: mongoose.Types.ObjectId;
     symbol?: string;
     quantity?: number;
     exchangev: string;
@@ -35,17 +36,22 @@ export const stockDetailsSchema = new mongoose.Schema({
 
 export type OwnedStock = {
     stock?: StockDetails;
+    averagePrice?: number;
+    quote?: Quote;
     quantity?: number;
 }
 
 export type OwnedStockDocument = mongoose.Document & {
-    stock: StockDetails;
+    stock: StockDetailsDocument;
+    averagePrice?: number;
+    quote?: Quote;
     quantity: number;
 };
 
 export const ownedStockSchema = new mongoose.Schema({
     stock: { type: mongoose.Types.ObjectId, ref: 'StockDetails', required: true },
-    quantity: { type: Number, required: true }
+    quantity: { type: Number, required: true },
+    averagePrice: { type: Number, required: true }
 }, { timestamps: true });
 
 export const StockDetails = mongoose.model<StockDetailsDocument>("StockDetails", stockDetailsSchema);

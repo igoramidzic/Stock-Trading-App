@@ -1,6 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 import bcrypt from 'bcrypt-nodejs';
-import { StockDetailsDocument, stockDetailsSchema } from "../stock/stockDetails";
+import { StockDetailsDocument } from "../stock/stockDetails";
 
 export type User = {
     firstName?: string,

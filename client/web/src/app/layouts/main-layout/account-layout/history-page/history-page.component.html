@@ -1,1 +1,27 @@
-<app-transfer-history-list [transfers]="transfers"></app-transfer-history-list>
+<div class="row">
+  <div class="col-md-8 mb-4 mb-md-0">
+    <div class="list-group">
+      <div class="list-group-item p-4">
+        <p class="hint mb-2">Filter</p>
+
+        <div style="display: inline-block; width: 110px;" class="mr-3 mb-2">
+          <a class="btn-underline" [ngClass]="{'active': filter == 'all'}" href="javascript:void(0);"
+            (click)="filterItems('all')">All</a>
+        </div>
+        <div style="display: inline-block; width: 110px;" class="mr-3 mb-2">
+          <a class="btn-underline" [ngClass]="{'active': filter == 'transfer'}" href="javascript:void(0);"
+            (click)="filterItems('transfer')">Transfers</a>
+        </div>
+
+        <div style="display: inline-block; width: 110px;" class="mr-3">
+          <a class="btn-underline" [ngClass]="{'active': filter == 'transaction'}" href="javascript:void(0);"
+            (click)="filterItems('transaction')">Transactions</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="col-md-16">
+    <app-history-list [combinedItems]="combinedItems"></app-history-list>
+  </div>
+</div>

@@ -1,0 +1,61 @@
+<div class="p-4" style="cursor: pointer;" data-toggle="collapse" [attr.data-target]="'#transactionDetails' + i"
+  aria-expanded="false" [attr.aria-controls]="'transactionDetails' + i">
+  <div class="d-flex align-items-center justify-content-between">
+    <div>
+      <h3 class="d-inline-block mb-1">
+        {{ transaction.stock.name }}
+        {{ transaction.isBuy ? "Market Buy" : "Market Sell" }}
+      </h3>
+      <p class="font-weight-light mb-0">{{ transaction.createdAt | date }}</p>
+    </div>
+    <div class="text-right">
+      <h3 class="mb-1">
+        {{ transaction.totalPrice | currency }}
+      </h3>
+      <p class="font-weight-light mb-0">
+        {{ transaction.quantity }} share{{ transaction.quantity > 1 ? 's' : ''}} at
+        {{ transaction.price | currency }}
+      </p>
+    </div>
+  </div>
+</div>
+<div class="collapse p-0 px-4 pb-4" [id]="'transactionDetails' + i">
+  <div class="row">
+    <div class="col-12 col-md-8 mb-3">
+      <h5 class="mb-1">Stock Name</h5>
+      <a class="font-weight-light mb-0 primary"
+        [routerLink]="['/stocks/'+transaction.stock.symbol]">{{ transaction.stock.name }}</a>
+    </div>
+    <div class="col-12 col-md-8 mb-3">
+      <h5 class="mb-1">Price</h5>
+      <p class="font-weight-light mb-0">{{ transaction.price | currency }}</p>
+    </div>
+    <div class="col-12 col-md-8 mb-3">
+      <h5 class="mb-1">Filled</h5>
+      <p class="font-weight-light mb-0">
+        {{ transaction.quantity }} share{{ transaction.quantity > 1 ? 's' : ''}} at
+        {{ transaction.price | currency }}
+      </p>
+    </div>
+    <div class="col-12 col-md-8 mb-3">
+      <h5 class="mb-1">Quantity</h5>
+      <p class="font-weight-light mb-0">{{ transaction.quantity }}</p>
+    </div>
+    <div class="col-12 col-md-8 mb-3">
+      <h5 class="mb-1">Total</h5>
+      <p class="font-weight-light mb-0">{{ transaction.totalPrice | currency }}</p>
+    </div>
+    <div class="col-12 col-md-8 mb-3">
+      <h5 class="mb-1">Submitted</h5>
+      <p class="font-weight-light mb-0">{{ transaction.createdAt | date }}</p>
+    </div>
+    <div class="col-12 col-md-8 mb-3">
+      <h5 class="mb-1">Completed</h5>
+      <p class="font-weight-light mb-0">{{ transaction.updatedAt | date }}</p>
+    </div>
+    <div class="col-12 col-md-8 mb-3">
+      <h5 class="mb-1">Status</h5>
+      <p class="font-weight-light mb-0">Complete</p>
+    </div>
+  </div>
+</div>

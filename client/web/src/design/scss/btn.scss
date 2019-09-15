@@ -74,6 +74,38 @@
   height: 48px;
 }
 
+.btn-underline {
+  height: 36px;
+  outline: none;
+  color: var(--text-color);
+  font-size: 1em;
+  border: none;
+  border-bottom: 1px solid var(--border-color);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  // justify-content: center;
+  font-family: var(--font-body);
+  font-weight: 500;
+  vertical-align: bottom;
+  text-align: left;
+  width: 100%;
+  cursor: pointer;
+
+  &:hover {
+    color: var(--primary-color);
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.btn-underline.active {
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
 .btn-primary {
   @include btn-color(var(--primary-color));
 }

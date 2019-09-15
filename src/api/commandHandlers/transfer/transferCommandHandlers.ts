@@ -2,7 +2,11 @@ import { Transfer, TransferDocument } from "../../../models/transfer/transfer";
 import { AccountDocument, Account } from "../../../models/account/account";
 import { BankAccountDocument, BankAccount } from "../../../models/bank-account/bank-account";
 import { PortfolioDocument, Portfolio } from "../../../models/portfolio/portfolio";
-import { StockDetailsDocument, OwnedStock } from "../../../models/stock/stockDetails";
+import { StockDetailsDocument, OwnedStock, OwnedStockDocument } from "../../../models/stock/stockDetails";
+import mongoose from 'mongoose';
+import { TransactionDocument } from "../../../models/transaction/transactionModel";
+import { createTransaction } from "../transaction/transactionCommandHandlers";
+import { getAccount } from "../../../api/queryHandlers/account/accountQueryHandlers";
 
 export let createTransfer = (user: string, transfer: Transfer, account: AccountDocument, bankAccount: BankAccountDocument) =>
     new Promise(async (resolve, reject) => {
@@ -38,32 +42,6 @@ const bankAccountTransfer = (amount: number, account: BankAccountDocument) =>
                 resolve(updatedAccount);
             })
             .catch((err: any) => {
-                reject(err)
-            })
-    })
-
-export let buyStock = (stock: StockDetailsDocument, portfolio: PortfolioDocument,
-    quantity: number, price: number) =>
-    new Promise(async (resolve, reject) => {
-        let ownedStock;
-
-        try {
-            ownedStock = await OwnedStock.create({ stock, quantity });
-        } catch (e) {
-            console.log(e)
-            reject(e)
-        }
-
-        console.log(ownedStock)
-
-        portfolio.stocks.push(ownedStock)
-        portfolio.save()
-            .then((portfolio: PortfolioDocument) => {
-                console.log(portfolio)
-                resolve(portfolio);
-            })
-            .catch((err: any) => {
-                console.log(err)
                 reject(err)
             })
     })

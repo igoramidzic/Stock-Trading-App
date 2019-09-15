@@ -7,13 +7,15 @@ import { BankAccountsResolver } from 'src/app/core/resolvers/bankAccounts/bankAc
 import { UserDetailsResolver } from 'src/app/core/resolvers/user-details/user-details.resolver';
 import { AccountResolver } from 'src/app/core/resolvers/account/account.resolver';
 import { TransfersResolver } from 'src/app/core/resolvers/transfers/transfers.resolver';
+import { TransactionsResolver } from 'src/app/core/resolvers/transactions/transactions.resolver';
+import { PortfolioResolver } from 'src/app/core/resolvers/portfolio/portfolio.resolver';
 
 export const ACCOUNT_ROUTES: Routes = [
     {
         path: '',
         pathMatch: 'full',
         component: AccountPageComponent,
-        resolve: { account: AccountResolver },
+        resolve: { account: AccountResolver, portfolio: PortfolioResolver },
         data: {
             title: 'Account'
         }
@@ -29,7 +31,7 @@ export const ACCOUNT_ROUTES: Routes = [
     {
         path: 'history',
         component: HistoryPageComponent,
-        resolve: { transfers: TransfersResolver },
+        resolve: { transfers: TransfersResolver, transactions: TransactionsResolver },
         data: {
             title: 'Account'
         }

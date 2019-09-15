@@ -3,7 +3,7 @@
     <h3>Watchlist</h3>
   </li>
   <li class="list-group-item p-0" *ngFor="let stock of watchlist; let i = index;">
-    <a [routerLink]="['/stocks/' + stock.stockDetails.symbol]">
+    <a [routerLink]="['/stocks/' + stock.stockDetails.symbol]" class="no-highlight">
       <div class="dropdown-item d-flex align-items-center justify-content-between py-2 px-3">
         <span>{{ stock.stockDetails.symbol }}</span>
         <div class="text-right">

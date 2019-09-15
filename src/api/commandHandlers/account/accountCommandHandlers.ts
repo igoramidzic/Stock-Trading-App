@@ -11,3 +11,14 @@ export let createAccount = (balance: number, userId: string) =>
                 reject(error)
             })
     })
+
+export let updateAccountBalance = (account: AccountDocument, balanceChange: number) =>
+    new Promise((resolve, reject) => {
+        account.update({ balance: account.balance + balanceChange })
+            .then((updatedAccount: AccountDocument) => {
+                resolve(updatedAccount)
+            })
+            .catch((error: any) => {
+                reject(error)
+            })
+    })

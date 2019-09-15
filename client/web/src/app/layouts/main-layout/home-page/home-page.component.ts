@@ -32,6 +32,10 @@ export class HomePageComponent implements OnInit {
         description: 'Visit the Banking tab in the Account menu.'
       },
       {
+        title: 'Add stock to Watchlist.',
+        description: 'Search for your favorite stock and add it to your Watchlist.'
+      },
+      {
         title: 'Delete your account.',
         description: 'Visit the Settings tab in the Account menu. I\'ll miss you, ' + this.selfService.user$.value.firstName + '.'
       }

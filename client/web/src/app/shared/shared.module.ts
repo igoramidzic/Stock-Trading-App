@@ -33,11 +33,14 @@ import { LinkedAccountItemComponent } from './components/banking/linked-accounts
 import { MatDialogModule } from '@angular/material/dialog';
 import { DeleteAccountFormComponent } from './components/settings/delete-account-form/delete-account-form.component';
 import { DeleteAccountDialogComponent } from './components/settings/delete-account-dialog/delete-account-dialog.component';
-import { TransferHistoryListComponent } from './components/history/transfer-history-list/transfer-history-list.component';
 import { PortfolioValueComponent } from './components/account/portfolio-value/portfolio-value.component';
 import { SearchStockModalComponent } from './components/stock/search-stock-modal/search-stock-modal.component';
 import { WatchListComponent } from './components/watchlist/watch-list/watch-list.component';
 import { WatchlistBtnComponent } from './components/watchlist/watchlist-btn/watchlist-btn.component';
+import { HistoryListComponent } from './components/history/history-list/history-list.component';
+import { TransactionHistoryItemComponent } from './components/history/transaction-history-item/transaction-history-item.component';
+import { TransferHistoryItemComponent } from './components/history/transfer-history-item/transfer-history-item.component';
+import { OwnedStockComponent } from './components/account/owned-stock/owned-stock.component';
 
 @NgModule({
   declarations: [
@@ -65,11 +68,14 @@ import { WatchlistBtnComponent } from './components/watchlist/watchlist-btn/watc
     LinkedAccountItemComponent,
     DeleteAccountFormComponent,
     DeleteAccountDialogComponent,
-    TransferHistoryListComponent,
     PortfolioValueComponent,
     SearchStockModalComponent,
     WatchListComponent,
-    WatchlistBtnComponent
+    WatchlistBtnComponent,
+    HistoryListComponent,
+    TransactionHistoryItemComponent,
+    TransferHistoryItemComponent,
+    OwnedStockComponent
   ],
   imports: [
     CommonModule,
@@ -111,11 +117,14 @@ import { WatchlistBtnComponent } from './components/watchlist/watchlist-btn/watc
     DeleteAccountFormComponent,
     DeleteAccountDialogComponent,
     MatDialogModule,
-    TransferHistoryListComponent,
     PortfolioValueComponent,
     SearchStockModalComponent,
     WatchListComponent,
-    WatchlistBtnComponent
+    WatchlistBtnComponent,
+    HistoryListComponent,
+    TransactionHistoryItemComponent,
+    TransferHistoryItemComponent,
+    OwnedStockComponent
   ],
   providers: [],
   entryComponents: [DeleteAccountDialogComponent, SearchStockModalComponent]

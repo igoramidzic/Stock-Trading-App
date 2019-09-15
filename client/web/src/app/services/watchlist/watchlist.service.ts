@@ -14,10 +14,8 @@ export class WatchlistService {
 
   getWatchList(): Promise<{ stockDetails: StockDetails, quote: Quote }[]> {
     return new Promise((resolve, reject) => {
-      console.log("Here")
       this.http.get(`${environment.apiBase}/watchlist`)
         .subscribe((res: ClientResponse) => {
-          console.log(res.result.watchlist)
           resolve(res.result.watchlist)
         },
           (err: { error: ClientResponse }) => reject(err.error))

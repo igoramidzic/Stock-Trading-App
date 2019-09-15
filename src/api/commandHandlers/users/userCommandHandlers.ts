@@ -1,6 +1,6 @@
 import { User, UserDocument } from '../../../models/users/userModel'
 import { createAccount } from '../account/accountCommandHandlers';
-import { createPortfolio } from '../portfolioCommandHandlers/portfolioCommandHandlers';
+import { createPortfolio } from '../portfolio/portfolioCommandHandlers';
 
 export let createNewUser = (user: User) => new Promise((resolve, reject) => {
     user.email = user.email.toLowerCase().trim();
@@ -13,6 +13,7 @@ export let createNewUser = (user: User) => new Promise((resolve, reject) => {
             resolve(user);
         })
         .catch((error: any) => {
+            console.log(error)
             reject(error)
         })
 })

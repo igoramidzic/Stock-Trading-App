@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Account } from '../../../../core/models/account/account';
+import { Portfolio } from 'src/app/core/models/portfolio/portfolio';
 
 @Component({
   selector: 'app-portfolio-value',
@@ -9,8 +10,7 @@ import { Account } from '../../../../core/models/account/account';
 export class PortfolioValueComponent implements OnInit {
 
   @Input() account: Account;
-  @Input() stockValue: number;
-  @Input() cashValue: number;
+  @Input() portfolio: Portfolio;
 
   constructor() { }
 

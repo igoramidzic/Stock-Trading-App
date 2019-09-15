@@ -22,6 +22,7 @@ export class WatchlistBtnComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes)
     if (changes.stock)
       this.stock = changes.stock.currentValue;
 

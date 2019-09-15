@@ -1,0 +1,13 @@
+<ul class="list-group">
+  <li class="list-group-item p-0 hover" *ngFor="let combinedItem of combinedItems; let i = index;">
+    <app-transfer-history-item *ngIf="combinedItem.type == 'transfer'" [transfer]="combinedItem.transfer" [i]="i">
+    </app-transfer-history-item>
+
+    <app-transaction-history-item *ngIf="combinedItem.type == 'transaction'" [transaction]="combinedItem.transaction"
+      [i]="i">
+    </app-transaction-history-item>
+  </li>
+  <li class="list-group-item p-4" *ngIf="combinedItems.length == 0">
+    <span class="hint">There are currently no Transfers or Transactions</span>
+  </li>
+</ul>

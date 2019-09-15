@@ -1,8 +1,7 @@
-import { AccountQuery } from "../../../api/queries/account/accountQueries";
 import { Account, AccountDocument } from "../../../models/account/account";
 
-export let getAccount = (query: AccountQuery): Promise<AccountDocument> => new Promise((resolve, reject) => {
-    Account.findOne(query)
+export let getAccount = (userId: string): Promise<AccountDocument> => new Promise((resolve, reject) => {
+    Account.findOne({ userId })
         .then((account: AccountDocument) => {
             resolve(account);
         })

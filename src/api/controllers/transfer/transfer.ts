@@ -6,7 +6,6 @@ import { createTransfer } from "../../../api/commandHandlers/transfer/transferCo
 import { BankAccountDocument } from "../../../models/bank-account/bank-account";
 import mongoose from "mongoose";
 import { getAccount } from "../../../api/queryHandlers/account/accountQueryHandlers";
-import { AccountQuery } from "../../../api/queries/account/accountQueries";
 import { AccountDocument } from "../../../models/account/account";
 import { getTransfers } from "../../../api/queryHandlers/transfer/transferQueryHandlers";
 
@@ -20,7 +19,8 @@ routes.get("/", async (req: Request, res: Response) => {
         .then((transfers: TransferDocument[]) => {
             return res.status(200).json(new ClientResponse(true, { transfers }))
         })
-        .catch(() => {
+        .catch((err: any) => {
+            console.log(err)
             return serverError(res)
         })
 });
@@ -46,7 +46,7 @@ routes.post("/", async (req: Request, res: Response) => {
     else if (transfer.isDeposit && bankAccount.balance < transfer.amount)
         errors.push("Not enough funds in " + bankAccount.name + ".")
 
-    const account: AccountDocument = await getAccount(new AccountQuery(req.user._id));
+    const account: AccountDocument = await getAccount(req.user._id);
 
     if (!account)
         errors.push("Batman account was not found. Delete your account.");
