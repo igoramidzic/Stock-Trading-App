@@ -6,6 +6,7 @@ import { CurrencyPipe } from '@angular/common';
 import { LoadingService } from 'src/app/services/loading/loading.service';
 import { Account } from 'src/app/core/models/account/account';
 import { BehaviorSubject } from 'rxjs';
+import { OwnedStock } from 'src/app/core/models/portfolio/portfolio';
 
 @Component({
   selector: 'app-stocks-page',
@@ -17,6 +18,7 @@ export class StocksPageComponent implements OnInit {
 
   stockDetails: StockDetails;
   account: Account;
+  ownedStock: OwnedStock;
   isWatching: boolean;
   currencySymbol: string = '$';
 
@@ -28,6 +30,7 @@ export class StocksPageComponent implements OnInit {
     this.route.params.subscribe(() => {
       this.stockDetails = this.route.snapshot.data.stockDetails;
       this.account = this.route.snapshot.data.account;
+      this.ownedStock = this.route.snapshot.data.ownedStock;
       this.isWatching = this.route.snapshot.data.isWatching;
 
       this.setPageTitle(this.stockDetails.symbol, this.stockDetails.quote.latestPrice);

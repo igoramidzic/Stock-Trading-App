@@ -1,6 +1,5 @@
 import { PortfolioDocument, Portfolio } from "../../../models/portfolio/portfolio";
 import { OwnedStockDocument } from "../../../models/stock/stockDetails";
-import * as iex from 'iexcloud_api_wrapper';
 
 export let getPortfolio = (userId: string): Promise<PortfolioDocument> => new Promise((resolve, reject) => {
     Portfolio.findOne({ user: userId }).populate(
@@ -16,4 +15,9 @@ export let getPortfolio = (userId: string): Promise<PortfolioDocument> => new Pr
 
         resolve(portfolio);
     })
+});
+
+export let getOwnedStockInPortfolio = (portfolio: PortfolioDocument, symbol: string): Promise<OwnedStockDocument> => new Promise((resolve, reject) => {
+    const ownedStock: OwnedStockDocument = portfolio.stocks.filter(s => s.stock.symbol.toLowerCase() == symbol.toLowerCase())[0]
+    resolve(ownedStock);
 });

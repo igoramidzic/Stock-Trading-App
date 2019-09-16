@@ -1,7 +1,7 @@
 import { Router, Response, Request } from "express";
 import { ClientResponse, serverError } from '../../helpers/helpers'
-import { getPortfolio } from "../../../api/queryHandlers/portfolio/portfolioQueryHandlers";
-import { PortfolioDocument, Portfolio, PortfolioObj } from "../../../models/portfolio/portfolio";
+import { getPortfolio, getOwnedStockInPortfolio } from "../../../api/queryHandlers/portfolio/portfolioQueryHandlers";
+import { PortfolioDocument, PortfolioObj } from "../../../models/portfolio/portfolio";
 import { stockDetailsByIdQueryHandler } from "../../../api/queryHandlers/stockDetails/stockDetailsQueryHandlers";
 import { StockDetailsDocument, OwnedStockDocument, StockDetails } from "../../../models/stock/stockDetails";
 import { AccountDocument } from "../../../models/account/account";
@@ -18,7 +18,13 @@ const routes: Router = Router()
  * Get portfolio
  */
 routes.get("/", async (req: Request, res: Response) => {
-    const portfolio = await getPortfolio(req.user._id);
+    let portfolio;
+
+    try {
+        portfolio = await getPortfolio(req.user._id);
+    } catch (e) {
+        return serverError(res);
+    }
 
     let totalStockValue = 0;
     let stockDetails: any[] = [];
@@ -38,6 +44,28 @@ routes.get("/", async (req: Request, res: Response) => {
 
     return res.status(200).json(new ClientResponse(true, { portfolio: portfolioResult }))
 
+});
+
+/**
+ * Get OwnedStock from Portfolio
+ */
+routes.get("/ownedstock/:symbol", async (req: Request, res: Response) => {
+    const symbol: string = req.params.symbol;
+
+    let portfolio;
+    let ownedStock;
+
+    try {
+        portfolio = await getPortfolio(req.user._id);
+        ownedStock = await getOwnedStockInPortfolio(portfolio, symbol);
+    } catch (error) {
+        return serverError(res);
+    }
+
+    if (ownedStock)
+        return res.status(200).json(new ClientResponse(true, { ownedStock }))
+    else
+        return res.status(200).json(new ClientResponse(true, { ownedStock: null }, ["Stock not found in portfolio."]));
 });
 
 /**
@@ -70,7 +98,7 @@ routes.post("/buy", async (req: Request, res: Response) => {
     const price: number = stockQuote.latestPrice;
 
     if (account.balance < price * quantity)
-        return res.status(400).json(new ClientResponse(false, null, ['Not enough funds in account.']));
+        return res.status(400).json(new ClientResponse(false, null, ['Not enough funds in your account.']));
 
     buyStock(req.user._id, account, stockDetails, portfolio, quantity, price)
         .then(async (transaction: PortfolioDocument) => {
@@ -115,10 +143,10 @@ routes.post("/sell", async (req: Request, res: Response) => {
         return res.status(404).json(new ClientResponse(false, null, ['Stock not found.']));
 
     if (!ownedStock)
-        return res.status(404).json(new ClientResponse(false, null, ['Stock not found in portfolio.']));
+        return res.status(404).json(new ClientResponse(false, null, ['You own 0 shares of ' + stockDetails.symbol]));
 
     if (ownedStock.quantity < quantity)
-        return res.status(404).json(new ClientResponse(false, null, ['Can\'t sell more stocks than owned.']));
+        return res.status(404).json(new ClientResponse(false, null, ['You own only ' + ownedStock.quantity + ' share' + (ownedStock.quantity > 1 ? 's' : '') + ' of ' + ownedStock.stock.symbol + "."]));
 
     // Get stock from IEX
     const stockQuote: Quote = await iex.quote(ownedStock.stock.symbol);

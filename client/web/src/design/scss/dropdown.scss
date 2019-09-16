@@ -33,7 +33,7 @@
   float: left;
   min-width: $dropdown-min-width;
   margin: $dropdown-spacer 0 0; // override default ul
-  @include font-size($dropdown-font-size);
+  // @include font-size($dropdown-font-size);
   //   color: $dropdown-color;
   text-align: left; // Ensures proper alignment if parent has it changed (e.g., modal footer)
   list-style: none;

@@ -9,6 +9,7 @@ import { StockDetailsResolver } from 'src/app/core/resolvers/stock-details/stock
 import { ThemeService } from 'src/app/services/theme/theme.service';
 import { AccountResolver } from 'src/app/core/resolvers/account/account.resolver';
 import { WatchlistResolver, AlreadyWatchingResolver } from 'src/app/core/resolvers/watchlist/watchlist.resolver';
+import { OwnedStockResolver } from 'src/app/core/resolvers/portfolio/ownedstock.resolver';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { WatchlistResolver, AlreadyWatchingResolver } from 'src/app/core/resolve
   ],
   exports: [
   ],
-  providers: [StockDetailsResolver, ThemeService, AccountResolver, WatchlistResolver, AlreadyWatchingResolver]
+  providers: [StockDetailsResolver, ThemeService, AccountResolver, WatchlistResolver, AlreadyWatchingResolver,
+    OwnedStockResolver]
 })
 export class MainLayoutModule { }

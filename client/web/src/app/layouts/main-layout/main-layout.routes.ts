@@ -7,6 +7,7 @@ import { StocksPageComponent } from './stocks-page/stocks-page.component';
 import { StockDetailsResolver } from 'src/app/core/resolvers/stock-details/stock-details.resolver';
 import { AccountResolver } from 'src/app/core/resolvers/account/account.resolver';
 import { WatchlistResolver, AlreadyWatchingResolver } from 'src/app/core/resolvers/watchlist/watchlist.resolver';
+import { OwnedStockResolver } from 'src/app/core/resolvers/portfolio/ownedstock.resolver';
 
 export const MAINLAYOUT_ROUTES: Routes = [
   {
@@ -33,7 +34,7 @@ export const MAINLAYOUT_ROUTES: Routes = [
   {
     path: 'stocks/:symbol',
     canActivate: [SelfGuard],
-    resolve: { stockDetails: StockDetailsResolver, account: AccountResolver },
+    resolve: { stockDetails: StockDetailsResolver, account: AccountResolver, ownedStock: OwnedStockResolver },
     children: [{
       path: '',
       component: StocksPageComponent,

@@ -7,6 +7,8 @@ import { StockDetails } from 'src/app/core/models/stock/stockDetails';
 import { Transaction } from 'src/app/core/models/transaction/transaction';
 import { ClientResponse } from 'src/app/core/models/response/clientResponse';
 import { AccountService } from 'src/app/services/account/account.service';
+import { OwnedStock } from 'src/app/core/models/portfolio/portfolio';
+import { CurrencyPipe } from '@angular/common'
 
 @Component({
   selector: 'app-buy-stock-card',
@@ -19,15 +21,17 @@ export class BuyStockCardComponent implements OnInit {
   @Input() stockDetails: StockDetails;
   @Input() quote: StockQuote;
   @Input() account: Account;
+  @Input() ownedStock: OwnedStock;
   @Output() boughtStockEmitter: EventEmitter<boolean> = new EventEmitter();
   shareCountForm: FormGroup;
   estimatedCost: number = 0;
   errors: string[];
   done: boolean;
+  doneMessage: string;
   isBuy: boolean = true;
 
   constructor(private fb: FormBuilder, private portfolioService: PortfolioService,
-    private accountService: AccountService) { }
+    private accountService: AccountService, private cp: CurrencyPipe) { }
 
   ngOnInit() {
     this.shareCountForm = this.fb.group({
@@ -37,6 +41,16 @@ export class BuyStockCardComponent implements OnInit {
     this.shareCountForm.controls['shareCount'].valueChanges.subscribe((shareCount: number) => {
       this.estimatedCost = this.quote.latestPrice * shareCount;
     })
+  }
+
+  changeBuySell(isBuy: boolean): void {
+    if (this.isBuy != isBuy) {
+      this.errors = [];
+      this.done = false;
+      this.doneMessage = "";
+    }
+
+    this.isBuy = isBuy;
   }
 
   placeOrder(): void {
@@ -50,10 +64,12 @@ export class BuyStockCardComponent implements OnInit {
 
     let action: Promise<Transaction>;
 
+    const shareCount = this.shareCountForm.value.shareCount
+
     if (this.isBuy)
-      action = this.portfolioService.buyStock(this.stockDetails._id, this.shareCountForm.value.shareCount);
+      action = this.portfolioService.buyStock(this.stockDetails._id, shareCount);
     else
-      action = this.portfolioService.sellStock(this.stockDetails._id, this.shareCountForm.value.shareCount);
+      action = this.portfolioService.sellStock(this.stockDetails._id, shareCount);
 
     action.then((transaction: Transaction) => {
       this.accountService.getAccount()
@@ -65,12 +81,32 @@ export class BuyStockCardComponent implements OnInit {
           this.shareCountForm.reset();
           this.done = true;
           this.isSubmitting = false;
-          if (this.isBuy)
+          if (this.isBuy) {
+            this.doneMessage =
+              "Purchased " + shareCount + " share" + (shareCount > 1 ? 's' : '') + " at " + this.cp.transform(transaction.price) + ".";
             this.boughtStockEmitter.emit(true);
+          } else {
+            this.doneMessage =
+              "Sold " + shareCount + " share" + (shareCount > 1 ? 's' : '') + " at " + this.cp.transform(transaction.price) + ".";
+          }
         })
+      this.portfolioService.getOwnedStock(this.stockDetails.symbol)
+        .then((ownedStock: OwnedStock) => {
+          this.ownedStock = ownedStock
+        })
+        .catch((err: any) => { })
     }).catch((err: ClientResponse) => {
       this.isSubmitting = false;
       this.errors = err.messages
+
+      this.accountService.getAccount()
+        .then((account: Account) => {
+          this.account = account
+        })
+        .catch((err: any) => { })
+      this.portfolioService.getOwnedStock(this.stockDetails.symbol)
+        .then((ownedStock: OwnedStock) => this.ownedStock = ownedStock)
+        .catch((err: any) => { })
     })
   }
 }
