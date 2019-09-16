@@ -138,6 +138,10 @@ i {
   }
 }
 
+.border-right {
+  border-color: var(--border-color) !important;
+}
+
 .primary {
   color: var(--primary-color);
 }
