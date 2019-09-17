@@ -41,6 +41,7 @@ import { HistoryListComponent } from './components/history/history-list/history-
 import { TransactionHistoryItemComponent } from './components/history/transaction-history-item/transaction-history-item.component';
 import { TransferHistoryItemComponent } from './components/history/transfer-history-item/transfer-history-item.component';
 import { OwnedStockComponent } from './components/account/owned-stock/owned-stock.component';
+import { StockDetailsComponent } from './components/stock/stock-details/stock-details.component';
 
 @NgModule({
   declarations: [
@@ -75,7 +76,8 @@ import { OwnedStockComponent } from './components/account/owned-stock/owned-stoc
     HistoryListComponent,
     TransactionHistoryItemComponent,
     TransferHistoryItemComponent,
-    OwnedStockComponent
+    OwnedStockComponent,
+    StockDetailsComponent
   ],
   imports: [
     CommonModule,
@@ -124,7 +126,8 @@ import { OwnedStockComponent } from './components/account/owned-stock/owned-stoc
     HistoryListComponent,
     TransactionHistoryItemComponent,
     TransferHistoryItemComponent,
-    OwnedStockComponent
+    OwnedStockComponent,
+    StockDetailsComponent
   ],
   providers: [],
   entryComponents: [DeleteAccountDialogComponent, SearchStockModalComponent]

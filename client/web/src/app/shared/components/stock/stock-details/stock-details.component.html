@@ -1,0 +1,53 @@
+<h3>About</h3>
+
+<hr class="my-3">
+
+<p class="mb-5 font-weight-light pr-md-5 description">
+  <span *ngIf="showMore">
+    {{ stockDetails.company.description }}
+  </span>
+  <span *ngIf="!showMore">
+    {{ stockDetails.company.description | shorten : 300 }}
+  </span>
+  <a *ngIf="stockDetails.company.description.length > 300" href="javascript:void(0);" (click)="showMore = !showMore"
+    class="primary font-weight-normal">Read
+    {{ showMore ? 'less.' : 'more.' }}</a>
+</p>
+
+<div class="row">
+  <div class="col-12 col-md-8 col-lg-6 mb-3">
+    <h5 class="mb-1">CEO</h5>
+    <a class="font-weight-light mb-0 primary" target="_blank"
+      [href]="'https://www.google.com/search?q=' + stockDetails.company.CEO + '&btnI='">
+      {{ stockDetails.company.CEO }}
+    </a>
+  </div>
+  <div class="col-12 col-md-8 col-lg-6 mb-3">
+    <h5 class="mb-1">Employees</h5>
+    <p class="font-weight-light mb-0">{{ stockDetails.company.employees | number }}</p>
+  </div>
+  <div class="col-12 col-md-8 col-lg-6 mb-3">
+    <h5 class="mb-1">Region</h5>
+    <p class="font-weight-light mb-0">{{ stockDetails.region }}</p>
+  </div>
+  <div class="col-12 col-md-8 col-lg-6 mb-3">
+    <h5 class="mb-1">Market Cap</h5>
+    <p class="font-weight-light mb-0">{{ stockDetails.quote.marketCap | number }}</p>
+  </div>
+  <div class="col-12 col-md-8 col-lg-6 mb-3">
+    <h5 class="mb-1">Price-Earnings Ratio</h5>
+    <p class="font-weight-light mb-0">{{ stockDetails.quote.peRatio | number }}</p>
+  </div>
+  <div class="col-12 col-md-8 col-lg-6 mb-3">
+    <h5 class="mb-1">Average Volume</h5>
+    <p class="font-weight-light mb-0">{{ stockDetails.quote.avgTotalVolume | number }}</p>
+  </div>
+  <div class="col-12 col-md-8 col-lg-6 mb-3">
+    <h5 class="mb-1">52 Week High</h5>
+    <p class="font-weight-light mb-0">{{ stockDetails.quote.week52High | currency }}</p>
+  </div>
+  <div class="col-12 col-md-8 col-lg-6 mb-3">
+    <h5 class="mb-1">52 Week Low</h5>
+    <p class="font-weight-light mb-0">{{ stockDetails.quote.week52Low | currency }}</p>
+  </div>
+</div>

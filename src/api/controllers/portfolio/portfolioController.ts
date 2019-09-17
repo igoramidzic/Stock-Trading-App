@@ -143,7 +143,7 @@ routes.post("/sell", async (req: Request, res: Response) => {
         return res.status(404).json(new ClientResponse(false, null, ['Stock not found.']));
 
     if (!ownedStock)
-        return res.status(404).json(new ClientResponse(false, null, ['You own 0 shares of ' + stockDetails.symbol]));
+        return res.status(404).json(new ClientResponse(false, null, ['You own 0 shares of ' + stockDetails.symbol + "."]));
 
     if (ownedStock.quantity < quantity)
         return res.status(404).json(new ClientResponse(false, null, ['You own only ' + ownedStock.quantity + ' share' + (ownedStock.quantity > 1 ? 's' : '') + ' of ' + ownedStock.stock.symbol + "."]));
