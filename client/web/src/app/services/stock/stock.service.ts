@@ -24,11 +24,11 @@ export class StockService {
     })
   }
 
-  stockDetails(symbol: string): Promise<{ quote: StockQuote, company: StockCompany }> {
+  stockDetails(symbol: string): Promise<StockDetails> {
     return new Promise((resolve, reject) => {
       this.http.get(`${environment.apiBase}/stock/${symbol}/details`)
         .subscribe((res: ClientResponse) => {
-          const details: { details: StockDetails, quote: StockQuote, company: StockCompany } = res.result.details;
+          const details: StockDetails = res.result.details;
           resolve(details);
         }, (err: { error: ClientResponse }) => {
           reject(err.error);
@@ -36,7 +36,7 @@ export class StockService {
     })
   }
 
-  quote(symbol: string): Promise<{ quote: StockQuote, company: StockCompany }> {
+  quote(symbol: string): Promise<StockQuote> {
     return new Promise((resolve, reject) => {
       this.http.get(`${environment.apiBase}/stock/${symbol}/quote`)
         .subscribe((res: ClientResponse) => {
@@ -47,7 +47,7 @@ export class StockService {
     })
   }
 
-  company(symbol: string): Promise<{ quote: StockQuote, company: StockCompany }> {
+  company(symbol: string): Promise<StockCompany> {
     return new Promise((resolve, reject) => {
       this.http.get(`${environment.apiBase}/stock/${symbol}/company`)
         .subscribe((res: ClientResponse) => {

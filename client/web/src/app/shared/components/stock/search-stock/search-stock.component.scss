@@ -1,0 +1,144 @@
+.search-wrapper {
+  z-index: 100;
+}
+
+.search-container {
+  width: 100%;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  transition: .25s ease;
+  position: absolute;
+  top: -18px;
+  background-color: var(--background);
+
+  &:focus-within,
+  &:hover {
+    box-shadow: var(--box-shadow);
+    border-color: transparent;
+    color: var(--text-color);
+
+    input {
+      &::placeholder {
+        color: var(--text-color);
+      }
+    }
+
+    svg {
+      color: var(--text-color);
+    }
+  }
+
+  svg {
+    transition: all .25s ease;
+    color: var(--input-placeholder);
+    position: absolute;
+    top: 9px;
+    left: 24px;
+  }
+}
+
+input {
+  height: 36px;
+  width: 100%;
+  padding: 0 20px 0 52px;
+  // font-size: 13px;
+  box-sizing: border-box;
+  background: transparent;
+  border: 0px solid transparent;
+  border-radius: 4px;
+  color: var(--h-color);
+  outline: none;
+  display: block;
+  font-family: var(--font-body);
+  transition: .25s ease-in-out;
+
+  &::placeholder {
+    transition: color .25s;
+    color: var(--input-placeholder);
+  }
+}
+
+.search input:focus+.search-ac {
+  display: block;
+}
+
+.search-ac {
+  margin: 0;
+  display: none;
+  z-index: 10;
+}
+
+.search-ac:hover {
+  display: block;
+
+}
+
+.search-ac li {
+  display: block;
+  padding: 0;
+}
+
+.search-ac li:first-child {
+  margin-top: -1px;
+}
+
+.search-ac li:first-child:before {
+  border-bottom: 5px solid #c4c7d7;
+  top: -11px;
+}
+
+.search-ac li:first-child:after {
+  border-bottom: 5px solid #fdfdfd;
+  top: -10px;
+}
+
+.search-ac li:first-child:hover:before,
+.search-ac li:first-child:hover:after {
+  display: none;
+}
+
+.search-ac li:last-child {
+  margin-bottom: -1px;
+}
+
+.search-ac a {
+  display: block;
+  margin: 0 -1px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  color: var(--text-color);
+}
+
+::ng-deep .highlight {
+  color: var(--primary-color);
+}
+
+.search-ac a:before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  margin-top: -9px;
+  width: 18px;
+  height: 18px;
+}
+
+.search-ac a:hover {
+  background-color: var(--background-hover);
+}
+
+:-moz-placeholder {
+  color: #a7aabc;
+  font-weight: 200;
+}
+
+::-webkit-input-placeholder {
+  color: #a7aabc;
+  font-weight: 200;
+  line-height: 14px;
+}
+
+::-webkit-search-decoration,
+::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+}

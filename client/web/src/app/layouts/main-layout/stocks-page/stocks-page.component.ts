@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { StockDetails } from 'src/app/core/models/stock/stockDetails';
 import { Title } from '@angular/platform-browser';
@@ -7,6 +7,7 @@ import { LoadingService } from 'src/app/services/loading/loading.service';
 import { Account } from 'src/app/core/models/account/account';
 import { BehaviorSubject } from 'rxjs';
 import { OwnedStock } from 'src/app/core/models/portfolio/portfolio';
+import { StockService } from 'src/app/services/stock/stock.service';
 
 @Component({
   selector: 'app-stocks-page',
@@ -14,7 +15,7 @@ import { OwnedStock } from 'src/app/core/models/portfolio/portfolio';
   styleUrls: ['./stocks-page.component.scss'],
   providers: [CurrencyPipe]
 })
-export class StocksPageComponent implements OnInit {
+export class StocksPageComponent implements OnInit, OnDestroy {
 
   stockDetails: StockDetails;
   account: Account;
@@ -22,8 +23,10 @@ export class StocksPageComponent implements OnInit {
   isWatching: boolean;
   currencySymbol: string = '$';
 
+  refreshStockQuote;
+
   constructor(private route: ActivatedRoute, private titleService: Title,
-    private cp: CurrencyPipe) {
+    private cp: CurrencyPipe, private stockService: StockService) {
   }
 
   ngOnInit() {
@@ -35,6 +38,14 @@ export class StocksPageComponent implements OnInit {
 
       this.setPageTitle(this.stockDetails.symbol, this.stockDetails.quote.latestPrice);
     })
+
+    setInterval(() => {
+      this.updateStockDetails();
+    }, 15000)
+  }
+
+  ngOnDestroy(): void {
+    clearInterval(this.refreshStockQuote);
   }
 
   setPageTitle(symbol: string, price: number): void {
@@ -42,5 +53,13 @@ export class StocksPageComponent implements OnInit {
     setTimeout(() => {
       this.titleService.setTitle(symbol + " - " + this.cp.transform(price) + ' | Batman')
     }, 0);
+  }
+
+  updateStockDetails(): void {
+    this.stockService.stockDetails(this.stockDetails.symbol)
+      .then((stockDetails: StockDetails) => {
+        this.stockDetails = stockDetails;
+      })
+      .catch((err) => console.log(err))
   }
 }

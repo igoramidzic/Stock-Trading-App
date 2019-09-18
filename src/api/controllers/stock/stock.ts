@@ -40,7 +40,8 @@ routes.get("/:symbol/details", (req: Request, res: Response) => {
                 { details: { ...result[0].toJSON(), quote: result[1], company: result[2] } })
             return res.status(200).json(response);
         })
-        .catch(() => {
+        .catch((err) => {
+            console.log(err)
             const response = new ClientResponse(false, null)
             response.addMessage("This stock could not be found.");
             return res.status(404).json(response);
