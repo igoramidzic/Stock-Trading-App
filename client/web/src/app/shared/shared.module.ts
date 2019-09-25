@@ -3,6 +3,7 @@ import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
 
 import { NgPipesModule } from "ngx-pipes";
+import { ChartsModule } from 'ng2-charts';
 import { FormsModule } from "@angular/forms";
 import { ReactiveFormsModule } from "@angular/forms";
 import { ApplicationLoaderComponent } from "./components/loaders/application-loader/application-loader.component";
@@ -91,7 +92,8 @@ import { SearchStockComponent } from './components/stock/search-stock/search-sto
     NgPipesModule,
     Ng2OdometerModule,
     CurrencyMaskModule,
-    MatDialogModule
+    MatDialogModule,
+    ChartsModule
   ],
   exports: [
     RouterModule,

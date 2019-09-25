@@ -1,7 +1,7 @@
-<div class="container-fluid main-container" *ngIf="stockDetails">
-  <div class="row justify-content-between">
-    <div class="col-md-16 mb-4">
-      <div class="d-flex align-items-top justify-content-between mb-4">
+<div class="container-fluid main-container pb-5" *ngIf="stockDetails">
+  <div class="row justify-content-between mb-5">
+    <div class="col-md-16 mb-4 mb-md-0">
+      <div class="d-flex align-items-top justify-content-between">
         <div>
           <h2 class="mb-1">{{ stockDetails.name | shorten : 30 : '...'}}</h2>
           <h2 class="font-weight-normal">
@@ -11,12 +11,7 @@
             [percentChange]="stockDetails.quote.changePercent"></app-price-change-today>
         </div>
       </div>
-      <!-- <div class="mb-5">
-        <app-stock-line-chart></app-stock-line-chart>
-      </div> -->
-      <div>
-        <app-stock-details [stockDetails]="stockDetails"></app-stock-details>
-      </div>
+      <app-stock-line-chart [quote]="stockDetails.quote"></app-stock-line-chart>
     </div>
     <div class="col-md-8">
       <app-buy-stock-card (boughtStockEmitter)="isWatching = true" [stockDetails]="stockDetails" [account]="account"
@@ -25,6 +20,12 @@
       <div class="p-4">
         <app-watchlist-btn [watching]="isWatching" [stock]="stockDetails"></app-watchlist-btn>
       </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-16">
+      <app-stock-details [stockDetails]="stockDetails"></app-stock-details>
     </div>
   </div>
 </div>
