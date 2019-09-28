@@ -58,6 +58,7 @@ export class StocksPageComponent implements OnInit, OnDestroy {
   updateStockDetails(): void {
     this.stockService.stockDetails(this.stockDetails.symbol)
       .then((stockDetails: StockDetails) => {
+        // stockDetails.quote.latestPrice = this.stockDetails.quote.latestPrice + Math.random() * 5 - 2.5;
         this.stockDetails = stockDetails;
       })
       .catch((err) => console.log(err))

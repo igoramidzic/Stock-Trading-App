@@ -13,9 +13,9 @@ export class StockLineChartComponent implements OnInit, OnChanges {
   @Input() quote: StockQuote;
 
   public lineChartData: ChartDataSets[] = [
-    { lineTension: 0 }
+    { data: [], lineTension: 0 }
   ];
-  public lineChartLabels: Label[] = ['', ''];
+  public lineChartLabels: Label[] = [];
   public lineChartOptions: (ChartOptions) = {
     responsive: true,
     hover: {
@@ -34,6 +34,7 @@ export class StockLineChartComponent implements OnInit, OnChanges {
   public lineChartColors: Color[] = [
     { // green
       borderWidth: 2,
+      borderJoinStyle: 'bevel',
       backgroundColor: 'rgba(0, 0, 0, 0)',
       borderColor: 'rgba(43, 208, 186, 1)',
       pointBackgroundColor: 'rgba(0,0,0,0)',
@@ -42,6 +43,8 @@ export class StockLineChartComponent implements OnInit, OnChanges {
       pointHoverBorderColor: 'rgba(0,0,0,0)'
     },
     { // red
+      borderWidth: 2,
+      borderJoinStyle: 'bevel',
       backgroundColor: 'rgba(0,0,0,0)',
       borderColor: 'rgba(209, 65, 40, 1)',
       pointBackgroundColor: 'rgba(0,0,0,0)',
@@ -70,23 +73,32 @@ export class StockLineChartComponent implements OnInit, OnChanges {
   }
 
   updateLineColor(): void {
-    if (this.lineChartData[0].data[0] <= this.lineChartData[0].data[this.lineChartData[0].data.length - 1])
+    let i = this.lineChartData[0].data.length;
+    while (!this.lineChartData[0].data[i]) { i-- }
+    if (this.lineChartData[0].data[1] <= this.lineChartData[0].data[i])
       this.lineChartColors[0].borderColor = 'rgba(43, 208, 186, 1)';
     else
       this.lineChartColors[0].borderColor = 'rgba(209, 65, 40, 1)';
   }
 
   newStockUpdate(quote: StockQuote): void {
-    this.lineChartData[0].data = [quote.previousClose, quote.latestPrice];
-    this.lineChartLabels = ['', ''];
+    for (let i = 0; i < 50; i++) {
+      this.lineChartLabels.push("");
+      this.lineChartData[0].data.push(null)
+    }
+    this.lineChartData[0].data[1] = quote.previousClose;
+    this.lineChartData[0].data[2] = quote.latestPrice;
     this.updateLineColor();
     this.chart.update();
   }
 
   sameStockUpdate(quote: StockQuote): void {
     if (this.lineChartData[0].data && quote) {
-      this.lineChartData[0].data.push(quote.latestPrice);
-      this.lineChartLabels.push("");
+
+      let i = this.lineChartData[0].data.length;
+      while (!this.lineChartData[0].data[i]) { i-- }
+
+      this.lineChartData[0].data[i + 1] = quote.latestPrice;
       this.updateLineColor();
       this.chart.update();
     }
