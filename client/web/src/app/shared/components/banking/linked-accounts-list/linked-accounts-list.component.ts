@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { BankAccount } from 'src/app/core/models/banking/banking';
 import { BankingService } from 'src/app/services/banking/banking.service';
 

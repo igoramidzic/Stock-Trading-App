@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { StockQuote } from 'src/app/core/models/stock/quote';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Account } from 'src/app/core/models/account/account';
@@ -15,7 +15,7 @@ import { CurrencyPipe } from '@angular/common'
   templateUrl: './buy-stock-card.component.html',
   styleUrls: ['./buy-stock-card.component.scss']
 })
-export class BuyStockCardComponent implements OnInit {
+export class BuyStockCardComponent implements OnInit, OnChanges {
 
   isSubmitting: boolean = false;
   @Input() stockDetails: StockDetails;
@@ -41,6 +41,11 @@ export class BuyStockCardComponent implements OnInit {
     this.shareCountForm.controls['shareCount'].valueChanges.subscribe((shareCount: number) => {
       this.estimatedCost = this.quote.latestPrice * shareCount;
     })
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (this.shareCountForm)
+      this.estimatedCost = changes.quote.currentValue.latestPrice * this.shareCountForm.controls['shareCount'].value;
   }
 
   changeBuySell(isBuy: boolean): void {

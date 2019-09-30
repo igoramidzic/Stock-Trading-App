@@ -35,17 +35,21 @@ label {
     border: 1px solid var(--primary-color);
   }
 
+  &:disabled {
+    background: var(--input-background);
+    border: 1px solid var(--input-background);
+  }
+}
+
+.textarea.show-errors,
+.input.show-errors,
+.select.show-errors {
   &.ng-touched.ng-invalid {
     border: 1px solid map-get($colors, "red");
   }
 
   &.ng-valid.ng-touched {
     // border-bottom: 3px solid var(--green);
-  }
-
-  &:disabled {
-    background: var(--input-background);
-    border: 1px solid var(--input-background);
   }
 }
 

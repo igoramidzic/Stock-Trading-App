@@ -45,6 +45,7 @@ import { OwnedStockComponent } from './components/account/owned-stock/owned-stoc
 import { StockDetailsComponent } from './components/stock/stock-details/stock-details.component';
 import { StockLineChartComponent } from './components/charts/stock-line-chart/stock-line-chart.component';
 import { SearchStockComponent } from './components/stock/search-stock/search-stock.component';
+import { RemoveLinkedAccountDialogComponent } from './components/banking/remove-linked-account-dialog/remove-linked-account-dialog.component';
 
 @NgModule({
   declarations: [
@@ -82,7 +83,8 @@ import { SearchStockComponent } from './components/stock/search-stock/search-sto
     OwnedStockComponent,
     StockDetailsComponent,
     StockLineChartComponent,
-    SearchStockComponent
+    SearchStockComponent,
+    RemoveLinkedAccountDialogComponent
   ],
   imports: [
     CommonModule,
@@ -139,6 +141,6 @@ import { SearchStockComponent } from './components/stock/search-stock/search-sto
     SearchStockComponent
   ],
   providers: [],
-  entryComponents: [DeleteAccountDialogComponent, SearchStockModalComponent]
+  entryComponents: [DeleteAccountDialogComponent, SearchStockModalComponent, RemoveLinkedAccountDialogComponent]
 })
 export class SharedModule { }

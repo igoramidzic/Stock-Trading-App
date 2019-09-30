@@ -13,6 +13,7 @@ export class BankingPageComponent implements OnInit {
 
   bankAccounts: BankAccount[];
   account: Account;
+  accountRemovedMessage: boolean;
 
   constructor(private route: ActivatedRoute) { }
 
@@ -23,10 +24,12 @@ export class BankingPageComponent implements OnInit {
 
   accountCreated(bankAccount: BankAccount): void {
     this.bankAccounts.push(bankAccount);
+    this.accountRemovedMessage = false;
   }
 
   accountDeleted(bankAccount: BankAccount): void {
     this.bankAccounts = this.bankAccounts.filter(a => a._id != bankAccount._id);
+    this.accountRemovedMessage = true;
   }
 
   transferCompleted(transfer: Transfer): void {

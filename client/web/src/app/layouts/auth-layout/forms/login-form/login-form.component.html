@@ -1,10 +1,10 @@
 <form (ngSubmit)="login()" [formGroup]="loginForm">
   <div class="mb-5">
     <label class="mb-2" for="email">Email or Username</label>
-    <input type="text" name="email" formControlName="email" class="input input-lg mb-2">
+    <input type="text" name="email" formControlName="email" class="input input-lg mb-2 show-errors">
 
     <label class="mb-2" for="password">Password</label>
-    <input type="password" name="password" formControlName="password" class="input input-lg mb-2">
+    <input type="password" name="password" formControlName="password" class="input input-lg mb-2 show-errors">
 
     <a class="primary" [routerLink]="['/signup']">Don't have an account? Sign up</a>
 

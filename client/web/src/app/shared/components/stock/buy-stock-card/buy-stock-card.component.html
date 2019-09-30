@@ -11,8 +11,7 @@
     <div class="pl-4 pr-4 pt-2 pb-2">
       <form [formGroup]="shareCountForm" class="form-group">
         <label class="d-flex align-items-center justify-content-between lg" for="shares">
-          <div
-            [ngClass]="{ 'danger': shareCountForm.controls['shareCount'].touched && shareCountForm.controls['shareCount'].invalid }">
+          <div>
             Shares</div>
           <input style="max-width: 82px;" formControlName="shareCount" min="0" step="1" placeholder="0" type="number"
             class="input text-right">
