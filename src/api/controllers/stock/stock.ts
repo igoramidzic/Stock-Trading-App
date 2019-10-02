@@ -4,7 +4,7 @@ import { ClientResponse, serverError } from '../../helpers/helpers'
 import { StockDetails, StockDetailsDocument } from "./../../../models/stock/stockDetails";
 import { stockDetailsListByFragmentQueryHandler, stockDetailsBySymbolQueryHandler } from '../../queryHandlers/stockDetails/stockDetailsQueryHandlers';
 import { StockDetailsByFragmentQuery, StockDetailsBySymbolQuery } from '../../queries/stockDetail/stockDetailQueries';
-import { Company, Quote, NewsItem } from 'iexcloud_api_wrapper';
+import { Company, Quote, NewsItem, Dividends } from 'iexcloud_api_wrapper';
 
 const routes: Router = Router();
 
@@ -87,6 +87,22 @@ routes.get("/:symbol/news", (req: Request, res: Response) => {
     iex.news(req.params.symbol, req.query.last)
         .then((news: NewsItem[]) => {
             const response = new ClientResponse(true, { news })
+            return res.status(200).json(response);
+        })
+        .catch((err) => {
+            const response = new ClientResponse(false, null)
+            response.addMessage("This stock could not be found.");
+            return res.status(404).json(response);
+        })
+});
+
+/**
+ * Get stock upcoming dividends
+ */
+routes.get("/:symbol/dividends", (req: Request, res: Response) => {
+    iex.dividends(req.params.symbol)
+        .then((dividends: Dividends[]) => {
+            const response = new ClientResponse(true, { dividends })
             return res.status(200).json(response);
         })
         .catch((err) => {

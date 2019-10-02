@@ -49,9 +49,7 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": [
-              // "./node_modules/chart.js/src/chart.js"
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {

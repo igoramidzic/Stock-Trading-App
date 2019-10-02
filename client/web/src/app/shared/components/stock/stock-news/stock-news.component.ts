@@ -47,4 +47,12 @@ export class StockNewsComponent implements OnInit, OnChanges {
       .catch(() => { })
       .finally(() => this.loadingMoreNews = false)
   }
+
+  reloadNews(): void {
+    this.newsItems = null;
+    if (this.showGetMoreNews)
+      this.getNews(this.symbol);
+    else
+      this.getMoreNews();
+  }
 }
