@@ -1,0 +1,18 @@
+<div class="d-flex align-items-center justify-content-between mb-4">
+  <h3 class="hint">Most Active</h3>
+  <a href="javascript:void(0)" (click)="updateList()" class="hint" *ngIf="stockService.allowReloadMostActive">
+    <i class="fas fa-redo-alt"></i>
+    Reload</a>
+</div>
+
+<div class="row">
+  <div class="col-12 col-sm-6 col-md-8 col-lg-6 mb-4" *ngFor="let quote of list">
+    <app-stock-list-item [quote]="quote"></app-stock-list-item>
+  </div>
+</div>
+
+<div class="p-5 text-center" *ngIf="!list">
+  <div class="d-inline-block">
+    <app-main-loader [color]="'primary'"></app-main-loader>
+  </div>
+</div>

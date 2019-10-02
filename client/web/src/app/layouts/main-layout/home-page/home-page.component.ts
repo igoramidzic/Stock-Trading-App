@@ -3,6 +3,8 @@ import { SelfService } from 'src/app/services/self/self.service';
 import { StockDetails } from 'src/app/core/models/stock/stockDetails';
 import { WatchlistService } from 'src/app/services/watchlist/watchlist.service';
 import { ActivatedRoute } from '@angular/router';
+import { StockService } from 'src/app/services/stock/stock.service';
+import { StockQuote } from 'src/app/core/models/stock/quote';
 
 @Component({
   selector: 'app-home-page',
@@ -14,8 +16,8 @@ export class HomePageComponent implements OnInit {
   thingsToDo: ThingToDo[];
   watchlist: StockDetails[];
 
-  constructor(public selfService: SelfService, private watchlistService: WatchlistService,
-    private route: ActivatedRoute) { }
+  constructor(public selfService: SelfService,
+    private route: ActivatedRoute, private stockService: StockService) { }
 
   ngOnInit() {
     this.thingsToDo = [

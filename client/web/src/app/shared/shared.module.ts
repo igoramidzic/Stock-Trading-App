@@ -48,6 +48,10 @@ import { SearchStockComponent } from './components/stock/search-stock/search-sto
 import { RemoveLinkedAccountDialogComponent } from './components/banking/remove-linked-account-dialog/remove-linked-account-dialog.component';
 import { PopularStocksComponent } from './components/stock/popular-stocks/popular-stocks.component';
 import { StockNewsComponent } from './components/stock/stock-news/stock-news.component';
+import { GainersListComponent } from './components/stock/lists/gainers-list/gainers-list.component';
+import { StockListItemComponent } from './components/stock/lists/stock-list-item/stock-list-item.component';
+import { LosersListComponent } from './components/stock/lists/losers-list/losers-list.component';
+import { MostactiveListComponent } from './components/stock/lists/mostactive-list/mostactive-list.component';
 
 @NgModule({
   declarations: [
@@ -88,7 +92,11 @@ import { StockNewsComponent } from './components/stock/stock-news/stock-news.com
     SearchStockComponent,
     RemoveLinkedAccountDialogComponent,
     PopularStocksComponent,
-    StockNewsComponent
+    StockNewsComponent,
+    GainersListComponent,
+    StockListItemComponent,
+    LosersListComponent,
+    MostactiveListComponent
   ],
   imports: [
     CommonModule,
@@ -144,7 +152,11 @@ import { StockNewsComponent } from './components/stock/stock-news/stock-news.com
     NavSearchComponent,
     SearchStockComponent,
     PopularStocksComponent,
-    StockNewsComponent
+    StockNewsComponent,
+    GainersListComponent,
+    StockListItemComponent,
+    LosersListComponent,
+    MostactiveListComponent
   ],
   providers: [],
   entryComponents: [DeleteAccountDialogComponent, SearchStockModalComponent, RemoveLinkedAccountDialogComponent]

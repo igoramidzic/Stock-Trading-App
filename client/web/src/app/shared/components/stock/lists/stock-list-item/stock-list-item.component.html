@@ -1,0 +1,14 @@
+<a [routerLink]="['stocks/' + quote.symbol]" class="hover no-highlight">
+  <div class="px-2 py-1 text-white" [ngClass]="{'green-bg': quote.change >= 0, 'red-bg': quote.change < 0}">
+    {{quote.symbol}}
+  </div>
+  <div class="p-2 d-flex align-items-start flex-column list-group-item p-0 border-top-0" style="height: 112px;">
+    <p class="mb-auto">{{ quote.companyName }}</p>
+    <div class="" [ngClass]="{'green': quote.change >= 0, 'red': quote.change < 0}">
+      <h3 class="mb-1">{{ quote.latestPrice | currency }}</h3>
+      <p class="font-weight-light">
+        {{ quote.changePercent >= 0 ? '+' : '-' }}{{ (quote.changePercent > 0 ? quote.changePercent*100 : quote.changePercent*-100) | number : '1.2-2'}}%
+      </p>
+    </div>
+  </div>
+</a>

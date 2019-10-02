@@ -25,10 +25,12 @@
 
   <div class="row">
     <div class="col-md-16">
-      <div class="mb-5">
+      <div>
         <app-stock-details [stockDetails]="stockDetails"></app-stock-details>
       </div>
-      <app-stock-news [symbol]="stockDetails.symbol"></app-stock-news>
+      <div *ngIf="stockDetails.type == 'cs'" class="mt-5">
+        <app-stock-news [symbol]="stockDetails.symbol"></app-stock-news>
+      </div>
     </div>
   </div>
 </div>

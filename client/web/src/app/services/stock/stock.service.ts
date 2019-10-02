@@ -6,11 +6,20 @@ import { StockQuote } from 'src/app/core/models/stock/quote';
 import { StockCompany } from 'src/app/core/models/stock/company';
 import { StockDetails } from 'src/app/core/models/stock/stockDetails';
 import { StockNews } from 'src/app/core/models/stock/news';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StockService {
+
+  mostActiveList: BehaviorSubject<StockQuote[]> = new BehaviorSubject(null);
+  topGainersList: BehaviorSubject<StockQuote[]> = new BehaviorSubject(null);
+  topLosersList: BehaviorSubject<StockQuote[]> = new BehaviorSubject(null);
+
+  allowReloadMostActive: boolean;
+  allowReloadTopGainers: boolean;
+  allowReloadTopLosers: boolean;
 
   constructor(private http: HttpClient) { }
 
@@ -67,6 +76,54 @@ export class StockService {
         }, (err: { error: ClientResponse }) => {
           reject(err.error);
         })
+    })
+  }
+
+  updateGainers(): Promise<StockQuote[]> {
+    this.allowReloadTopGainers = false;
+    this.topGainersList.next(null);
+    return new Promise((resolve, reject) => {
+      this.http.get(`${environment.apiBase}/stock/list/gainers`)
+        .subscribe((res: ClientResponse) => {
+          this.topGainersList.next(res.result.list);
+          resolve(res.result.list);
+        }, (err: { error: ClientResponse }) => {
+          reject(err.error);
+        }, () => setTimeout(() => {
+          this.allowReloadTopGainers = true;
+        }, 2000))
+    })
+  }
+
+  updateLosers(): Promise<StockQuote[]> {
+    this.allowReloadTopLosers = false;
+    this.topLosersList.next(null);
+    return new Promise((resolve, reject) => {
+      this.http.get(`${environment.apiBase}/stock/list/losers`)
+        .subscribe((res: ClientResponse) => {
+          this.topLosersList.next(res.result.list);
+          resolve(res.result.list);
+        }, (err: { error: ClientResponse }) => {
+          reject(err.error);
+        }, () => setTimeout(() => {
+          this.allowReloadTopLosers = true;
+        }, 10000))
+    })
+  }
+
+  updateMostActive(): Promise<StockQuote[]> {
+    this.allowReloadMostActive = false;
+    this.mostActiveList.next(null);
+    return new Promise((resolve, reject) => {
+      this.http.get(`${environment.apiBase}/stock/list/mostactive`)
+        .subscribe((res: ClientResponse) => {
+          this.mostActiveList.next(res.result.list);
+          resolve(res.result.list);
+        }, (err: { error: ClientResponse }) => {
+          reject(err.error);
+        }, () => setTimeout(() => {
+          this.allowReloadMostActive = true;
+        }, 10000))
     })
   }
 }

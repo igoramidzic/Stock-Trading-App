@@ -4,16 +4,22 @@
     <div class="col-md-8 order-md-last mb-4 mb-md-0">
       <app-watch-list [watchlist]="watchlist"></app-watch-list>
     </div>
-    <ul class="col-md-16 list-group">
-      <li class="list-group-item p-4" *ngFor="let thing of thingsToDo; let i = index">
-        <div class="d-flex align-items-top justify-content-start">
-          <span class="mr-3">{{i + 1}}.</span>
-          <div>
-            <p class="mb-0">{{ thing.title }}</p>
-            <p class="mb-0 hint">{{ thing.description }}</p>
+    <div class="col-md-16">
+      <ul class="list-group mb-5">
+        <li class="list-group-item p-4" *ngFor="let thing of thingsToDo; let i = index">
+          <div class="d-flex align-items-top justify-content-start">
+            <span class="mr-3">{{i + 1}}.</span>
+            <div>
+              <p class="mb-0">{{ thing.title }}</p>
+              <p class="mb-0 hint">{{ thing.description }}</p>
+            </div>
           </div>
-        </div>
-      </li>
-    </ul>
+        </li>
+      </ul>
+
+      <app-gainers-list></app-gainers-list>
+      <app-losers-list></app-losers-list>
+      <app-mostactive-list></app-mostactive-list>
+    </div>
   </div>
 </div>

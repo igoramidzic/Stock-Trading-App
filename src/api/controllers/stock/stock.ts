@@ -97,12 +97,12 @@ routes.get("/:symbol/news", (req: Request, res: Response) => {
 });
 
 /**
- * Get stock upcoming dividends
+ * Get stock list: Most Active
  */
-routes.get("/:symbol/dividends", (req: Request, res: Response) => {
-    iex.dividends(req.params.symbol)
-        .then((dividends: Dividends[]) => {
-            const response = new ClientResponse(true, { dividends })
+routes.get("/list/:list", (req: Request, res: Response) => {
+    iex.list(req.params.list)
+        .then((list: iex.Quote[]) => {
+            const response = new ClientResponse(true, { list })
             return res.status(200).json(response);
         })
         .catch((err) => {
