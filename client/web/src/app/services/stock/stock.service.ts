@@ -5,6 +5,7 @@ import { ClientResponse } from 'src/app/core/models/response/clientResponse';
 import { StockQuote } from 'src/app/core/models/stock/quote';
 import { StockCompany } from 'src/app/core/models/stock/company';
 import { StockDetails } from 'src/app/core/models/stock/stockDetails';
+import { StockNews } from 'src/app/core/models/stock/news';
 
 @Injectable({
   providedIn: 'root'
@@ -52,6 +53,17 @@ export class StockService {
       this.http.get(`${environment.apiBase}/stock/${symbol}/company`)
         .subscribe((res: ClientResponse) => {
           resolve(res.result.company);
+        }, (err: { error: ClientResponse }) => {
+          reject(err.error);
+        })
+    })
+  }
+
+  news(symbol: string, last: number): Promise<StockNews[]> {
+    return new Promise((resolve, reject) => {
+      this.http.get(`${environment.apiBase}/stock/${symbol}/news?last=${last}`)
+        .subscribe((res: ClientResponse) => {
+          resolve(res.result.news);
         }, (err: { error: ClientResponse }) => {
           reject(err.error);
         })

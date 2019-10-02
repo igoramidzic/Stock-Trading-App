@@ -25,7 +25,10 @@
 
   <div class="row">
     <div class="col-md-16">
-      <app-stock-details [stockDetails]="stockDetails"></app-stock-details>
+      <div class="mb-5">
+        <app-stock-details [stockDetails]="stockDetails"></app-stock-details>
+      </div>
+      <app-stock-news [symbol]="stockDetails.symbol"></app-stock-news>
     </div>
   </div>
 </div>

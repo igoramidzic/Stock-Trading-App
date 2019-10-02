@@ -1,5 +1,7 @@
 import { StockDetailsByFragmentQuery, StockDetailsBySymbolQuery } from "../../queries/stockDetail/stockDetailQueries";
 import { StockDetailsDocument, StockDetails } from "../../../models/stock/stockDetails";
+import * as iex from 'iexcloud_api_wrapper';
+import { NewsItem } from "iexcloud_api_wrapper";
 
 export const stockDetailsListByFragmentQueryHandler = (query: StockDetailsByFragmentQuery): Promise<StockDetailsDocument[]> => new Promise((resolve, reject) => {
     StockDetails.find()
@@ -32,6 +34,16 @@ export let stockDetailsByIdQueryHandler = (_id: string): Promise<StockDetailsDoc
             resolve(stockDetails)
         })
         .catch((err) => {
+            reject(err)
+        })
+});
+
+export const stockNewsQueryHandler = (symbol: string): Promise<NewsItem[]> => new Promise((resolve, reject) => {
+    iex.news(symbol)
+        .then((news: NewsItem[]) => {
+            resolve(news);
+        })
+        .catch((err: any) => {
             reject(err)
         })
 });

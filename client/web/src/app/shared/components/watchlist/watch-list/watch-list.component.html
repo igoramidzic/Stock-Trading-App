@@ -1,6 +1,6 @@
 <ul class="list-group">
   <li class="list-group-item p-3">
-    <h3>Watchlist</h3>
+    <h3 class="hint">Watchlist</h3>
   </li>
   <li class="list-group-item p-0" *ngFor="let stock of watchlist; let i = index;">
     <a [routerLink]="['/stocks/' + stock.stockDetails.symbol]" class="no-highlight">

@@ -1,0 +1,35 @@
+<ul class="list-group">
+  <li class="list-group-item py-3 px-4">
+    <h3 class="hint">News</h3>
+  </li>
+  <a [href]="news.url" target="_blank" class="hover list-group-item p-4" *ngFor="let news of newsItems">
+    <div class="row">
+      <div class="col-16">
+        <div class="d-flex align-items-center justify-content-between mb-2">
+          <h5 class="mr-2">{{ news.source }} <span class="hint">
+              {{ getHours(news.datetime) < 25 ? getHours(news.datetime) + 'h' : news.datetime | date : 'MMM d'}}
+            </span></h5>
+        </div>
+        <h4>{{ news.summary | shorten : 150 : '...' }}</h4>
+      </div>
+      <div class="col-8">
+        <img class="img-responsive" [src]="news.image" alt="">
+      </div>
+    </div>
+  </a>
+  <li class="list-group-item p-5 text-center" *ngIf="newsItems.length == 0">
+    <h5 class="hint">No news available for this stock.</h5>
+  </li>
+  <li class="list-group-item p-5 text-center" *ngIf="!newsItems">
+    <div class="d-inline-block">
+      <app-main-loader [color]="'primary'"></app-main-loader>
+    </div>
+  </li>
+  <a href="javascript:void(0)" (click)="getMoreNews()" class="list-group-item p-3 text-center"
+    *ngIf="newsItems.length > 0 && showGetMoreNews">
+    <h5 class="py-1" *ngIf="!loadingMoreNews">Show more</h5>
+    <div class="d-inline-block" *ngIf="loadingMoreNews">
+      <app-main-loader [color]="'primary'"></app-main-loader>
+    </div>
+  </a>
+</ul>
