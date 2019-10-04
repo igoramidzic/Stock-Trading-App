@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { StockDetails } from 'src/app/core/models/stock/stockDetails';
 import { environment } from 'src/environments/environment';
 import { ClientResponse } from 'src/app/core/models/response/clientResponse';
-import { Quote } from '@angular/compiler';
+import { StockQuote } from 'src/app/core/models/stock/quote';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,7 @@ export class WatchlistService {
 
   constructor(private http: HttpClient) { }
 
-  getWatchList(): Promise<{ stockDetails: StockDetails, quote: Quote }[]> {
+  getWatchList(): Promise<{ stockDetails: StockDetails, quote: StockQuote }[]> {
     return new Promise((resolve, reject) => {
       this.http.get(`${environment.apiBase}/watchlist`)
         .subscribe((res: ClientResponse) => {

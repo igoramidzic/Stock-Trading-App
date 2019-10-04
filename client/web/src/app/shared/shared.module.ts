@@ -52,6 +52,7 @@ import { GainersListComponent } from './components/stock/lists/gainers-list/gain
 import { StockListItemComponent } from './components/stock/lists/stock-list-item/stock-list-item.component';
 import { LosersListComponent } from './components/stock/lists/losers-list/losers-list.component';
 import { MostactiveListComponent } from './components/stock/lists/mostactive-list/mostactive-list.component';
+import { EmptyStockListItemComponent } from './components/stock/lists/empty-stock-list-item/empty-stock-list-item.component';
 
 @NgModule({
   declarations: [
@@ -96,7 +97,8 @@ import { MostactiveListComponent } from './components/stock/lists/mostactive-lis
     GainersListComponent,
     StockListItemComponent,
     LosersListComponent,
-    MostactiveListComponent
+    MostactiveListComponent,
+    EmptyStockListItemComponent
   ],
   imports: [
     CommonModule,
@@ -156,7 +158,8 @@ import { MostactiveListComponent } from './components/stock/lists/mostactive-lis
     GainersListComponent,
     StockListItemComponent,
     LosersListComponent,
-    MostactiveListComponent
+    MostactiveListComponent,
+    EmptyStockListItemComponent
   ],
   providers: [],
   entryComponents: [DeleteAccountDialogComponent, SearchStockModalComponent, RemoveLinkedAccountDialogComponent]

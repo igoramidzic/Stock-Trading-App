@@ -1,11 +1,11 @@
 <div class="container-fluid main-container pb-5">
   <div class="row">
 
-    <div class="col-md-8 order-md-last mb-4 mb-md-0">
+    <div class="col-md-8 order-md-last mb-5 mb-md-0">
       <app-watch-list [watchlist]="watchlist"></app-watch-list>
     </div>
     <div class="col-md-16">
-      <ul class="list-group mb-5">
+      <!-- <ul class="list-group mb-5">
         <li class="list-group-item p-4" *ngFor="let thing of thingsToDo; let i = index">
           <div class="d-flex align-items-top justify-content-start">
             <span class="mr-3">{{i + 1}}.</span>
@@ -15,11 +15,17 @@
             </div>
           </div>
         </li>
-      </ul>
+      </ul> -->
 
-      <app-gainers-list></app-gainers-list>
-      <app-losers-list></app-losers-list>
-      <app-mostactive-list></app-mostactive-list>
+      <div class="mb-3">
+        <app-gainers-list></app-gainers-list>
+      </div>
+      <div class="mb-3">
+        <app-losers-list></app-losers-list>
+      </div>
+      <div>
+        <app-mostactive-list></app-mostactive-list>
+      </div>
     </div>
   </div>
 </div>

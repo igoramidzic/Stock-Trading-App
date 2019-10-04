@@ -22,7 +22,7 @@ export function tokenGetter() {
   ],
   imports: [
     SharedModule,
-    RouterModule.forRoot(APP_ROUTES),
+    RouterModule.forRoot(APP_ROUTES, { scrollPositionRestoration: 'enabled' }),
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,

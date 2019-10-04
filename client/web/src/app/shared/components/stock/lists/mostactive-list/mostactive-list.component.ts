@@ -8,21 +8,22 @@ import { StockService } from 'src/app/services/stock/stock.service';
   styleUrls: ['./mostactive-list.component.scss']
 })
 export class MostactiveListComponent implements OnInit {
-
   list: StockQuote[];
+  initiallyLoaded: boolean;
 
   constructor(public stockService: StockService) { }
 
   ngOnInit() {
-    this.stockService.mostActiveList.subscribe((list: StockQuote[]) => {
-      this.list = list;
+    this.stockService.mostActiveList.subscribe((topGainers: StockQuote[]) => {
+      this.list = topGainers;
     })
 
-    if (!this.list)
-      this.stockService.updateMostActive();
+    if (this.list)
+      this.initiallyLoaded = true;
   }
 
   updateList(): void {
+    this.initiallyLoaded = true;
     this.stockService.updateMostActive();
   }
 }

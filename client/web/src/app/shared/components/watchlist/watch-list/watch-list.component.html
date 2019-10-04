@@ -1,6 +1,12 @@
 <ul class="list-group">
   <li class="list-group-item p-3">
-    <h3 class="hint">Watchlist</h3>
+    <div class="d-flex align-items-center justify-content-between">
+      <h3 class="hint">Watchlist</h3>
+      <a href="javascript:void(0)" (click)="updateWatchlist()" class="hint">
+        <i class="fas fa-redo-alt"></i>
+        Reload
+      </a>
+    </div>
   </li>
   <li class="list-group-item p-0" *ngFor="let stock of watchlist; let i = index;">
     <a [routerLink]="['/stocks/' + stock.stockDetails.symbol]" class="no-highlight">

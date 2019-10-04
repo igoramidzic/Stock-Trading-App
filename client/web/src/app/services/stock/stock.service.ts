@@ -91,7 +91,7 @@ export class StockService {
           reject(err.error);
         }, () => setTimeout(() => {
           this.allowReloadTopGainers = true;
-        }, 2000))
+        }, 10000))
     })
   }
 

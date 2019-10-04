@@ -4,7 +4,7 @@ import { ClientResponse, serverError } from '../../helpers/helpers'
 import { StockDetails, StockDetailsDocument } from "./../../../models/stock/stockDetails";
 import { stockDetailsListByFragmentQueryHandler, stockDetailsBySymbolQueryHandler } from '../../queryHandlers/stockDetails/stockDetailsQueryHandlers';
 import { StockDetailsByFragmentQuery, StockDetailsBySymbolQuery } from '../../queries/stockDetail/stockDetailQueries';
-import { Company, Quote, NewsItem, Dividends } from 'iexcloud_api_wrapper';
+import { Company, Quote, NewsItem, Dividends, KeyStats, Intraday, IEXIntraday } from 'iexcloud_api_wrapper';
 
 const routes: Router = Router();
 
@@ -97,7 +97,23 @@ routes.get("/:symbol/news", (req: Request, res: Response) => {
 });
 
 /**
- * Get stock list: Most Active
+ * Get stock intraday
+ */
+routes.get("/:symbol/intraday", (req: Request, res: Response) => {
+    iex.intraday(req.params.symbol)
+        .then((intraday: Intraday[]) => {
+            const response = new ClientResponse(true, { intraday })
+            return res.status(200).json(response);
+        })
+        .catch((err) => {
+            const response = new ClientResponse(false, null)
+            response.addMessage("This stock could not be found.");
+            return res.status(404).json(response);
+        })
+});
+
+/**
+ * Get stock list
  */
 routes.get("/list/:list", (req: Request, res: Response) => {
     iex.list(req.params.list)
@@ -107,7 +123,7 @@ routes.get("/list/:list", (req: Request, res: Response) => {
         })
         .catch((err) => {
             const response = new ClientResponse(false, null)
-            response.addMessage("This stock could not be found.");
+            response.addMessage("This list could not be found.");
             return res.status(404).json(response);
         })
 });

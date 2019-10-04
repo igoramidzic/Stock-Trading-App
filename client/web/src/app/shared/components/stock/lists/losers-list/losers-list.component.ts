@@ -9,19 +9,21 @@ import { StockService } from 'src/app/services/stock/stock.service';
 })
 export class LosersListComponent implements OnInit {
   list: StockQuote[];
+  initiallyLoaded: boolean;
 
   constructor(public stockService: StockService) { }
 
   ngOnInit() {
-    this.stockService.topLosersList.subscribe((list: StockQuote[]) => {
-      this.list = list;
+    this.stockService.topLosersList.subscribe((topGainers: StockQuote[]) => {
+      this.list = topGainers;
     })
 
-    if (!this.list)
-      this.stockService.updateLosers();
+    if (this.list)
+      this.initiallyLoaded = true;
   }
 
   updateList(): void {
+    this.initiallyLoaded = true;
     this.stockService.updateLosers();
   }
 }
