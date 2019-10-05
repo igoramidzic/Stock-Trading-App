@@ -1,0 +1,29 @@
+<!-- <h3 class="hint mb-4">Tutorial</h3> -->
+
+<div class="progress mb-4">
+  <div class="progress-bar green" role="progressbar" [ngStyle]="{'width': percentComplete + '%'}"
+    [attr.aria-valuenow]="percentComplete" aria-valuemin="0" aria-valuemax="100">{{percentComplete}}%</div>
+</div>
+
+<ul class="list-group" *ngIf="tutorialItems">
+  <div class="list-group-item p-0" *ngFor="let item of tutorialItems">
+    <div class="d-flex align-items-center justify-content-between" *ngIf="!item.link || item.completed">
+      <p class="p-3">
+        {{ item.description }}
+      </p>
+      <span class="green pr-3" *ngIf="item.completed"><i style="font-size: 17px" class="far fa-check-circle"></i></span>
+    </div>
+
+    <a [routerLink]="[item.link]" class="hover d-flex p-3" *ngIf="item.link && !item.completed">
+      <p class="mr-auto">
+        {{ item.description }}
+      </p>
+    </a>
+  </div>
+</ul>
+
+<div class="p-4 text-center" *ngIf="!tutorialItems">
+  <div class="d-inline-block">
+    <app-main-loader [color]="'primary'"></app-main-loader>
+  </div>
+</div>

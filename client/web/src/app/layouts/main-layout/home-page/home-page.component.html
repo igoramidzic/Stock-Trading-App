@@ -17,14 +17,20 @@
         </li>
       </ul> -->
 
+      <!-- <div class="mb-5" *ngIf="tutorialItems && incompleteTutorialItems.length > 0"> -->
+      <div class="mb-5">
+        <h3 class="hint mb-4">Tutorial</h3>
+        <app-user-progress [tutorialItems]="tutorialItems"></app-user-progress>
+      </div>
+
+      <div class="mb-3">
+        <app-mostactive-list></app-mostactive-list>
+      </div>
       <div class="mb-3">
         <app-gainers-list></app-gainers-list>
       </div>
-      <div class="mb-3">
-        <app-losers-list></app-losers-list>
-      </div>
       <div>
-        <app-mostactive-list></app-mostactive-list>
+        <app-losers-list></app-losers-list>
       </div>
     </div>
   </div>

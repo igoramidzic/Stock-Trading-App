@@ -1,6 +1,7 @@
 import mongoose, { Schema } from "mongoose";
 import bcrypt from 'bcrypt-nodejs';
 import { StockDetailsDocument } from "../stock/stockDetails";
+import { TutorialItemDocument } from "../tutorial/tutorialModel";
 
 export type User = {
     firstName?: string,
@@ -17,6 +18,7 @@ export type UserDocument = mongoose.Document & {
 
     tokens: AuthToken[],
     watchStocks: StockDetailsDocument[],
+    tutorialItems: TutorialItemDocument[],
 
     comparePassword: comparePasswordFunction
 };
@@ -35,6 +37,7 @@ const userSchema = new mongoose.Schema({
     password: { type: String, required: true, minLength: 8 },
     tokens: { type: Array },
     watchStocks: [{ type: Schema.Types.ObjectId, ref: 'StockDetails' }],
+    tutorialItems: [{ type: Schema.Types.ObjectId, ref: 'TutorialItem' }],
 }, { timestamps: true });
 
 userSchema.methods.toJSON = function () {

@@ -8,6 +8,10 @@ import mongoose from "mongoose";
 import { getAccount } from "../../../api/queryHandlers/account/accountQueryHandlers";
 import { AccountDocument } from "../../../models/account/account";
 import { getTransfers } from "../../../api/queryHandlers/transfer/transferQueryHandlers";
+import { TutorialItems } from "../../../models/tutorial/tutorialModel";
+import { getTutorialItem } from "../../../api/queryHandlers/tutorial/tutorialQueryHandlers";
+import { TutorialItemDocument } from "../../../models/tutorial/tutorialModel";
+import { completeTutorialItem } from "../../../api/commandHandlers/tutorial/tutorialCommandHandlers";
 
 const routes: Router = Router()
 
@@ -56,13 +60,21 @@ routes.post("/", async (req: Request, res: Response) => {
     if (errors.length > 0)
         return res.status(400).json(new ClientResponse(false, null, errors));
 
-    createTransfer(req.user._id, transfer, account, bankAccount)
-        .then((result: any) => {
-            return res.status(200).json(new ClientResponse(true, result))
-        })
-        .catch(() => {
-            return serverError(res)
-        })
+    let transferDetails: TransferDocument;
+    let tutorialItem: TutorialItemDocument;
+
+    try {
+        transferDetails = await createTransfer(req.user._id, transfer, account, bankAccount);
+        if (!transferDetails)
+            return serverError(res);
+
+        tutorialItem = await getTutorialItem(TutorialItems.TransferFunds);
+        await completeTutorialItem(tutorialItem, req.user);
+    } catch (error) {
+        return serverError(res);
+    }
+
+    return res.status(200).json(new ClientResponse(true, transferDetails))
 });
 
 module.exports = routes;

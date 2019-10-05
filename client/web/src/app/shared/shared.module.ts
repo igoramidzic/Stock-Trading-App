@@ -53,6 +53,7 @@ import { StockListItemComponent } from './components/stock/lists/stock-list-item
 import { LosersListComponent } from './components/stock/lists/losers-list/losers-list.component';
 import { MostactiveListComponent } from './components/stock/lists/mostactive-list/mostactive-list.component';
 import { EmptyStockListItemComponent } from './components/stock/lists/empty-stock-list-item/empty-stock-list-item.component';
+import { UserProgressComponent } from './components/progress/user-progress/user-progress.component';
 
 @NgModule({
   declarations: [
@@ -98,7 +99,8 @@ import { EmptyStockListItemComponent } from './components/stock/lists/empty-stoc
     StockListItemComponent,
     LosersListComponent,
     MostactiveListComponent,
-    EmptyStockListItemComponent
+    EmptyStockListItemComponent,
+    UserProgressComponent
   ],
   imports: [
     CommonModule,
@@ -159,7 +161,8 @@ import { EmptyStockListItemComponent } from './components/stock/lists/empty-stoc
     StockListItemComponent,
     LosersListComponent,
     MostactiveListComponent,
-    EmptyStockListItemComponent
+    EmptyStockListItemComponent,
+    UserProgressComponent
   ],
   providers: [],
   entryComponents: [DeleteAccountDialogComponent, SearchStockModalComponent, RemoveLinkedAccountDialogComponent]

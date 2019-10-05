@@ -1,6 +1,6 @@
 import { BankAccount, BankAccountDocument } from '../../../models/bank-account/bank-account';
 
-export let createBankAccount = (bankAccount: BankAccount, userId: string) =>
+export let createBankAccount = (bankAccount: BankAccount, userId: string): Promise<BankAccountDocument> =>
     new Promise((resolve, reject) => {
         BankAccount.create({ ...bankAccount, userId })
             .then((newBankAccount: BankAccountDocument) => {

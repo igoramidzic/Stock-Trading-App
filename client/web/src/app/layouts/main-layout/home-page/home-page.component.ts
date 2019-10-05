@@ -5,6 +5,8 @@ import { WatchlistService } from 'src/app/services/watchlist/watchlist.service';
 import { ActivatedRoute } from '@angular/router';
 import { StockService } from 'src/app/services/stock/stock.service';
 import { StockQuote } from 'src/app/core/models/stock/quote';
+import { TutorialService } from 'src/app/services/tutorial/tutorial.service';
+import { TutorialItem } from 'src/app/core/models/tutorial/tutorialItem';
 
 @Component({
   selector: 'app-home-page',
@@ -15,9 +17,10 @@ export class HomePageComponent implements OnInit {
 
   thingsToDo: ThingToDo[];
   watchlist: StockDetails[];
+  tutorialItems: TutorialItem[];
 
   constructor(public selfService: SelfService,
-    private route: ActivatedRoute, private stockService: StockService) { }
+    private route: ActivatedRoute, private tutorialService: TutorialService) { }
 
   ngOnInit() {
     this.thingsToDo = [
@@ -52,6 +55,20 @@ export class HomePageComponent implements OnInit {
     ]
 
     this.watchlist = this.route.snapshot.data.watchlist;
+    this.getTutorialItems();
+  }
+
+  getTutorialItems(): void {
+    this.tutorialService.getTutorialItems()
+      .then((tutorialItems: TutorialItem[]) => {
+        tutorialItems.sort((a, b) => a.order > b.order ? 1 : -1);
+        this.tutorialItems = tutorialItems;
+      })
+      .catch((err) => console.log(err))
+  }
+
+  get incompleteTutorialItems(): TutorialItem[] {
+    return this.tutorialItems.filter((item) => { return !item.completed })
   }
 }
 

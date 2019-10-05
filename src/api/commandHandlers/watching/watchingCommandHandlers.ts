@@ -1,19 +1,26 @@
 import { StockDetailsDocument } from "../../../models/stock/stockDetails";
 import { UserDocument, User } from "../../../models/users/userModel";
 import _ from 'lodash';
+import { completeTutorialItem } from "../tutorial/tutorialCommandHandlers";
+import { getTutorialItem } from "../../../api/queryHandlers/tutorial/tutorialQueryHandlers";
+import { TutorialItems } from "../../../models/tutorial/tutorialModel";
 
 export let addWatchStock = (user: UserDocument, stock: StockDetailsDocument) =>
     new Promise(async (resolve, reject) => {
         user.watchStocks.push(stock)
         user.save()
-            .then((user: UserDocument) => {
+            .then(async (user: UserDocument) => {
                 user.populate('watchStocks').execPopulate()
-                    .then((user: UserDocument) => {
+                    .then(async (user: UserDocument) => {
                         resolve(user.watchStocks);
                     })
                     .catch((err: any) => {
                         reject(err)
                     })
+
+                try {
+                    await completeTutorialItem(await getTutorialItem(TutorialItems.AddStockToWatchlist), user);
+                } catch (error) { }
             })
             .catch((err: any) => {
                 reject(err)

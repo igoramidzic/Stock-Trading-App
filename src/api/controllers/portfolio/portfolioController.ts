@@ -11,6 +11,9 @@ import { Quote } from "iexcloud_api_wrapper";
 import * as iex from 'iexcloud_api_wrapper';
 import { addWatchStock } from "../../../api/commandHandlers/watching/watchingCommandHandlers";
 import { getIfWatchingStock } from "../../../api/queryHandlers/watching/watchingQueryHandlers";
+import { completeTutorialItem } from "../../../api/commandHandlers/tutorial/tutorialCommandHandlers";
+import { getTutorialItem } from "../../../api/queryHandlers/tutorial/tutorialQueryHandlers";
+import { TutorialItems } from "../../../models/tutorial/tutorialModel";
 
 const routes: Router = Router()
 
@@ -102,8 +105,15 @@ routes.post("/buy", async (req: Request, res: Response) => {
 
     buyStock(req.user._id, account, stockDetails, portfolio, quantity, price)
         .then(async (transaction: PortfolioDocument) => {
-            if (!await getIfWatchingStock(req.user, stockDetails._id))
-                await addWatchStock(req.user, stockDetails);
+            try {
+                if (!await getIfWatchingStock(req.user, stockDetails._id))
+                    await addWatchStock(req.user, stockDetails);
+
+                await completeTutorialItem(await getTutorialItem(TutorialItems.BuyStock), req.user);
+            } catch (error) {
+                return serverError(res);
+            }
+
             return res.status(200).json(new ClientResponse(true, { transaction }))
         })
         .catch(() => {
@@ -153,7 +163,12 @@ routes.post("/sell", async (req: Request, res: Response) => {
     const price: number = stockQuote.latestPrice;
 
     sellStock(req.user._id, account, ownedStock, portfolio, quantity, price)
-        .then((transaction: PortfolioDocument) => {
+        .then(async (transaction: PortfolioDocument) => {
+            try {
+                await completeTutorialItem(await getTutorialItem(TutorialItems.SellStock), req.user);
+            } catch (error) {
+                return serverError(res);
+            }
             return res.status(200).json(new ClientResponse(true, { transaction }))
         })
         .catch(() => {

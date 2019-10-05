@@ -5,6 +5,9 @@ import { getBankAccounts } from "../../../api/queryHandlers/bankAccount/bankAcco
 import { BankAccountDocument, BankAccount } from "../../../models/bank-account/bank-account";
 import { createBankAccount, deleteBankAccount } from "../../../api/commandHandlers/bankAccount/bankAccountCommandHandlers";
 import mongoose from "mongoose";
+import { TutorialItemDocument, TutorialItems } from "../../../models/tutorial/tutorialModel";
+import { getTutorialItem } from "../../../api/queryHandlers/tutorial/tutorialQueryHandlers";
+import { completeTutorialItem } from "../../../api/commandHandlers/tutorial/tutorialCommandHandlers";
 
 const routes: Router = Router()
 
@@ -29,7 +32,7 @@ routes.get("/", (req: Request, res: Response) => {
 /**
  * Create bank account
  */
-routes.post("/", (req: Request, res: Response) => {
+routes.post("/", async (req: Request, res: Response) => {
     const bankAccount: BankAccount = req.body;
 
     if (bankAccount.name)
@@ -46,13 +49,22 @@ routes.post("/", (req: Request, res: Response) => {
     if (errors.length > 0)
         return res.status(400).json(new ClientResponse(false, null, errors));
 
-    createBankAccount(bankAccount, req.user._id)
-        .then((bankAccountDetails: BankAccountDocument) => {
-            return res.status(200).json(new ClientResponse(true, { bankAccount: bankAccountDetails }))
-        })
-        .catch(() => {
-            return serverError(res)
-        })
+
+    let bankAccountDetails: BankAccountDocument;
+    let tutorialItem: TutorialItemDocument;
+
+    try {
+        bankAccountDetails = await createBankAccount(bankAccount, req.user._id);
+        if (!bankAccountDetails)
+            return serverError(res);
+
+        tutorialItem = await getTutorialItem(TutorialItems.LinkBankAccount);
+        await completeTutorialItem(tutorialItem, req.user);
+    } catch (error) {
+        return serverError(res);
+    }
+
+    return res.status(200).json(new ClientResponse(true, { bankAccount: bankAccountDetails }))
 });
 
 /**

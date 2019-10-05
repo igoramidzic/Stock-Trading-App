@@ -8,7 +8,7 @@ import { TransactionDocument } from "../../../models/transaction/transactionMode
 import { createTransaction } from "../transaction/transactionCommandHandlers";
 import { getAccount } from "../../../api/queryHandlers/account/accountQueryHandlers";
 
-export let createTransfer = (user: string, transfer: Transfer, account: AccountDocument, bankAccount: BankAccountDocument) =>
+export let createTransfer = (user: string, transfer: Transfer, account: AccountDocument, bankAccount: BankAccountDocument): Promise<TransferDocument> =>
     new Promise(async (resolve, reject) => {
         let newTransfer: TransferDocument = await Transfer.create({ user, amount: transfer.amount, bankAccount: transfer.bankAccountId, isDeposit: transfer.isDeposit });
 
