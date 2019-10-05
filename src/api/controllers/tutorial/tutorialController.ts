@@ -1,5 +1,5 @@
 import { Router, Response, Request } from "express";
-import { createTutorialItem, completeTutorialItem } from "../../../api/commandHandlers/tutorial/tutorialCommandHandlers";
+import { createTutorialItem, completeTutorialItem, hideTutorial, showTutorial } from "../../../api/commandHandlers/tutorial/tutorialCommandHandlers";
 import { TutorialItemDocument, TutorialItems } from "../../../models/tutorial/tutorialModel";
 import { serverError, ClientResponse } from "../../../api/helpers/helpers";
 import { getTutorialItems, getTutorialItem } from "../../../api/queryHandlers/tutorial/tutorialQueryHandlers";
@@ -18,6 +18,30 @@ routes.get("/", async (req: Request, res: Response) => {
         return serverError(res);
     }
     return res.status(200).json(new ClientResponse(true, { tutorialItems }));
+});
+
+/**
+ * Hide tutorial
+ */
+routes.get("/hide", async (req: Request, res: Response) => {
+    try {
+        await hideTutorial(req.user);
+    } catch (error) {
+        return serverError(res);
+    }
+    return res.status(200).json(new ClientResponse(true, { hideTutorial: true }));
+});
+
+/**
+ * Show tutorial
+ */
+routes.get("/show", async (req: Request, res: Response) => {
+    try {
+        await showTutorial(req.user);
+    } catch (error) {
+        return serverError(res);
+    }
+    return res.status(200).json(new ClientResponse(true, { hideTutorial: false }));
 });
 
 /**

@@ -3,6 +3,7 @@ export type User = {
     firstName: string;
     lastName: string;
     email: string;
+    hideTutorial: boolean;
     createdAt: Date;
     updatedAt: Date;
 }

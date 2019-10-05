@@ -24,3 +24,27 @@ export let completeTutorialItem = (tutorialItem: TutorialItemDocument, user: Use
             reject(error)
         }
     })
+
+export let hideTutorial = (user: UserDocument): Promise<boolean> =>
+    new Promise(async (resolve, reject) => {
+        user.hideTutorial = true;
+
+        try {
+            await User.findOneAndUpdate({ _id: user._id }, user);
+            resolve(true);
+        } catch (error) {
+            reject(error)
+        }
+    })
+
+export let showTutorial = (user: UserDocument): Promise<boolean> =>
+    new Promise(async (resolve, reject) => {
+        user.hideTutorial = false;
+
+        try {
+            await User.findOneAndUpdate({ _id: user._id }, user);
+            resolve(false);
+        } catch (error) {
+            reject(error)
+        }
+    })

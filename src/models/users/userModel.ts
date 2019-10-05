@@ -19,6 +19,7 @@ export type UserDocument = mongoose.Document & {
     tokens: AuthToken[],
     watchStocks: StockDetailsDocument[],
     tutorialItems: TutorialItemDocument[],
+    hideTutorial: boolean,
 
     comparePassword: comparePasswordFunction
 };
@@ -38,6 +39,7 @@ const userSchema = new mongoose.Schema({
     tokens: { type: Array },
     watchStocks: [{ type: Schema.Types.ObjectId, ref: 'StockDetails' }],
     tutorialItems: [{ type: Schema.Types.ObjectId, ref: 'TutorialItem' }],
+    hideTutorial: { type: Boolean, required: false }
 }, { timestamps: true });
 
 userSchema.methods.toJSON = function () {
@@ -47,6 +49,7 @@ userSchema.methods.toJSON = function () {
     delete userObject.password;
     delete userObject.tokens;
     delete userObject.watchStocks;
+    delete userObject.tutorialItems;
 
     return userObject;
 }

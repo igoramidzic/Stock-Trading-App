@@ -3,9 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { StockDetails } from 'src/app/core/models/stock/stockDetails';
 import { Title } from '@angular/platform-browser';
 import { CurrencyPipe } from '@angular/common';
-import { LoadingService } from 'src/app/services/loading/loading.service';
 import { Account } from 'src/app/core/models/account/account';
-import { BehaviorSubject } from 'rxjs';
 import { OwnedStock } from 'src/app/core/models/portfolio/portfolio';
 import { StockService } from 'src/app/services/stock/stock.service';
 
@@ -41,7 +39,7 @@ export class StocksPageComponent implements OnInit, OnDestroy {
 
     setInterval(() => {
       this.updateStockDetails();
-    }, 15000)
+    }, 5000)
   }
 
   ngOnDestroy(): void {
@@ -58,7 +56,6 @@ export class StocksPageComponent implements OnInit, OnDestroy {
   updateStockDetails(): void {
     this.stockService.stockDetails(this.stockDetails.symbol)
       .then((stockDetails: StockDetails) => {
-        // stockDetails.quote.latestPrice = this.stockDetails.quote.latestPrice + Math.random() * 5 - 2.5;
         this.stockDetails = stockDetails;
       })
       .catch((err) => console.log(err))

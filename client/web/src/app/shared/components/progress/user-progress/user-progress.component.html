@@ -1,4 +1,7 @@
-<!-- <h3 class="hint mb-4">Tutorial</h3> -->
+<div class="d-flex align-items-top justify-content-between mb-3">
+  <h3 class="hint">Tutorial</h3>
+  <a href="javascript:void(0)" (click)="hideTutorial()" class="hint" *ngIf="showHideBtn">Hide</a>
+</div>
 
 <div class="progress mb-4">
   <div class="progress-bar green" role="progressbar" [ngStyle]="{'width': percentComplete + '%'}"

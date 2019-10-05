@@ -54,6 +54,7 @@ import { LosersListComponent } from './components/stock/lists/losers-list/losers
 import { MostactiveListComponent } from './components/stock/lists/mostactive-list/mostactive-list.component';
 import { EmptyStockListItemComponent } from './components/stock/lists/empty-stock-list-item/empty-stock-list-item.component';
 import { UserProgressComponent } from './components/progress/user-progress/user-progress.component';
+import { MiscUpdateFormComponent } from './components/settings/misc-update-form/misc-update-form.component';
 
 @NgModule({
   declarations: [
@@ -100,7 +101,8 @@ import { UserProgressComponent } from './components/progress/user-progress/user-
     LosersListComponent,
     MostactiveListComponent,
     EmptyStockListItemComponent,
-    UserProgressComponent
+    UserProgressComponent,
+    MiscUpdateFormComponent
   ],
   imports: [
     CommonModule,
@@ -162,7 +164,8 @@ import { UserProgressComponent } from './components/progress/user-progress/user-
     LosersListComponent,
     MostactiveListComponent,
     EmptyStockListItemComponent,
-    UserProgressComponent
+    UserProgressComponent,
+    MiscUpdateFormComponent
   ],
   providers: [],
   entryComponents: [DeleteAccountDialogComponent, SearchStockModalComponent, RemoveLinkedAccountDialogComponent]

@@ -20,4 +20,24 @@ export class TutorialService {
           (err: { error: ClientResponse }) => reject(err.error))
     })
   }
+
+  hideTutorial(): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      this.http.get(`${environment.apiBase}/tutorial/hide`)
+        .subscribe((res: ClientResponse) => {
+          resolve(res.result.hideTutorial)
+        },
+          (err: { error: ClientResponse }) => reject(err.error))
+    })
+  }
+
+  showTutorial(): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      this.http.get(`${environment.apiBase}/tutorial/show`)
+        .subscribe((res: ClientResponse) => {
+          resolve(res.result.hideTutorial)
+        },
+          (err: { error: ClientResponse }) => reject(err.error))
+    })
+  }
 }

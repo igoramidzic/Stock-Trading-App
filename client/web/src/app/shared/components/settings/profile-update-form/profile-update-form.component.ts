@@ -18,8 +18,7 @@ export class ProfileUpdateFormComponent implements OnInit {
   errors: string[];
   done: boolean;
 
-  constructor(private fb: FormBuilder, private route: ActivatedRoute,
-    private selfService: SelfService) { }
+  constructor(private fb: FormBuilder, private selfService: SelfService) { }
 
   ngOnInit() {
     this.profileForm = this.fb.group({

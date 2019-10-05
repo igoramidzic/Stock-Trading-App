@@ -18,9 +18,8 @@
       </ul> -->
 
       <!-- <div class="mb-5" *ngIf="tutorialItems && incompleteTutorialItems.length > 0"> -->
-      <div class="mb-5">
-        <h3 class="hint mb-4">Tutorial</h3>
-        <app-user-progress [tutorialItems]="tutorialItems"></app-user-progress>
+      <div class="mb-5" *ngIf="!selfService.user$.value.hideTutorial">
+        <app-user-progress></app-user-progress>
       </div>
 
       <div class="mb-3">
