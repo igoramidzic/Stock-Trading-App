@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, NavigationEnd, NavigationStart } from '@angular/router';
+import { Router, ActivatedRoute, NavigationEnd, NavigationStart, NavigationCancel } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { map, filter, mergeMap } from 'rxjs/operators'
 import { LoadingService } from './services/loading/loading.service';
@@ -21,6 +21,23 @@ export class AppComponent implements OnInit {
       .pipe(filter((event) => event instanceof NavigationStart))
       .subscribe((event) => {
         this.loadingService.startLoading();
+      });
+
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationCancel))
+      .pipe(map(() => this.activatedRoute))
+      .pipe(map((route) => {
+        while (route.firstChild) route = route.firstChild;
+        return route;
+      }))
+      .pipe(filter((route) => route.outlet === 'primary'))
+      .pipe(mergeMap((route) => route.data))
+      .subscribe((event) => {
+        this.loadingService.stopLoading();
+        if (event['title'])
+          this.titleService.setTitle(event['title'] + ' | Batman')
+        else
+          this.titleService.setTitle('Batman')
       });
 
     this.router.events
