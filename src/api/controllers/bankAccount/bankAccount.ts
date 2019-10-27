@@ -1,6 +1,5 @@
 import { Router, Response, Request } from "express";
 import { ClientResponse, serverError } from '../../helpers/helpers'
-import { BankAccountsQuery } from "../../../api/queries/bankaccount/bankAccountQueries";
 import { getBankAccounts } from "../../../api/queryHandlers/bankAccount/bankAccountQueryHandlers";
 import { BankAccountDocument, BankAccount } from "../../../models/bank-account/bank-account";
 import { createBankAccount, deleteBankAccount } from "../../../api/commandHandlers/bankAccount/bankAccountCommandHandlers";
@@ -20,7 +19,7 @@ routes.get("/", (req: Request, res: Response) => {
     if (id && !mongoose.Types.ObjectId.isValid(id))
         return res.status(200).json(new ClientResponse(true, { bankAccounts: [] }))
 
-    getBankAccounts(new BankAccountsQuery(req.user._id, id))
+    getBankAccounts(req.user._id)
         .then((bankAccounts: BankAccountDocument[]) => {
             return res.status(200).json(new ClientResponse(true, { bankAccounts: bankAccounts }))
         })
@@ -76,7 +75,7 @@ routes.delete("/:id", (req: Request, res: Response) => {
     if (!mongoose.Types.ObjectId.isValid(id))
         return res.status(404).json(new ClientResponse(true, null, ["Bank account not found"]))
 
-    getBankAccounts(new BankAccountsQuery(req.user._id, id))
+    getBankAccounts(req.user._id)
         .then((bankAccounts: BankAccountDocument[]) => {
             if (bankAccounts.length == 0)
                 return res.status(404).json(new ClientResponse(true, null, ["Bank account not found"]))

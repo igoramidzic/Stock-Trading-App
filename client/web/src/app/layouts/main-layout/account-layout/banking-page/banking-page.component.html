@@ -2,7 +2,6 @@
   <div class="col-md-8 pr-5 mb-3 mb-lg-0">
     <h3 class="primary">Transfer Funds</h3>
     <p class="hint pr-5 mb-2">Move funds between Batman and your bank accounts.</p>
-    <p class="hint pr-5">(Decimal +/- causes problems with overflow. Fixing it)</p>
   </div>
   <div class="col-md-16">
     <app-transfer-funds-form (transferCompleteEmitter)="transferCompleted($event)" [bankAccounts]="bankAccounts"

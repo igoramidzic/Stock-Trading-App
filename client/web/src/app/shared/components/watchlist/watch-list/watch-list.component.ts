@@ -11,6 +11,7 @@ import { WatchlistService } from 'src/app/services/watchlist/watchlist.service';
 export class WatchListComponent implements OnInit {
 
   @Input() watchlist: { stockDetails: StockDetails, quote: StockQuote }[];
+  isLoading: boolean;
 
   constructor(private watchlistService: WatchlistService) { }
 
@@ -19,11 +20,17 @@ export class WatchListComponent implements OnInit {
   }
 
   updateWatchlist(): void {
-    this.watchlistService.getWatchList()
-      .then((watchlist: { stockDetails: StockDetails, quote: StockQuote }[]) => {
-        this.watchlist = watchlist;
-        this.watchlist.sort((a, b) => a.stockDetails.symbol > b.stockDetails.symbol ? 1 : -1)
-      })
-      .catch(() => { })
+    if (this.isLoading) return;
+    this.isLoading = true;
+    setTimeout(() => {
+      this.watchlistService.getWatchList()
+        .then((watchlist: { stockDetails: StockDetails, quote: StockQuote }[]) => {
+          this.watchlist = watchlist;
+          this.watchlist.sort((a, b) => a.stockDetails.symbol > b.stockDetails.symbol ? 1 : -1)
+        })
+        .catch(() => { })
+        .finally(() => this.isLoading = false)
+    }, 2000);
+
   }
 }

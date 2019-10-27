@@ -14,6 +14,7 @@
     "build-ts": "tsc",
     "watch-ts": "tsc -w",
     "watch-angular": "npm start --prefix client/web",
+    "watch-react": "npm start --prefix client/web-react",
     "tslint": "tslint -c tslint.json -p tsconfig.json"
   },
   "engines": {
