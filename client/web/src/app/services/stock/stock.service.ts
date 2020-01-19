@@ -81,7 +81,6 @@ export class StockService {
 
   updateGainers(): Promise<StockQuote[]> {
     this.allowReloadTopGainers = false;
-    this.topGainersList.next(null);
     return new Promise((resolve, reject) => {
       this.http.get(`${environment.apiBase}/stock/list/gainers`)
         .subscribe((res: ClientResponse) => {
@@ -97,7 +96,6 @@ export class StockService {
 
   updateLosers(): Promise<StockQuote[]> {
     this.allowReloadTopLosers = false;
-    this.topLosersList.next(null);
     return new Promise((resolve, reject) => {
       this.http.get(`${environment.apiBase}/stock/list/losers`)
         .subscribe((res: ClientResponse) => {
@@ -113,7 +111,6 @@ export class StockService {
 
   updateMostActive(): Promise<StockQuote[]> {
     this.allowReloadMostActive = false;
-    this.mostActiveList.next(null);
     return new Promise((resolve, reject) => {
       this.http.get(`${environment.apiBase}/stock/list/mostactive`)
         .subscribe((res: ClientResponse) => {

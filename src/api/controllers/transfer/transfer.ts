@@ -53,9 +53,9 @@ routes.post("/", async (req: Request, res: Response) => {
     const account: AccountDocument = await getAccount(req.user._id);
 
     if (!account)
-        errors.push("Batman account was not found. Delete your account.");
+        errors.push("Account was not found. Delete your account.");
     else if (!transfer.isDeposit && account.balance < transfer.amount)
-        errors.push("Not enough funds in Batman.")
+        errors.push("Not enough funds in Account.")
 
     if (errors.length > 0)
         return res.status(400).json(new ClientResponse(false, null, errors));

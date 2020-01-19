@@ -10,7 +10,7 @@ import { StockService } from 'src/app/services/stock/stock.service';
 export class GainersListComponent implements OnInit {
 
   list: StockQuote[];
-  initiallyLoaded: boolean;
+  loading: boolean;
 
   constructor(public stockService: StockService) { }
 
@@ -19,12 +19,17 @@ export class GainersListComponent implements OnInit {
       this.list = topGainers;
     })
 
-    if (this.list)
-      this.initiallyLoaded = true;
+    this.updateList();
   }
 
   updateList(): void {
-    this.initiallyLoaded = true;
-    this.stockService.updateGainers();
+    this.loading = true;
+    this.stockService.updateGainers()
+      .finally(() => this.loading = false);
+  }
+
+  get emptyStockList(): StockQuote[] {
+    let list: StockQuote[] = new Array(!this.list ? 10 : this.list.length);
+    return list;
   }
 }

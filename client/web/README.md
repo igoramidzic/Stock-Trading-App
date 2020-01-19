@@ -1,1 +1,1 @@
-# Batman Web Client
+# Stock Trading App Web Client

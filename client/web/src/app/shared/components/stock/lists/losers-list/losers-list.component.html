@@ -3,26 +3,18 @@
   <a href="javascript:void(0)" (click)="updateList()" class="hint" *ngIf="stockService.allowReloadTopLosers">
     <i class="fas fa-redo-alt"></i>
     Reload</a>
-
-  <a href="javascript:void(0)" (click)="updateList()" class="hint" *ngIf="!initiallyLoaded">
-    <i class="fas fa-redo-alt"></i>
-    Load</a>
 </div>
 
-<div class="row">
+<div class="row" *ngIf="!loading">
   <div class="col-12 col-sm-6 col-md-8 col-lg-6 mb-4" *ngFor="let quote of list">
     <app-stock-list-item [quote]="quote"></app-stock-list-item>
   </div>
 </div>
 
-<div class="row" *ngIf="!initiallyLoaded">
-  <div class="col-12 col-sm-6 col-md-8 col-lg-6 mb-4" *ngFor="let quote of [1, 2, 3, 4]">
-    <app-empty-stock-list-item></app-empty-stock-list-item>
-  </div>
-</div>
-
-<div class="p-4 text-center" *ngIf="!list && initiallyLoaded">
-  <div class="d-inline-block">
-    <app-main-loader [color]="'primary'"></app-main-loader>
+<div *ngIf="loading">
+  <div class="row">
+    <div class="col-12 col-sm-6 col-md-8 col-lg-6 mb-4" *ngFor="let quote of emptyStockList">
+      <app-empty-stock-list-item></app-empty-stock-list-item>
+    </div>
   </div>
 </div>

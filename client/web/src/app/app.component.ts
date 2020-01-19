@@ -35,9 +35,9 @@ export class AppComponent implements OnInit {
       .subscribe((event) => {
         this.loadingService.stopLoading();
         if (event['title'])
-          this.titleService.setTitle(event['title'] + ' | Batman')
+          this.titleService.setTitle(event['title'] + ' | Stock Trading App')
         else
-          this.titleService.setTitle('Batman')
+          this.titleService.setTitle('Stock Trading App')
       });
 
     this.router.events
@@ -52,9 +52,9 @@ export class AppComponent implements OnInit {
       .subscribe((event) => {
         this.loadingService.stopLoading();
         if (event['title'])
-          this.titleService.setTitle(event['title'] + ' | Batman')
+          this.titleService.setTitle(event['title'] + ' | Stock Trading App')
         else
-          this.titleService.setTitle('Batman')
+          this.titleService.setTitle('Stock Trading App')
       });
   }
 }

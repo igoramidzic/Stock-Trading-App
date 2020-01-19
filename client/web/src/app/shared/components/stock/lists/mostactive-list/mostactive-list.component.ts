@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { StockQuote } from 'src/app/core/models/stock/quote';
 import { StockService } from 'src/app/services/stock/stock.service';
 
@@ -9,7 +9,7 @@ import { StockService } from 'src/app/services/stock/stock.service';
 })
 export class MostactiveListComponent implements OnInit {
   list: StockQuote[];
-  initiallyLoaded: boolean;
+  loading: boolean;
 
   constructor(public stockService: StockService) { }
 
@@ -18,12 +18,17 @@ export class MostactiveListComponent implements OnInit {
       this.list = topGainers;
     })
 
-    if (this.list)
-      this.initiallyLoaded = true;
+    this.updateList();
   }
 
   updateList(): void {
-    this.initiallyLoaded = true;
-    this.stockService.updateMostActive();
+    this.loading = true;
+    this.stockService.updateMostActive()
+      .finally(() => this.loading = false);
+  }
+
+  get emptyStockList(): StockQuote[] {
+    let list: StockQuote[] = new Array(!this.list ? 10 : this.list.length);
+    return list;
   }
 }

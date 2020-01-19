@@ -49,7 +49,7 @@ export class StocksPageComponent implements OnInit, OnDestroy {
   setPageTitle(symbol: string, price: number): void {
     // A hack to get around the title service action in app.component (oh well)
     setTimeout(() => {
-      this.titleService.setTitle(symbol + " - " + this.cp.transform(price) + ' | Batman')
+      this.titleService.setTitle(symbol + " - " + this.cp.transform(price) + ' | Stock Trading App')
     }, 0);
   }
 
