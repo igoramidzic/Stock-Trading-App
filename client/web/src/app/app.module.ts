@@ -6,10 +6,10 @@ import { AppComponent } from './app.component';
 import { APP_ROUTES } from './app.routes';
 import { RouterModule } from '@angular/router';
 import { JwtModule } from '@auth0/angular-jwt';
-import { environment } from 'src/environments/environment';
 import { SharedModule } from './shared/shared.module';
 import { Ng2OdometerModule } from 'ng2-odometer';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { environment } from 'src/environments/environment';
 
 
 export function tokenGetter() {
