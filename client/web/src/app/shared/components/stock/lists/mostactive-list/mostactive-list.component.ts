@@ -19,7 +19,8 @@ export class MostactiveListComponent implements OnInit {
       this.list = topGainers;
     })
 
-    this.updateList();
+    if (!this.list)
+      this.updateList();
   }
 
   updateList(): void {
