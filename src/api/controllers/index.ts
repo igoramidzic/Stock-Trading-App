@@ -8,7 +8,7 @@ routes.use('/auth', require('./_auth/auth'))
 // Auth Protected
 routes.use((req: Request, res: Response, next: any) => {
     req.user ? next() : res.status(401).json({ error: 'login is required' });
-}), routes.use('/themes', require('./themes/themes')),
+}), routes.use('/themes', require('./themes/themes'));
     routes.use('/self', require('./self/self')),
     routes.use('/stock', require('./stock/stock')),
     routes.use('/bankAccounts', require('./bankAccount/bankAccount')),

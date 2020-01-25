@@ -11,7 +11,10 @@
   </div>
 </div>
 
-<div *ngIf="loading">
+<div infiniteScroll [immediateCheck]="true" (scrolled)="onScroll()">
+</div>
+
+<div *ngIf="!list || loading">
   <div class="row">
     <div class="col-12 col-sm-6 col-md-8 col-lg-6 mb-4" *ngFor="let quote of emptyStockList">
       <app-empty-stock-list-item></app-empty-stock-list-item>

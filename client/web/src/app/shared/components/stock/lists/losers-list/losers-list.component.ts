@@ -18,7 +18,6 @@ export class LosersListComponent implements OnInit {
       this.list = topGainers;
     })
 
-    this.updateList();
   }
 
   updateList(): void {
@@ -30,5 +29,10 @@ export class LosersListComponent implements OnInit {
   get emptyStockList(): StockQuote[] {
     let list: StockQuote[] = new Array(!this.list ? 10 : this.list.length);
     return list;
+  }
+
+  onScroll(): void {
+    if (!this.list)
+      this.updateList();
   }
 }

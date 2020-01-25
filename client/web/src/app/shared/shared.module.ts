@@ -55,6 +55,7 @@ import { MostactiveListComponent } from './components/stock/lists/mostactive-lis
 import { EmptyStockListItemComponent } from './components/stock/lists/empty-stock-list-item/empty-stock-list-item.component';
 import { UserProgressComponent } from './components/progress/user-progress/user-progress.component';
 import { MiscUpdateFormComponent } from './components/settings/misc-update-form/misc-update-form.component';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 @NgModule({
   declarations: [
@@ -113,7 +114,8 @@ import { MiscUpdateFormComponent } from './components/settings/misc-update-form/
     Ng2OdometerModule,
     CurrencyMaskModule,
     MatDialogModule,
-    ChartsModule
+    ChartsModule,
+    InfiniteScrollModule
   ],
   exports: [
     RouterModule,

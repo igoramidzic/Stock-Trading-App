@@ -6,16 +6,13 @@
   "license": "MIT",
   "scripts": {
     "start": "npm run serve",
-    "build": "npm run build-ts && npm run tslint && npm run build --prefix client/web",
-    "heroku-postbuild": "npm run build-ts && npm run tslint  && npm run build --prefix client/web",
     "serve": "node dist/server.js",
-    "watch-node": "nodemon dist/server.js",
-    "watch": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"cyan.bold,green.bold\" \"npm run watch-ts\" \"npm run watch-node\"",
+    "watch-angular": "npm run start --prefix client/web",
+    "build": "npm run build-ts && npm run build --prod --prefix client/web",
+    "heroku-postbuild": "npm run build-ts && npm run build --prod --prefix client/web",
+    "watch-server": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"cyan.bold,green.bold\" \"npm run watch-ts\" \"npm run serve\"",
     "build-ts": "tsc",
-    "watch-ts": "tsc -w",
-    "watch-angular": "npm start --prefix client/web",
-    "watch-react": "npm start --prefix client/web-react",
-    "tslint": "tslint -c tslint.json -p tsconfig.json"
+    "watch-ts": "tsc -w"
   },
   "engines": {
     "node": "12.5.0",
@@ -50,6 +47,7 @@
     "ng2-charts": "^2.3.0",
     "ng2-currency-mask": "^5.3.1",
     "ng2-odometer": "^1.1.3",
+    "ngx-infinite-scroll": "^8.0.1",
     "ngx-pipes": "^2.5.6",
     "request": "^2.88.0",
     "rxjs": "~6.4.0",

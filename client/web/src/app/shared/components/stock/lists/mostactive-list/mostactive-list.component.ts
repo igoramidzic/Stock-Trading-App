@@ -17,8 +17,6 @@ export class MostactiveListComponent implements OnInit {
     this.stockService.mostActiveList.subscribe((topGainers: StockQuote[]) => {
       this.list = topGainers;
     })
-
-    this.updateList();
   }
 
   updateList(): void {
@@ -30,5 +28,10 @@ export class MostactiveListComponent implements OnInit {
   get emptyStockList(): StockQuote[] {
     let list: StockQuote[] = new Array(!this.list ? 10 : this.list.length);
     return list;
+  }
+
+  onScroll(): void {
+    if (!this.list)
+      this.updateList();
   }
 }
