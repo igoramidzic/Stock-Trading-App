@@ -1,18 +1,25 @@
 <div class="row">
   <div class="col-md-8 mb-4 mb-md-0">
     <div class="list-group-item p-4">
-      <app-portfolio-value [account]="account" [portfolio]="portfolio" [account]="account">
+      <app-portfolio-value *ngIf="portfolio && account" [portfolio]="portfolio" [account]="account">
       </app-portfolio-value>
+      <app-portfolio-value-empty *ngIf="!portfolio"></app-portfolio-value-empty>
     </div>
   </div>
   <div class="col-md-16">
     <ul class="list-group">
-      <li class="list-group-item p-0 hover" *ngFor="let ownedStock of portfolio.stocks; let i = index;">
+      <li class="list-group-item p-0 hover" *ngFor="let ownedStock of portfolio?.stocks; let i = index;">
         <app-owned-stock [ownedStock]="ownedStock" [i]="i"></app-owned-stock>
       </li>
 
-      <li class="list-group-item p-4" *ngIf="portfolio.stocks.length == 0">
+      <li class="list-group-item p-4" *ngIf="portfolio?.stocks.length == 0">
         <span class="hint">You have no stocks in your portfolio.</span>
+      </li>
+    </ul>
+
+    <ul class="list-group" *ngIf="!portfolio">
+      <li class="list-group-item p-0" *ngFor="let ownedStock of emptyPortfolioStocks;">
+        <app-owned-stock-empty></app-owned-stock-empty>
       </li>
     </ul>
   </div>

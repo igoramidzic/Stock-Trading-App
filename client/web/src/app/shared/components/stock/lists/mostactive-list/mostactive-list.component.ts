@@ -17,6 +17,8 @@ export class MostactiveListComponent implements OnInit {
     this.stockService.mostActiveList.subscribe((topGainers: StockQuote[]) => {
       this.list = topGainers;
     })
+
+    this.updateList();
   }
 
   updateList(): void {

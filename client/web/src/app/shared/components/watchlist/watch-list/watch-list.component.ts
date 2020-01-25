@@ -10,27 +10,35 @@ import { WatchlistService } from 'src/app/services/watchlist/watchlist.service';
 })
 export class WatchListComponent implements OnInit {
 
-  @Input() watchlist: { stockDetails: StockDetails, quote: StockQuote }[];
+  watchlist: { stockDetails: StockDetails, quote: StockQuote }[];
   isLoading: boolean;
+  allowedToReload: boolean;
 
   constructor(private watchlistService: WatchlistService) { }
 
   ngOnInit() {
-    this.watchlist.sort((a, b) => a.stockDetails.symbol > b.stockDetails.symbol ? 1 : -1)
+    this.updateWatchlist();
   }
 
   updateWatchlist(): void {
     if (this.isLoading) return;
     this.isLoading = true;
-    setTimeout(() => {
-      this.watchlistService.getWatchList()
-        .then((watchlist: { stockDetails: StockDetails, quote: StockQuote }[]) => {
-          this.watchlist = watchlist;
-          this.watchlist.sort((a, b) => a.stockDetails.symbol > b.stockDetails.symbol ? 1 : -1)
-        })
-        .catch(() => { })
-        .finally(() => this.isLoading = false)
-    }, 2000);
+    this.allowedToReload = false;
+    this.watchlistService.getWatchList()
+      .then((watchlist: { stockDetails: StockDetails, quote: StockQuote }[]) => {
+        this.watchlist = watchlist;
+        this.watchlist.sort((a, b) => a.stockDetails.symbol > b.stockDetails.symbol ? 1 : -1)
 
+        setTimeout(() => {
+          this.allowedToReload = true;
+        }, 10000);
+      })
+      .catch(() => { })
+      .finally(() => this.isLoading = false)
+  }
+
+  get emptyWatchList(): StockQuote[] {
+    let list: StockQuote[] = new Array(!this.watchlist ? 3 : this.watchlist.length);
+    return list;
   }
 }

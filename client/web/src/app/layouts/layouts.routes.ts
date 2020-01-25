@@ -5,8 +5,6 @@ import { NotAuthGuard } from '../core/guards/not-auth/not-auth.guard';
 import { LoginFormComponent } from './auth-layout/forms/login-form/login-form.component';
 import { SignupFormComponent } from './auth-layout/forms/signup-form/signup-form.component';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
-import { SelfGuard } from '../core/guards/self/self.guard';
-import { MainNotFoundPageComponent } from '../shared/components/not-found/main-not-found-page/main-not-found-page.component';
 
 export const LAYOUTS_ROUTES: Routes = [
     {

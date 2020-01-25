@@ -15,7 +15,6 @@ export const ACCOUNT_ROUTES: Routes = [
         path: '',
         pathMatch: 'full',
         component: AccountPageComponent,
-        resolve: { account: AccountResolver, portfolio: PortfolioResolver },
         data: {
             title: 'Account'
         }

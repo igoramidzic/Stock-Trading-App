@@ -12,7 +12,7 @@ export class PortfolioService {
 
   constructor(private http: HttpClient) { }
 
-  getPortfolio(): Promise<Portfolio[]> {
+  getPortfolio(): Promise<Portfolio> {
     return new Promise((resolve, reject) => {
       this.http.get(`${environment.apiBase}/portfolio`)
         .subscribe((res: ClientResponse) => {

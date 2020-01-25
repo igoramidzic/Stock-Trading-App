@@ -2,38 +2,25 @@
   <li class="list-group-item p-3">
     <div class="d-flex align-items-center justify-content-between">
       <h3 class="hint">Watchlist</h3>
-      <a href="javascript:void(0)" (click)="updateWatchlist()" class="hint" *ngIf="watchlist.length > 0">
+      <a href="javascript:void(0)" (click)="updateWatchlist()" class="hint"
+        *ngIf="allowedToReload && watchlist?.length > 0">
         <i class="fas fa-redo-alt"></i>
         Reload
       </a>
     </div>
   </li>
   <div *ngIf="isLoading">
-    <li class="list-group-item py-4 text-center">
-      <div class="d-inline-block">
-        <app-main-loader [color]="'primary'"></app-main-loader>
-      </div>
+    <li class="list-group-item p-0" *ngFor="let i of emptyWatchList">
+      <app-watch-list-empty-item></app-watch-list-empty-item>
     </li>
   </div>
   <div *ngIf="!isLoading">
     <li class="list-group-item p-0" *ngFor="let stock of watchlist; let i = index;">
-      <a [routerLink]="['/stocks/' + stock.stockDetails.symbol]" class="no-highlight">
-        <div class="dropdown-item d-flex align-items-center justify-content-between py-2 px-3">
-          <span>{{ stock.stockDetails.symbol }}</span>
-          <div class="text-right">
-            <div>
-              {{ stock.quote.latestPrice | currency}}
-            </div>
-            <div [ngClass]="{'green': stock.quote.changePercent >= 0, 'red': stock.quote.changePercent < 0}">
-              {{ stock.quote.changePercent >= 0 ? '+' : '-' }}{{ (stock.quote.changePercent > 0 ? stock.quote.changePercent*100 : stock.quote.changePercent*-100) | number : '1.2-2'}}%
-            </div>
-          </div>
-        </div>
-
-      </a>
+      <app-watch-list-item [stock]="stock"></app-watch-list-item>
     </li>
+
   </div>
-  <li *ngIf="watchlist.length == 0" class="list-group-item hint text-center px-5 py-4">
+  <li *ngIf="watchlist?.length == 0" class="list-group-item hint text-center px-5 py-4">
     Search your favorite stock and add it to your Watchlist.
   </li>
 </ul>

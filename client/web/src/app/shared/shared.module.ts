@@ -56,6 +56,10 @@ import { EmptyStockListItemComponent } from './components/stock/lists/empty-stoc
 import { UserProgressComponent } from './components/progress/user-progress/user-progress.component';
 import { MiscUpdateFormComponent } from './components/settings/misc-update-form/misc-update-form.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { WatchListEmptyItemComponent } from './components/watchlist/watch-list-empty-item/watch-list-empty-item.component';
+import { WatchListItemComponent } from './components/watchlist/watch-list-item/watch-list-item.component';
+import { PortfolioValueEmptyComponent } from './components/account/portfolio-value-empty/portfolio-value-empty.component';
+import { OwnedStockEmptyComponent } from './components/account/owned-stock-empty/owned-stock-empty.component';
 
 @NgModule({
   declarations: [
@@ -103,7 +107,11 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     MostactiveListComponent,
     EmptyStockListItemComponent,
     UserProgressComponent,
-    MiscUpdateFormComponent
+    MiscUpdateFormComponent,
+    WatchListEmptyItemComponent,
+    WatchListItemComponent,
+    PortfolioValueEmptyComponent,
+    OwnedStockEmptyComponent
   ],
   imports: [
     CommonModule,
@@ -167,7 +175,9 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     MostactiveListComponent,
     EmptyStockListItemComponent,
     UserProgressComponent,
-    MiscUpdateFormComponent
+    MiscUpdateFormComponent,
+    PortfolioValueEmptyComponent,
+    OwnedStockEmptyComponent
   ],
   providers: [],
   entryComponents: [DeleteAccountDialogComponent, SearchStockModalComponent, RemoveLinkedAccountDialogComponent]

@@ -15,12 +15,9 @@ import { TutorialItem } from 'src/app/core/models/tutorial/tutorialItem';
 })
 export class HomePageComponent implements OnInit {
 
-  watchlist: StockDetails[];
-
   constructor(public selfService: SelfService,
     private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.watchlist = this.route.snapshot.data.watchlist;
   }
 }
