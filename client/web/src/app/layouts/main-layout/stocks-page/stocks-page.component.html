@@ -14,8 +14,8 @@
       <app-stock-line-chart [quote]="stockDetails.quote"></app-stock-line-chart>
     </div>
     <div class="col-md-8">
-      <app-buy-stock-card (boughtStockEmitter)="isWatching = true" [stockDetails]="stockDetails" [account]="account"
-        [quote]="stockDetails.quote" [ownedStock]="ownedStock">
+      <app-buy-stock-card (boughtStockEmitter)="isWatching.isWatching = true" [stockDetails]="stockDetails"
+        [account]="account" [quote]="stockDetails.quote" [ownedStock]="ownedStock">
       </app-buy-stock-card>
       <div class="p-4">
         <app-watchlist-btn [watching]="isWatching" [stock]="stockDetails"></app-watchlist-btn>

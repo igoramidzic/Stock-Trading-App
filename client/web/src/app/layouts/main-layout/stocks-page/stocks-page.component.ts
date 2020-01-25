@@ -38,7 +38,8 @@ export class StocksPageComponent implements OnInit, OnDestroy {
     })
 
 
-    setInterval(() => {
+    this.refreshStockQuote = setInterval(() => {
+      console.log("Loading...")
       this.updateStockDetails();
     }, 5000)
   }
