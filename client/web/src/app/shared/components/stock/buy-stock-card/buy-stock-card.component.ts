@@ -43,9 +43,19 @@ export class BuyStockCardComponent implements OnInit, OnChanges {
     })
   }
 
+  resetForms(): void {
+    this.shareCountForm.controls['shareCount'].setValue(0);
+  }
+
   ngOnChanges(changes: SimpleChanges): void {
     if (this.shareCountForm)
-      this.estimatedCost = changes.quote.currentValue.latestPrice * this.shareCountForm.controls['shareCount'].value;
+      this.resetForms();
+
+    if (this.stockDetails && changes.stockDetails.previousValue && (changes.stockDetails.previousValue._id != this.stockDetails._id)) {
+      this.errors = [];
+      this.done = false;
+      this.doneMessage = "";
+    }
   }
 
   changeBuySell(isBuy: boolean): void {
