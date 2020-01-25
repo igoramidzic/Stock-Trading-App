@@ -18,7 +18,7 @@ export class StocksPageComponent implements OnInit, OnDestroy {
   stockDetails: StockDetails;
   account: Account;
   ownedStock: OwnedStock;
-  isWatching: boolean;
+  isWatching: { isWatching: boolean };
   currencySymbol: string = '$';
 
   refreshStockQuote;
@@ -36,6 +36,7 @@ export class StocksPageComponent implements OnInit, OnDestroy {
 
       this.setPageTitle(this.stockDetails.symbol, this.stockDetails.quote.latestPrice);
     })
+
 
     setInterval(() => {
       this.updateStockDetails();
@@ -58,6 +59,6 @@ export class StocksPageComponent implements OnInit, OnDestroy {
       .then((stockDetails: StockDetails) => {
         this.stockDetails = stockDetails;
       })
-      .catch((err) => console.log(err))
+      .catch((err) => { })
   }
 }

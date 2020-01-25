@@ -1,9 +1,9 @@
 <button (click)="toggleWatch()" class="btn btn-lg btn-block btn-outline btn-primary" [disabled]="submitting">
   <span *ngIf="!submitting">
-    <span *ngIf="!watching">
+    <span *ngIf="!watching.isWatching">
       Add to Watchlist
     </span>
-    <span *ngIf="watching">
+    <span *ngIf="watching.isWatching">
       Remove from Watchlist
     </span>
   </span>

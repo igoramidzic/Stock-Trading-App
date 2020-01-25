@@ -10,6 +10,7 @@ import { StockService } from 'src/app/services/stock/stock.service';
 export class LosersListComponent implements OnInit {
   list: StockQuote[];
   loading: boolean;
+  isError: boolean;
 
   constructor(public stockService: StockService) { }
 
@@ -17,12 +18,13 @@ export class LosersListComponent implements OnInit {
     this.stockService.topLosersList.subscribe((topGainers: StockQuote[]) => {
       this.list = topGainers;
     })
-
   }
 
   updateList(): void {
     this.loading = true;
+    this.isError = false;
     this.stockService.updateLosers()
+      .catch(() => this.isError = true)
       .finally(() => this.loading = false);
   }
 

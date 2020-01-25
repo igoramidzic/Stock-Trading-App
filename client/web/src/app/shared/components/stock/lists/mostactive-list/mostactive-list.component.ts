@@ -10,6 +10,7 @@ import { StockService } from 'src/app/services/stock/stock.service';
 export class MostactiveListComponent implements OnInit {
   list: StockQuote[];
   loading: boolean;
+  isError: boolean;
 
   constructor(public stockService: StockService) { }
 
@@ -23,7 +24,9 @@ export class MostactiveListComponent implements OnInit {
 
   updateList(): void {
     this.loading = true;
+    this.isError = false;
     this.stockService.updateMostActive()
+      .catch(() => this.isError = true)
       .finally(() => this.loading = false);
   }
 

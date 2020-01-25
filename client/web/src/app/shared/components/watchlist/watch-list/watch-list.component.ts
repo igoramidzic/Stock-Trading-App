@@ -13,6 +13,7 @@ export class WatchListComponent implements OnInit {
   watchlist: { stockDetails: StockDetails, quote: StockQuote }[];
   isLoading: boolean;
   allowedToReload: boolean;
+  isError: boolean;
 
   constructor(private watchlistService: WatchlistService) { }
 
@@ -23,18 +24,22 @@ export class WatchListComponent implements OnInit {
   updateWatchlist(): void {
     if (this.isLoading) return;
     this.isLoading = true;
+    this.isError = false;
     this.allowedToReload = false;
     this.watchlistService.getWatchList()
       .then((watchlist: { stockDetails: StockDetails, quote: StockQuote }[]) => {
         this.watchlist = watchlist;
         this.watchlist.sort((a, b) => a.stockDetails.symbol > b.stockDetails.symbol ? 1 : -1)
-
+      })
+      .catch(() => {
+        this.isError = true;
+      })
+      .finally(() => {
+        this.isLoading = false
         setTimeout(() => {
           this.allowedToReload = true;
         }, 10000);
       })
-      .catch(() => { })
-      .finally(() => this.isLoading = false)
   }
 
   get emptyWatchList(): StockQuote[] {

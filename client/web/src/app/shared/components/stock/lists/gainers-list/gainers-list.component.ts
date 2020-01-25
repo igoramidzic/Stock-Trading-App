@@ -11,6 +11,7 @@ export class GainersListComponent implements OnInit {
 
   list: StockQuote[];
   loading: boolean;
+  isError: boolean;
 
   constructor(public stockService: StockService) { }
 
@@ -22,7 +23,9 @@ export class GainersListComponent implements OnInit {
 
   updateList(): void {
     this.loading = true;
+    this.isError = false;
     this.stockService.updateGainers()
+      .catch(() => this.isError = true)
       .finally(() => this.loading = false);
   }
 

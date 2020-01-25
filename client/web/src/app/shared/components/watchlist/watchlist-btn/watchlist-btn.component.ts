@@ -11,7 +11,7 @@ import { BehaviorSubject } from 'rxjs';
 export class WatchlistBtnComponent implements OnInit, OnChanges {
 
   @Input() stock: StockDetails;
-  @Input() watching: boolean;
+  @Input() watching: { isWatching: boolean };
   @Output() updateWatchlistEmitter: EventEmitter<StockDetails[]> = new EventEmitter();
 
   submitting: boolean;
@@ -30,7 +30,7 @@ export class WatchlistBtnComponent implements OnInit, OnChanges {
   }
 
   toggleWatch(): void {
-    if (this.watching)
+    if (this.watching.isWatching)
       this.removeFromWatchList();
     else
       this.addToWatchlist();
@@ -41,7 +41,7 @@ export class WatchlistBtnComponent implements OnInit, OnChanges {
     this.watchlistService.addToWatchlist(this.stock._id)
       .then((watchlist: StockDetails[]) => {
         this.updateWatchlistEmitter.emit(watchlist);
-        this.watching = true;
+        this.watching.isWatching = true;
       })
       .catch((err) => {
         console.log(err)
@@ -56,7 +56,7 @@ export class WatchlistBtnComponent implements OnInit, OnChanges {
     this.watchlistService.removeFromWatchlist(this.stock._id)
       .then((watchlist: StockDetails[]) => {
         this.updateWatchlistEmitter.emit(watchlist);
-        this.watching = false;
+        this.watching.isWatching = false;
       })
       .catch((err) => {
         console.log(err)

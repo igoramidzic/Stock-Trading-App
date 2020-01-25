@@ -22,11 +22,11 @@ export class WatchlistService {
     })
   }
 
-  getIfAlreadyWatching(stockId: string): Promise<boolean> {
+  getIfAlreadyWatching(stockId: string): Promise<{ isWatching: boolean }> {
     return new Promise((resolve, reject) => {
       this.http.get(`${environment.apiBase}/watchlist/${stockId}`)
         .subscribe((res: ClientResponse) => {
-          resolve(res.result.isWatching)
+          resolve({ isWatching: res.result.isWatching })
         },
           (err: { error: ClientResponse }) => reject(err.error))
     })

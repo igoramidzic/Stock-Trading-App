@@ -23,4 +23,8 @@
   <li *ngIf="watchlist?.length == 0" class="list-group-item hint text-center px-5 py-4">
     Search your favorite stock and add it to your Watchlist.
   </li>
+
+  <li *ngIf="isError" class="list-group-item hint text-center px-5 py-4">
+    Something went wrong.
+  </li>
 </ul>
