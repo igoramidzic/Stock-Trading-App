@@ -30,7 +30,7 @@ export const ACCOUNT_ROUTES: Routes = [
     {
         path: 'history',
         component: HistoryPageComponent,
-        resolve: { transfers: TransfersResolver, transactions: TransactionsResolver },
+        // resolve: { transfers: TransfersResolver, transactions: TransactionsResolver },
         data: {
             title: 'Account'
         }

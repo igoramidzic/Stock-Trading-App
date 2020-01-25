@@ -7,7 +7,16 @@
       [i]="i">
     </app-transaction-history-item>
   </li>
-  <li class="list-group-item p-4" *ngIf="combinedItems.length == 0">
+
+
+
+  <li class="list-group-item p-4" *ngIf="combinedItems?.length == 0">
     <span class="hint">There are no Transfers or Transactions to display.</span>
+  </li>
+</ul>
+
+<ul class="list-group" *ngIf="!combinedItems">
+  <li class="list-group-item p-0" *ngFor="let combinedItem of emptyTransList; let i = index;">
+    <app-transaction-history-item-empty></app-transaction-history-item-empty>
   </li>
 </ul>

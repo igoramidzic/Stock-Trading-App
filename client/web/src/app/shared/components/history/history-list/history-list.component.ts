@@ -15,4 +15,8 @@ export class HistoryListComponent implements OnInit {
   ngOnInit() {
   }
 
+  get emptyTransList(): CombinedTrans[] {
+    let list: CombinedTrans[] = new Array(!this.combinedItems ? 4 : this.combinedItems.length);
+    return list;
+  }
 }

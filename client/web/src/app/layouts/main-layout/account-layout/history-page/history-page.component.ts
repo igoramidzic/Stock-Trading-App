@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Transfer } from 'src/app/core/models/transfer/transfer';
 import { Transaction } from 'src/app/core/models/transaction/transaction';
+import { TransactionService } from 'src/app/services/transaction/transaction.service';
+import { TransferService } from 'src/app/services/transfer/transfer.service';
 
 @Component({
   selector: 'app-history-page',
@@ -17,13 +19,16 @@ export class HistoryPageComponent implements OnInit {
 
   filter: string = "all";
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private transactionService: TransactionService,
+    private transferService: TransferService) { }
 
   ngOnInit() {
-    this.transfers = this.route.snapshot.data.transfers;
-    this.transactions = this.route.snapshot.data.transactions;
-
-    this.filterItems(this.filter);
+    Promise.all([this.transferService.getTransfers(), this.transactionService.getTransactions()])
+      .then((result: any[]) => {
+        this.transfers = result[0];
+        this.transactions = result[1];
+        this.filterItems(this.filter);
+      })
   }
 
   filterItems(filter: string): void {
